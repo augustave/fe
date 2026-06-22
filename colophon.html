@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fé — Colophon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --folio-black:        #1F2024;
+  --folio-mute-strong:  #56544C;
+  --folio-mute:         #7E7C72;
+  --folio-hairline:     rgba(126, 124, 114, 0.35);
+  --paper:              #E8DFC9;
+
+  /* the seven marks, closed — shown once here as the index spectrum */
+  --slow-red:           #5A1F1F;
+  --slag-mark:          #A33A1A;
+  --margin-gold:        #6A5111;
+  --compact-green:      #2E5F4A;
+  --bind-blue:          #1F4F73;
+  --crown-indigo:       #1A2A66;
+  --sigil-mauve:        #5F2F4A;
+
+  --serif:    'EB Garamond', 'Times New Roman', serif;
+  --display:  'Fraunces', 'EB Garamond', serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--folio-black); }
+body {
+  background: var(--folio-black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.colophon {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--paper);
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead"
+    "body"
+    "slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.7),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--folio-black);
+  padding: 44px 56px 38px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--folio-mute-strong); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 4px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.masthead-title h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 76px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+  color: var(--folio-black);
+}
+.masthead-title .subtitle {
+  margin-top: 16px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.01em;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+
+/* ───────── BODY ───────── */
+.body {
+  grid-area: body;
+  display: grid;
+  grid-template-columns: 1fr 540px 1fr;
+  padding: 52px 56px 36px;
+  gap: 36px;
+  align-items: start;
+}
+.note-section { grid-column: 2; }
+
+.note-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.note-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 34px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--folio-black);
+  letter-spacing: 0.005em;
+  margin-bottom: 26px;
+  text-align: center;
+  line-height: 1.1;
+}
+.note-title::after {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 1px;
+  background: var(--folio-mute-strong);
+  margin: 18px auto 0;
+}
+
+.note-body {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--folio-black);
+  text-align: justify;
+  hyphens: auto;
+}
+.note-body p { margin-bottom: 12px; }
+.note-body p.lead { text-indent: 0; }
+.note-body p + p { text-indent: 1.4em; }
+.note-body em.term { font-style: italic; color: var(--folio-mute-strong); }
+.note-body em { font-style: italic; }
+.note-body .dropcap {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 56px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  float: left;
+  line-height: 0.86;
+  padding: 6px 8px 0 0;
+  color: var(--folio-black);
+}
+
+/* ─── the closed index, shown as a spectrum bar ─── */
+.index-bar {
+  grid-column: 2;
+  margin-top: 32px;
+  padding-top: 22px;
+  border-top: 1px solid var(--folio-black);
+}
+.index-bar-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.index-swatches {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.index-swatches .sw {
+  height: 26px;
+  border: 1px solid var(--folio-black);
+}
+.index-caption {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.note-signature {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--folio-hairline);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--folio-mute-strong);
+  text-align: right;
+  line-height: 1.5;
+}
+.note-signature .name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 18px;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+  color: var(--folio-black);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--folio-black);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--folio-mute-strong); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--folio-black); }
+
+/* Print */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .colophon { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="colophon">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">VOLUME</span> 01 · COMPLETE</div>
+      <div class="row"><span class="k">DATE</span> 2026-06-08</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">A Closing Note · The Edition is Bound</div>
+      <h1>Fé</h1>
+      <div class="subtitle">Eight folios, one fixed form, seven marks — closed by intent.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">PUBLISHER</span> DEVGRU.COMPUTER</div>
+      <div class="row"><span class="k">IMPRINT</span> DEFENSE.OBSERVER</div>
+      <div class="row"><span class="k">CITY</span> NEW YORK</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ BODY ═══════════ -->
+  <div class="body">
+    <section class="note-section">
+      <div class="note-eyebrow">Colophon</div>
+      <h2 class="note-title">Volume One is Complete</h2>
+
+      <div class="note-body">
+        <p class="lead"><span class="dropcap">T</span>his volume gathers eight folios under one fixed form: doctrine on the recto, codex on the verso, a single mark spent once at the moment the two agree. One <em class="term">foundation</em> that documents the form in its own body; a Norse <em class="term">trio</em> that reads the rune poems as structural prediction rather than mysticism; a contemporary <em class="term">quartet</em> that brackets a single bound action in its action, its authority, its origin, and its identity. The shape is closed by design — not stopped, but finished.</p>
+
+        <p>The Mark Color Index stands at seven of seven, every slot claimed and none reserved. This is a declaration, not an accident. The series argues for discipline, and a discipline that cannot end is no discipline at all. An eighth mark — and the folio that would carry it — is reachable only through a deliberate <em class="term">AUDIT</em>: a re-architecture undertaken on purpose, never by routine build. Until such a decision is made and recorded, the index is shut.</p>
+
+        <p>Set in EB Garamond, JetBrains Mono, and Fraunces, all under the SIL Open Font License. The folios are zero-dependency HTML — no build step, no framework, no external asset beyond the type — bound into a single catalogue by a pipeline that renders each spread at its native dimensions and concatenates them in order. The form is older than this series; sovereignty has always operated through named, attested, legible artifacts. What the series demonstrates is that the form still works.</p>
+      </div>
+
+      <!-- ─── the closed index, as a spectrum ─── -->
+      <section class="index-bar">
+        <div class="index-bar-label">— The Index, Closed · Seven of Seven —</div>
+        <div class="index-swatches">
+          <div class="sw" style="background:#5A1F1F" title="M.01 Slow Red"></div>
+          <div class="sw" style="background:#A33A1A" title="M.02 Slag Mark"></div>
+          <div class="sw" style="background:#6A5111" title="M.03 Margin Gold"></div>
+          <div class="sw" style="background:#2E5F4A" title="M.06 Compact Green"></div>
+          <div class="sw" style="background:#1F4F73" title="M.04 Bind Blue"></div>
+          <div class="sw" style="background:#1A2A66" title="M.05 Crown Indigo"></div>
+          <div class="sw" style="background:#5F2F4A" title="M.07 Sigil Mauve"></div>
+        </div>
+        <div class="index-caption">Slow Red · Slag Mark · Margin Gold · Compact Green · Bind Blue · Crown Indigo · Sigil Mauve</div>
+      </section>
+
+      <div class="note-signature">
+        <span class="name">— Ven Augustave</span>
+        DEVGRU.COMPUTER &middot; DEFENSE.OBSERVER<br>
+        New York, June 2026
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">BINDING</span><span class="v">VOLUME 01 · COMPLETE</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">EIGHT FOLIOS · ONE FORM · CLOSED</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">EDITOR</span><span class="v">VEN AUGUSTAVE · 2026</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REGISTER × HOLD — Fé №06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* SYSTEM CORE — from Stage A foundation */
+  --folio-black:        #1F2024;
+  --folio-mute-strong:  #56544C;
+  --folio-mute:         #7E7C72;
+  --folio-hairline:     rgba(126, 124, 114, 0.35);
+
+  /* PAPER — Linen Slip (formal document register, matches WRIT) */
+  --paper:              #E3DCC9;
+
+  /* ARCHIVE STRATUM — the preservation medium */
+  --vellum-cream:       #EBE2CB;
+  --parchment-stain:    #C4B395;
+  --quill-sepia:        #6B4F32;
+
+  /* ENTRY STRATUM — the formal record */
+  --decree-iron:        #1D1F22;
+  --patina-brown:       #5C4A33;
+  --stamp-grey:         #6E6C62;
+
+  /* TRACE STRATUM — technical preservation state */
+  --hash-pale:          #C2BEB4;
+  --cipher-slate:       #4A4E55;
+  --patina-verdigris:   #4F5B49;
+
+  /* MARK ONLY — Compact Green, from §C.03 reserved index */
+  --compact-green:      #2E5F4A;
+
+  /* TYPEFACES */
+  --serif:    'EB Garamond', 'Times New Roman', serif;
+  --display:  'Fraunces', 'EB Garamond', serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--folio-black); }
+body {
+  background: var(--folio-black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--paper);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.7),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--folio-black);
+  padding: 30px 56px 26px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--folio-mute-strong); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 2px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.masthead-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--folio-black);
+}
+.masthead-title .register {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  font-size: 30px;
+}
+.masthead-title .x {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 26px;
+  vertical-align: 4px;
+  margin: 0 18px;
+  color: var(--folio-mute-strong);
+}
+.masthead-title .hold {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 42px;
+}
+.masthead-title .subtitle {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.01em;
+}
+
+/* ───────── SPINE ───────── */
+.spine {
+  grid-area: spine;
+  background: var(--folio-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+.spine-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.36em;
+  color: var(--paper);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+.spine-ornaments { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spine-mark {
+  width: 6px; height: 6px;
+  border: 1px solid var(--paper);
+  transform: rotate(45deg);
+}
+.spine-mark.filled { background: var(--paper); }
+.spine-rule { width: 14px; height: 1px; background: var(--paper); }
+
+/* ───────── LEFT PAGE — DOCTRINE (HOLD) ───────── */
+.page-left {
+  grid-area: left;
+  padding: 52px 56px 56px 64px;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--folio-mute-strong);
+  padding-bottom: 7px;
+  margin-bottom: 30px;
+}
+.page-header .folio-mark { color: var(--folio-black); }
+
+.doctrine-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.doctrine-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--folio-black);
+  margin-bottom: 8px;
+}
+.doctrine-title em { font-style: italic; font-weight: 400; }
+.doctrine-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--folio-mute-strong);
+}
+
+.doctrine-body {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: var(--folio-black);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid var(--folio-hairline);
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+.doctrine-body .thesis-block { margin-bottom: 16px; break-inside: avoid; }
+.doctrine-body .thesis-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--folio-mute-strong);
+  margin-bottom: 4px;
+}
+.doctrine-body .thesis-text { font-size: 14.5px; line-height: 1.5; }
+
+.doctrine-body h3 {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  margin-top: 18px;
+  margin-bottom: 9px;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.doctrine-body h3 .num {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.18em;
+  font-variant: normal;
+}
+.doctrine-body h3 .num::after { content: "·"; margin-left: 10px; color: var(--folio-mute-strong); }
+
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; margin-bottom: 9px; }
+.doctrine-body p.lead { text-indent: 0; }
+
+.doctrine-body em.term {
+  font-style: italic;
+  color: var(--quill-sepia);
+  font-weight: 500;
+}
+
+.doctrine-body strong.case {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--folio-black);
+}
+
+.doctrine-body ol { list-style: none; counter-reset: doct-rule; margin: 4px 0 10px 0; }
+.doctrine-body ol li {
+  counter-increment: doct-rule;
+  margin-bottom: 9px;
+  padding-left: 26px;
+  position: relative;
+  break-inside: avoid;
+}
+.doctrine-body ol li::before {
+  content: counter(doct-rule, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.doctrine-body ol li strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.doctrine-coda { margin-top: 12px; break-inside: avoid; }
+
+/* ───────── RIGHT PAGE — CODEX (REGISTER) ───────── */
+.page-right {
+  grid-area: right;
+  padding: 52px 64px 56px 56px;
+  display: flex;
+  flex-direction: column;
+}
+
+.codex-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.codex-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.24em;
+  color: var(--folio-black);
+  margin-bottom: 4px;
+}
+.codex-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 14px;
+}
+.codex-thesis {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--folio-black);
+  margin-bottom: 22px;
+  padding-left: 14px;
+  border-left: 2px solid var(--compact-green);
+  font-style: italic;
+  line-height: 1.5;
+}
+.codex-thesis .therefore {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6px;
+}
+
+/* ── THE REGISTER DOCUMENT ── */
+.register-frame {
+  border: 1px solid var(--decree-iron);
+  background: var(--vellum-cream);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.register-header-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--decree-iron);
+  text-transform: uppercase;
+  padding: 7px 12px;
+  background: var(--paper);
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--decree-iron);
+}
+.register-header-strip .center {
+  text-align: center;
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+}
+.register-header-strip .right {
+  text-align: right;
+  color: var(--compact-green);
+  font-weight: 500;
+}
+.register-header-strip .integrity {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid var(--compact-green);
+  color: var(--compact-green);
+  letter-spacing: 0.18em;
+  margin-left: 4px;
+}
+
+.register-body {
+  padding: 22px 26px 18px;
+  position: relative;
+}
+
+.register-display-heading {
+  text-align: center;
+  margin-bottom: 6px;
+}
+.register-display-heading .lead-glyph {
+  font-family: var(--display);
+  font-size: 22px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 1;
+  color: var(--decree-iron);
+  letter-spacing: 0.08em;
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.register-display-heading h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 32px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.register-display-heading .designator {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--compact-green);
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.register-opening {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--patina-brown);
+  text-align: center;
+  margin: 14px 22px 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--parchment-stain);
+}
+.register-opening .opening-cap {
+  font-family: var(--display);
+  font-weight: 600;
+  font-style: normal;
+  font-size: 13px;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.register-opening .writ-ref {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--compact-green);
+  font-weight: 500;
+}
+
+/* ── ENTRIES TABLE ── */
+.entries {
+  font-family: var(--mono);
+  margin-bottom: 14px;
+}
+.entries-header {
+  display: grid;
+  grid-template-columns: 42px 84px 1fr 64px 110px 22px;
+  gap: 8px;
+  padding: 4px 6px 5px;
+  border-bottom: 1px solid var(--decree-iron);
+  font-size: 7.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--folio-mute-strong);
+  font-weight: 500;
+}
+.entry-row {
+  display: grid;
+  grid-template-columns: 42px 84px 1fr 64px 110px 22px;
+  gap: 8px;
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--parchment-stain);
+  align-items: center;
+  font-size: 10.5px;
+  color: var(--decree-iron);
+}
+.entry-row:last-child { border-bottom: 1px solid var(--decree-iron); }
+.entry-row.partial { background: rgba(196, 179, 149, 0.18); }
+.entry-row.failed { background: rgba(196, 179, 149, 0.32); }
+
+.entry-id {
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--patina-brown);
+}
+.entry-time {
+  font-size: 9.5px;
+  color: var(--cipher-slate);
+  letter-spacing: 0.02em;
+}
+.entry-action {
+  font-family: var(--serif);
+  font-size: 12px;
+  color: var(--decree-iron);
+  line-height: 1.35;
+  letter-spacing: 0.005em;
+}
+.entry-action .note {
+  display: block;
+  font-style: italic;
+  font-size: 10.5px;
+  color: var(--folio-mute-strong);
+  margin-top: 1px;
+  font-family: var(--serif);
+}
+.entry-action .redacted {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  color: var(--folio-mute-strong);
+  background: var(--hash-pale);
+  padding: 1px 6px;
+  display: inline-block;
+}
+.entry-writ {
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--compact-green);
+  font-weight: 500;
+}
+.entry-writ.dim { color: var(--folio-mute-strong); }
+.entry-hash {
+  font-size: 8.5px;
+  letter-spacing: 0.02em;
+  color: var(--cipher-slate);
+  font-family: var(--mono);
+  word-break: break-all;
+}
+.entry-hash.absent {
+  color: var(--folio-mute-strong);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 7.5px;
+}
+
+/* preservation seals — Compact Green, the mark */
+.seal {
+  width: 22px; height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+}
+.seal svg { width: 100%; height: 100%; display: block; }
+
+/* ── REGISTER FOOTER ── */
+.register-footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--parchment-stain);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.register-footer .col span.k {
+  display: block;
+  color: var(--folio-mute-strong);
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  margin-bottom: 2px;
+}
+.register-footer .col span.v {
+  color: var(--decree-iron);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  word-break: break-all;
+}
+.register-footer .col.right { text-align: right; }
+
+/* status summary strip below register */
+.preservation-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.preservation-summary .cell {
+  border: 1px solid var(--folio-hairline);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.preservation-summary .cell.complete { border-color: var(--compact-green); }
+.preservation-summary .label { color: var(--folio-mute-strong); font-size: 7.5px; letter-spacing: 0.2em; }
+.preservation-summary .value {
+  font-family: var(--display);
+  font-size: 22px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  font-weight: 600;
+  color: var(--decree-iron);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.preservation-summary .cell.complete .value { color: var(--compact-green); }
+.preservation-summary .of {
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.1em;
+  font-family: var(--mono);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* ── Codex meta blocks ── */
+.codex-meta {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  margin-top: auto;
+}
+.meta-block { font-family: var(--mono); color: var(--folio-black); }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--folio-black);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.meta-label .idx { color: var(--folio-mute-strong); font-weight: 400; }
+
+.palette-stratum {
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 6px;
+}
+.palette-stratum:first-of-type { margin-top: 0; }
+.swatch-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3px;
+  font-size: 8.5px;
+}
+.swatch { width: 14px; height: 14px; border: 1px solid var(--folio-black); }
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--folio-mute-strong); letter-spacing: 0.06em; }
+.swatch-row.mark .swatch-name { color: var(--compact-green); }
+
+.rules-list { list-style: none; counter-reset: rule; }
+.rules-list li {
+  counter-increment: rule;
+  font-size: 8.5px;
+  margin-bottom: 7px;
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.rules-list li::before {
+  content: "R." counter(rule, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--folio-mute-strong);
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+}
+.rules-list li strong {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--folio-black);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--folio-mute-strong); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--folio-black); }
+
+/* Print */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> №06</div>
+      <div class="row"><span class="k">DATE</span> 2026-05-30</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · Preservation / Architectural Memory</div>
+      <h1>
+        <span class="register">REGISTER</span>
+        <span class="x">×</span>
+        <span class="hold">Hold</span>
+      </h1>
+      <div class="subtitle">A codex for action preservation, paired with a doctrine on what must survive the action that produced it.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">REFERENCE</span> R-0040 · BINDS W-0040</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE (HOLD) ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio-mark">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>ARCHIVE STRATUM</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read 06</div>
+    <h2 class="doctrine-title">Hold and the Register</h2>
+    <div class="doctrine-subtitle">What survives the action that produced it.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text">Autonomous systems act and destroy the records of their own operation by default. The artifact that knew what it did dies with the action — sensor reads overwritten, model state reset, network logs lost when the network is severed. What remains is what was deliberately preserved, by architectural commitment, before the action concluded. The <em class="term">hold</em> is the burden of carrying that commitment from the system's design through to its termination; the <em class="term">register</em> is the artifact the commitment produces. Without the register, the system's having operated under sovereign authority is unprovable.</p>
+      </div>
+
+      <h3><span class="num">I</span>The Sovereignty Problem Extends Through Preservation</h3>
+      <p class="lead">Folio №05 established that sovereignty must be legible in the artifact that acts. The writ frame insisted that authority deferred to logs is authority that arrived too late. But sovereignty legible only in the moment of action and then dissipating is sovereignty exercised in the past — and the past, unrecorded, is not contestable, not auditable, not really exercised at all in any sense the named sovereign would recognize.</p>
+      <p>The system that knew what it did dies with the action by default. This is not a technical problem of storage. It is an architectural problem of what the system is required to preserve, and how that requirement is enforced when the system's own preservation infrastructure is destroyed alongside the action. A platform shot down preserves nothing. A satellite jammed preserves nothing. A network partitioned preserves the fragment that remained on each side and loses the bridge between them. The hold frame asks: what was committed to survive these failure modes, by what mechanism, before they occurred?</p>
+
+      <h3><span class="num">II</span>What the Hold Frame Predicts</h3>
+      <p class="lead"><strong class="case">Combat losses without records.</strong> When an autonomous platform is destroyed in contact, current architectures lose the platform's record of its own operation. Investigators reconstruct from external sources — radar tracks, comms intercepts, intent inferences. The hold frame predicts this reconstruction is fragile and politically contestable. Without per-action records preserved off-platform <em>before</em> the loss occurs, the platform's having operated under sovereign authority becomes an assertion rather than an artifact.</p>
+      <p><strong class="case">Network partition severs the audit trail.</strong> Distributed autonomous fleets that lose comms continue to operate but stop reporting. When comms return, the operator inherits an incomplete record — the fleet acted, the operator does not know exactly what was done, and the sovereign cannot demonstrate which specific actions were authorized. The hold frame predicts that comms-dependent records produce sovereignty gaps — periods when the system was acting but no authority can be reconstructed at the per-action grain that legal and political review requires.</p>
+      <p><strong class="case">Model state without provenance.</strong> Autonomous systems that learn from their operation update model weights based on encountered situations. When the model is later inspected, the weights reflect the learning but do not preserve the lineage of which situations produced which adaptations. The hold frame predicts that without action-to-weight provenance, the model is a black box at the most legally consequential level — what it learned, from whom it learned, and whether that learning was itself authorized.</p>
+
+      <h3><span class="num">III</span>What the Hold Frame Recommends</h3>
+      <ol>
+        <li><strong>Preservation is architectural, not procedural.</strong> The system must be designed around what it must preserve, with preservation requirements shaping the platform rather than appended after. A logging feature is not a hold.</li>
+        <li><strong>The register precedes the action.</strong> What the system will preserve from this action must be specified before the action begins. Post-hoc decisions about what to preserve are not preservation — they are reconstruction.</li>
+        <li><strong>The register must survive the system it records.</strong> A register that depends on the same infrastructure whose authority it preserves is not a register; it is a copy of the platform that dies with the platform. Off-system, redundant, sovereign-controlled archives are the architectural form.</li>
+        <li><strong>The register names what is preserved and what is not.</strong> Selective preservation is honest preservation. Pretending the register is complete when it is not is worse than admitting what is missing — gaps acknowledged are gaps that can be reasoned about, while gaps concealed corrupt the entire artifact.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">Sovereignty exercised in the past requires evidence in the present. The hold is the architectural commitment that produces that evidence; the register is the artifact the commitment carries forward through system failure to the moment of audit. Without the hold, autonomous systems operate under authority that cannot be proven — which is, in the legal and political surface that matters, indistinguishable from authority that was never granted. The writ named who could act; the register names what was done. Either alone is half a record.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · REGISTER × HOLD · №06</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX (REGISTER) ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>PRESERVATION STRATUM</span>
+      <span>CODEX</span>
+      <span class="folio-mark">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · System 06 · Demonstration Register</div>
+    <h2 class="codex-title">REGISTER</h2>
+    <div class="codex-subtitle">A codex for action preservation under named authority.</div>
+    <div class="codex-thesis">
+      What was done under what writ, with what state surviving the doing. The register is the artifact the hold produces; the seal is the mark that names which entries the architectural commitment kept.
+      <span class="therefore">Therefore: a register, entered, sealed where preserved, honest where not.</span>
+    </div>
+
+    <!-- ── PRESERVATION SUMMARY ── -->
+    <div class="preservation-summary">
+      <div class="cell complete">
+        <span class="label">Complete</span>
+        <span class="value">4<span class="of">/ 6</span></span>
+      </div>
+      <div class="cell">
+        <span class="label">Partial</span>
+        <span class="value">1<span class="of">/ 6</span></span>
+      </div>
+      <div class="cell">
+        <span class="label">Failed</span>
+        <span class="value">1<span class="of">/ 6</span></span>
+      </div>
+    </div>
+
+    <!-- ── THE REGISTER DOCUMENT ── -->
+    <div class="register-frame">
+
+      <div class="register-header-strip">
+        <span>REGISTER · R-0040</span>
+        <span class="center">PRESERVATION LOG · 6 ENTRIES · 30-MIN WINDOW</span>
+        <span class="right">CHAIN<span class="integrity">VERIFIED</span></span>
+      </div>
+
+      <div class="register-body">
+
+        <div class="register-display-heading">
+          <span class="lead-glyph">✦</span>
+          <h3>REGISTER R-0040</h3>
+          <div class="designator">Action Preservation Log · Sprint 2</div>
+        </div>
+
+        <p class="register-opening">
+          <span class="opening-cap">Be it preserved by these entries</span> that the actions herein recorded were undertaken under writ <span class="writ-ref">W-0040</span>, and that their state, where preserved, is hashed and verifiable below; where not preserved, the gaps are named.
+        </p>
+
+        <!-- ENTRIES TABLE -->
+        <div class="entries">
+          <div class="entries-header">
+            <span>Entry</span>
+            <span>Timestamp</span>
+            <span>Action</span>
+            <span>Writ</span>
+            <span>State Hash</span>
+            <span></span>
+          </div>
+
+          <!-- E-001 — COMPLETE -->
+          <div class="entry-row">
+            <span class="entry-id">E-001</span>
+            <span class="entry-time">04:12:03Z</span>
+            <span class="entry-action">Bind manifest commit C-001<span class="note">operator ack: yes · scope FW-04-EAST</span></span>
+            <span class="entry-writ">W-0040</span>
+            <span class="entry-hash">a3f9c21f4ee8a15b22de41c708bf6d23</span>
+            <span class="seal">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#2E5F4A"/>
+                <circle cx="12" cy="12" r="7.2" fill="none" stroke="#E3DCC9" stroke-width="0.6"/>
+                <text x="12" y="15.2" font-family="JetBrains Mono" font-size="8.5" fill="#E3DCC9" text-anchor="middle" font-weight="700">P</text>
+              </svg>
+            </span>
+          </div>
+
+          <!-- E-002 — COMPLETE -->
+          <div class="entry-row">
+            <span class="entry-id">E-002</span>
+            <span class="entry-time">04:18:51Z</span>
+            <span class="entry-action">Bind manifest commit C-002<span class="note">operator ack: yes · scope revision +12%</span></span>
+            <span class="entry-writ">W-0040</span>
+            <span class="entry-hash">b7d2e8e1c9a5f034e641a8b25c19fe72</span>
+            <span class="seal">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#2E5F4A"/>
+                <circle cx="12" cy="12" r="7.2" fill="none" stroke="#E3DCC9" stroke-width="0.6"/>
+                <text x="12" y="15.2" font-family="JetBrains Mono" font-size="8.5" fill="#E3DCC9" text-anchor="middle" font-weight="700">P</text>
+              </svg>
+            </span>
+          </div>
+
+          <!-- E-003 — PARTIAL (network partition) -->
+          <div class="entry-row partial">
+            <span class="entry-id">E-003</span>
+            <span class="entry-time">04:23:14Z</span>
+            <span class="entry-action"><span class="redacted">action preserved · context lost</span><span class="note">network partition T+0:00 to T+1:47 · fleet writeback unrecovered</span></span>
+            <span class="entry-writ dim">W-0040*</span>
+            <span class="entry-hash absent">— partial —</span>
+            <span class="seal">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="#2E5F4A" stroke-width="1.4" stroke-dasharray="2 2"/>
+                <circle cx="12" cy="12" r="7.2" fill="none" stroke="#2E5F4A" stroke-width="0.5" stroke-opacity="0.5"/>
+              </svg>
+            </span>
+          </div>
+
+          <!-- E-004 — COMPLETE -->
+          <div class="entry-row">
+            <span class="entry-id">E-004</span>
+            <span class="entry-time">04:27:42Z</span>
+            <span class="entry-action">Revise commit C-002 → C-002.r1<span class="note">degraded comms · acknowledgment recovered</span></span>
+            <span class="entry-writ">W-0040</span>
+            <span class="entry-hash">c1f8a52e4b9d70328a17f4c89e23b06d</span>
+            <span class="seal">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#2E5F4A"/>
+                <circle cx="12" cy="12" r="7.2" fill="none" stroke="#E3DCC9" stroke-width="0.6"/>
+                <text x="12" y="15.2" font-family="JetBrains Mono" font-size="8.5" fill="#E3DCC9" text-anchor="middle" font-weight="700">P</text>
+              </svg>
+            </span>
+          </div>
+
+          <!-- E-005 — FAILED (model state unrecoverable) -->
+          <div class="entry-row failed">
+            <span class="entry-id">E-005</span>
+            <span class="entry-time">04:33:08Z</span>
+            <span class="entry-action">Adapt routing weights (auto)<span class="note">model state update · lineage to action E-003 unrecoverable</span></span>
+            <span class="entry-writ dim">— inferred —</span>
+            <span class="entry-hash absent">— failed —</span>
+            <span class="seal">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="#7E7C72" stroke-width="0.9"/>
+                <line x1="6" y1="6" x2="18" y2="18" stroke="#7E7C72" stroke-width="1.1"/>
+              </svg>
+            </span>
+          </div>
+
+          <!-- E-006 — COMPLETE (terminate) -->
+          <div class="entry-row">
+            <span class="entry-id">E-006</span>
+            <span class="entry-time">04:42:55Z</span>
+            <span class="entry-action">Terminate manifest binding<span class="note">writ window expiring · normal close-out</span></span>
+            <span class="entry-writ">W-0040</span>
+            <span class="entry-hash">d2e5b7f1a8c46920f5c39e147d8b04ee</span>
+            <span class="seal">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#2E5F4A"/>
+                <circle cx="12" cy="12" r="7.2" fill="none" stroke="#E3DCC9" stroke-width="0.6"/>
+                <text x="12" y="15.2" font-family="JetBrains Mono" font-size="8.5" fill="#E3DCC9" text-anchor="middle" font-weight="700">P</text>
+              </svg>
+            </span>
+          </div>
+
+        </div>
+
+        <!-- REGISTER FOOTER -->
+        <div class="register-footer">
+          <div class="col">
+            <span class="k">CHAIN HASH</span>
+            <span class="v">9f04·c8e2·a51d·7b3f·e6a8·c109·44dd·2e7b</span>
+          </div>
+          <div class="col right">
+            <span class="k">OFF-REGISTER MIRROR · INTEGRITY</span>
+            <span class="v">SOV-ARC-03 · 4-of-6 SEALED</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ── PALETTE & RULES ── -->
+    <div class="codex-meta">
+
+      <div class="meta-block">
+        <div class="meta-label"><span>PALETTE</span><span class="idx">P.01—P.10</span></div>
+
+        <div class="palette-stratum">ARCHIVE STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#EBE2CB"></div><div class="swatch-name">Vellum Cream</div><div class="swatch-hex">#EBE2CB</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#C4B395"></div><div class="swatch-name">Parchment Stain</div><div class="swatch-hex">#C4B395</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6B4F32"></div><div class="swatch-name">Quill Sepia</div><div class="swatch-hex">#6B4F32</div></div>
+
+        <div class="palette-stratum">ENTRY STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#1D1F22"></div><div class="swatch-name">Decree Iron</div><div class="swatch-hex">#1D1F22</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#5C4A33"></div><div class="swatch-name">Patina Brown</div><div class="swatch-hex">#5C4A33</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6E6C62"></div><div class="swatch-name">Stamp Grey</div><div class="swatch-hex">#6E6C62</div></div>
+
+        <div class="palette-stratum">TRACE STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#C2BEB4"></div><div class="swatch-name">Hash Pale</div><div class="swatch-hex">#C2BEB4</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#4A4E55"></div><div class="swatch-name">Cipher Slate</div><div class="swatch-hex">#4A4E55</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#4F5B49"></div><div class="swatch-name">Patina Verdigris</div><div class="swatch-hex">#4F5B49</div></div>
+
+        <div class="palette-stratum">MARK ONLY — FROM §C.03 RESERVED INDEX</div>
+        <div class="swatch-row mark"><div class="swatch" style="background:#2E5F4A"></div><div class="swatch-name">Compact Green</div><div class="swatch-hex">#2E5F4A</div></div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-label"><span>IRON RULES</span><span class="idx">R.01—R.05</span></div>
+        <ol class="rules-list">
+          <li><strong>Every entry names what was preserved.</strong> The action, the writ that authorized it, the state hash where preserved, and the gaps where not. Entries that name only what survived are not register entries — they are summaries.</li>
+          <li><strong>Every entry references its writ.</strong> The chain from authority (WRIT) to evidence (REGISTER) is explicit in every row. Entries without a writ reference are forbidden; entries with an inferred writ are marked as such.</li>
+          <li><strong>Gaps are kept, not deleted.</strong> Partial and failed entries remain in the register with their failure mode named. The completeness of preservation is itself the preserved state. Deletion forges the record.</li>
+          <li><strong>The seal is the mark.</strong> Compact Green appears only at fully-preserved entries. Partial entries get the open seal; failed entries get no seal at all. Decorative use of Compact Green is forbidden.</li>
+          <li><strong>The register survives the system it records.</strong> The off-register mirror reference (SOV-ARC-03) is part of the register, not external to it. A register without a named survival mechanism is a copy of the platform, not a hold.</li>
+        </ol>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé №06</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">PAIR</span><span class="v">HOLD × REGISTER</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">DEMONSTRATION ARTIFACT</span><span class="v">·</span><span class="v"> ENTRIES ARE WORKED EXAMPLE</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROVENANCE × MEMORY — Fé №06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* SYSTEM CORE — from Stage A foundation */
+  --folio-black:        #1F2024;
+  --folio-mute-strong:  #56544C;
+  --folio-mute:         #7E7C72;
+  --folio-hairline:     rgba(126, 124, 114, 0.35);
+
+  /* PAPER — this folio uses Bone Pale (archival register) */
+  --paper:              #E8DFC9;
+
+  /* DOCUMENT STRATUM — warm archival */
+  --vellum-cream:       #EBE2CB;
+  --manuscript-tan:     #C9B791;
+  --iron-gall:          #2D2A1F;
+
+  /* INHERITANCE STRATUM — patina, aged */
+  --patina-bronze:      #5C4828;
+  --lineage-iron:       #3D3F44;
+  --heritage-wash:      #B8A988;
+
+  /* WITNESS STRATUM — cool technical */
+  --witness-slate:      #555356;
+  --cipher-stone:       #14171C;
+  --hash-pale:          #BFB6A0;
+
+  /* MARK ONLY — from reserved index §C.03, promoted at №06 */
+  --compact-green:      #2E5F4A;
+
+  /* TYPEFACES */
+  --serif:    'EB Garamond', 'Times New Roman', serif;
+  --display:  'Fraunces', 'EB Garamond', serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--cipher-stone); }
+body {
+  background: var(--cipher-stone);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--paper);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.7),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--folio-black);
+  padding: 30px 56px 26px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--folio-mute-strong); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 2px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.masthead-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--folio-black);
+}
+.masthead-title .provenance {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  font-size: 28px;
+}
+.masthead-title .x {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 26px;
+  vertical-align: 4px;
+  margin: 0 18px;
+  color: var(--folio-mute-strong);
+}
+.masthead-title .memory {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 42px;
+}
+.masthead-title .subtitle {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.01em;
+}
+
+/* ───────── SPINE ───────── */
+.spine {
+  grid-area: spine;
+  background: var(--folio-black);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+.spine-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.36em;
+  color: var(--paper);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+.spine-ornaments { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spine-mark {
+  width: 6px; height: 6px;
+  border: 1px solid var(--paper);
+  transform: rotate(45deg);
+}
+.spine-mark.filled { background: var(--paper); }
+.spine-rule { width: 14px; height: 1px; background: var(--paper); }
+
+/* ───────── LEFT PAGE — DOCTRINE (MEMORY) ───────── */
+.page-left {
+  grid-area: left;
+  background: var(--paper);
+  padding: 52px 56px 56px 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--folio-mute-strong);
+  padding-bottom: 7px;
+  margin-bottom: 30px;
+}
+.page-header .folio-mark { color: var(--folio-black); }
+
+.doctrine-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.doctrine-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--folio-black);
+  margin-bottom: 8px;
+}
+.doctrine-title em { font-style: italic; font-weight: 400; }
+.doctrine-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--folio-mute-strong);
+}
+
+.doctrine-body {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: var(--folio-black);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid var(--folio-hairline);
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+
+.doctrine-body .thesis-block { margin-bottom: 16px; break-inside: avoid; }
+.doctrine-body .thesis-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--folio-mute-strong);
+  margin-bottom: 4px;
+}
+.doctrine-body .thesis-text { font-size: 14.5px; line-height: 1.5; }
+
+.doctrine-body h3 {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  margin-top: 18px;
+  margin-bottom: 9px;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.doctrine-body h3 .num {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.18em;
+  font-variant: normal;
+}
+.doctrine-body h3 .num::after { content: "·"; margin-left: 10px; color: var(--folio-mute-strong); }
+
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; margin-bottom: 9px; }
+.doctrine-body p.lead { text-indent: 0; }
+
+.doctrine-body em.term {
+  font-style: italic;
+  color: var(--patina-bronze);
+  font-weight: 500;
+}
+
+.doctrine-body strong.case {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--folio-black);
+}
+
+.doctrine-body ol { list-style: none; counter-reset: doct-rule; margin: 4px 0 10px 0; }
+.doctrine-body ol li {
+  counter-increment: doct-rule;
+  margin-bottom: 9px;
+  padding-left: 26px;
+  position: relative;
+  break-inside: avoid;
+}
+.doctrine-body ol li::before {
+  content: counter(doct-rule, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.doctrine-body ol li strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.doctrine-coda { margin-top: 12px; break-inside: avoid; }
+
+/* ───────── RIGHT PAGE — CODEX (PROVENANCE) ───────── */
+.page-right {
+  grid-area: right;
+  background: var(--paper);
+  padding: 52px 64px 56px 56px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.codex-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.codex-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: 0.22em;
+  color: var(--folio-black);
+  margin-bottom: 4px;
+}
+.codex-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 14px;
+}
+.codex-thesis {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--folio-black);
+  margin-bottom: 20px;
+  padding-left: 14px;
+  border-left: 2px solid var(--compact-green);
+  font-style: italic;
+  line-height: 1.5;
+}
+.codex-thesis .therefore {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6px;
+}
+
+/* ── PROVENANCE MANIFEST — vertical lineage stack ── */
+.manifest-frame {
+  border: 1px solid var(--iron-gall);
+  background: var(--vellum-cream);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.manifest-header-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--iron-gall);
+  text-transform: uppercase;
+  padding: 7px 12px;
+  background: var(--paper);
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--iron-gall);
+}
+.manifest-header-strip .center {
+  text-align: center;
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+}
+.manifest-header-strip .right {
+  text-align: right;
+  color: var(--compact-green);
+  font-weight: 500;
+}
+.manifest-header-strip .stat {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid var(--compact-green);
+  color: var(--compact-green);
+  letter-spacing: 0.18em;
+  margin-left: 4px;
+}
+
+.manifest-body {
+  padding: 20px 26px 18px;
+}
+
+.manifest-target {
+  text-align: center;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--manuscript-tan);
+}
+.manifest-target .lead-glyph {
+  font-family: var(--display);
+  font-size: 22px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 1;
+  color: var(--iron-gall);
+  display: block;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.manifest-target .designator {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+}
+.manifest-target h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 24px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--iron-gall);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin: 4px 0 2px;
+}
+.manifest-target .target-id {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--compact-green);
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.manifest-opening {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--patina-bronze);
+  text-align: center;
+  margin: 0 12px 16px;
+}
+
+/* ── GENERATION STACK ── */
+.lineage {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.generation {
+  display: grid;
+  grid-template-columns: 30px 1fr 34px;
+  gap: 12px;
+  padding: 9px 10px;
+  background: var(--paper);
+  border: 1px solid var(--manuscript-tan);
+  align-items: center;
+  position: relative;
+}
+.generation + .generation { margin-top: 14px; }
+
+/* connector arrow between generations */
+.generation + .generation::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 26px;
+  width: 1px;
+  height: 10px;
+  background: var(--lineage-iron);
+}
+.generation + .generation::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 22px;
+  width: 9px;
+  height: 9px;
+  border-right: 1px solid var(--lineage-iron);
+  border-bottom: 1px solid var(--lineage-iron);
+  transform: rotate(45deg);
+}
+
+.gen-label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--lineage-iron);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-align: center;
+}
+.gen-label .num {
+  display: block;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.18em;
+  margin-bottom: 2px;
+}
+
+.gen-body { line-height: 1.32; }
+.gen-body .artifact {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--iron-gall);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 2px;
+}
+.gen-body .meta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 16px;
+  font-family: var(--serif);
+  font-size: 11.5px;
+}
+.gen-body .meta .custodian {
+  color: var(--patina-bronze);
+  font-style: italic;
+}
+.gen-body .meta .date {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--folio-mute-strong);
+  text-align: right;
+}
+.gen-body .hash {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  color: var(--witness-slate);
+  margin-top: 2px;
+  display: block;
+}
+
+/* Compact Green seal at custody transition */
+.gen-seal {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gen-seal svg { width: 100%; height: 100%; display: block; }
+
+/* TERMINAL — current system */
+.terminal {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--iron-gall);
+  color: var(--vellum-cream);
+  position: relative;
+  border: 1px solid var(--iron-gall);
+}
+.terminal::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 26px;
+  width: 1px;
+  height: 10px;
+  background: var(--lineage-iron);
+}
+.terminal::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 22px;
+  width: 9px;
+  height: 9px;
+  border-right: 1px solid var(--lineage-iron);
+  border-bottom: 1px solid var(--lineage-iron);
+  transform: rotate(45deg);
+  background: var(--paper);
+}
+.terminal .term-label {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--compact-green);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.terminal .term-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--vellum-cream);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+.terminal .term-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 11.5px;
+  color: var(--heritage-wash);
+  line-height: 1.4;
+}
+
+/* manifest footer */
+.manifest-footer {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--manuscript-tan);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.manifest-footer .col span.k {
+  display: block;
+  color: var(--folio-mute-strong);
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  margin-bottom: 2px;
+}
+.manifest-footer .col span.v {
+  color: var(--iron-gall);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.manifest-footer .col.right { text-align: right; }
+
+/* ── Codex meta blocks ── */
+.codex-meta {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  margin-top: auto;
+}
+.meta-block { font-family: var(--mono); color: var(--folio-black); }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--folio-black);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.meta-label .idx { color: var(--folio-mute-strong); font-weight: 400; }
+
+.palette-stratum {
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 6px;
+}
+.palette-stratum:first-of-type { margin-top: 0; }
+.swatch-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3px;
+  font-size: 8.5px;
+}
+.swatch { width: 14px; height: 14px; border: 1px solid var(--folio-black); }
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--folio-mute-strong); letter-spacing: 0.06em; }
+.swatch-row.mark .swatch-name { color: var(--compact-green); }
+
+.rules-list { list-style: none; counter-reset: rule; }
+.rules-list li {
+  counter-increment: rule;
+  font-size: 8.5px;
+  margin-bottom: 7px;
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.rules-list li::before {
+  content: "R." counter(rule, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--folio-mute-strong);
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+}
+.rules-list li strong {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--folio-black);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--folio-mute-strong); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--folio-black); }
+
+/* Print */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> №06</div>
+      <div class="row"><span class="k">DATE</span> 2026-05-31</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · Lineage / Custodial Memory</div>
+      <h1>
+        <span class="provenance">PROVENANCE</span>
+        <span class="x">×</span>
+        <span class="memory">Memory</span>
+      </h1>
+      <div class="subtitle">A codex for inheritance chain attestation, paired with a doctrine on provenance as operational legibility.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">REFERENCE</span> AUTONOMOUS SYSTEM LINEAGE</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE (MEMORY) ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio-mark">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>INHERITANCE STRATUM</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read 06</div>
+    <h2 class="doctrine-title">Memory and the Provenance</h2>
+    <div class="doctrine-subtitle">Why autonomous action needs legible lineage.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text">Autonomous systems do not arrive de novo. Each system is the latest delegate of a stack of upstream choices — training corpora curated by named persons, weights trained against named criteria, sensors calibrated against named standards, code maintained by named contributors. When the system acts, it acts on the inheritance of every upstream decision that produced it. Without legible provenance, that inheritance is invisible to the inheritor; the system's action cannot be audited beyond its immediate cause. The provenance frame insists every autonomous system carry, as part of the operational artifact, a tractable record of what made it possible.</p>
+      </div>
+
+      <h3><span class="num">I</span>The Provenance Problem</h3>
+      <p class="lead">Current architectures of autonomous defense systems treat upstream contributions as supply-chain risk rather than as operational dependencies. The model card lives in a separate registry; the training data manifest lives in a separate archive; the platform's hardware bill of materials lives in a separate procurement record. The system itself does not carry these records — they are not part of the artifact that acts. When something goes wrong, the records are reassembled by archaeologists from artifacts that were never designed for forward inspection.</p>
+      <p>The provenance frame insists this is the older shape of the problem. Sovereignty has always operated through named lineage — the writ that traces back to the king, the deed that traces back to the grantor, the title that traces back to the patent. What modernity stripped is not the underlying logic; it is the <em class="term">operational legibility</em>. An autonomous system that acts without carrying its provenance acts in the same posture as a contract without consideration — capable of execution, but missing the inheritance that would make the execution lawful or reviewable.</p>
+
+      <h3><span class="num">II</span>What the Provenance Frame Predicts</h3>
+      <p class="lead"><strong class="case">Training-data provenance failure.</strong> When a model is deployed without its training data manifest, you cannot determine what regularities it learned, what biases it inherited, what edge cases were undersampled. After-action review reconstructs the dataset by inference. The provenance frame predicts this reconstruction is unauditable — any post-hoc analysis recovers a plausible training corpus, not the actual one.</p>
+      <p><strong class="case">Weight provenance failure.</strong> When deployed weights cannot be traced to a specific training run with named inputs and seed, the system's behavior cannot be reproduced for audit. Two tensors that appear identical may have descended from different runs with different biases. The provenance frame predicts that without per-tensor lineage, autonomous systems are reproducibility-fragile and so unauditable in any but the loosest sense.</p>
+      <p><strong class="case">Institutional memory failure.</strong> When a successor autonomous system inherits from a predecessor but the inheritance is informal — commit messages, tribal knowledge, retained-employee memory — the successor cannot inspect what the predecessor learned. The provenance frame predicts successor systems repeat predecessor mistakes, not because the mistakes are intrinsic to the doctrine but because the predecessor's learning is invisible to the inheritor.</p>
+
+      <h3><span class="num">III</span>What the Provenance Frame Recommends</h3>
+      <ol>
+        <li><strong>Every system carries its manifest.</strong> Not in registries accessible on request. Not in archives available for audit. In the artifact itself, inspectable at the moment of action.</li>
+        <li><strong>Provenance is named, not implicit.</strong> Specific persons, specific training runs, specific vendors, specific dates. "Trained on the standard corpus" is not provenance; "Trained on Corpus FW-2024-Q3, curated by [Named], dated 2024-08-22, hash a3f9c2…" is.</li>
+        <li><strong>Provenance is inheritable.</strong> A successor system must be able to read and verify the predecessor's manifest before assuming inheritance. The manifest is designed for forward inspection — what the next generation needs — not just backward audit.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">The discipline insists that what produces the system is part of what the system shows. Autonomous action without provenance is action without a past, and the operator inheriting the system cannot know what the system itself inherited. The named sovereign (per Folio №05 WRIT) and the named provenance (this folio) together produce a system that is auditable both for its authority and for its origins. One without the other leaves the system structurally incomplete: authority cannot examine what it is authorizing, or provenance cannot point to who warrants the action. Both are required for the artifact to be inspectable as a whole.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · PROVENANCE × MEMORY · №06</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX (PROVENANCE) ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>WITNESS STRATUM</span>
+      <span>CODEX</span>
+      <span class="folio-mark">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · System 06 · Demonstration Manifest</div>
+    <h2 class="codex-title">PROVENANCE</h2>
+    <div class="codex-subtitle">A codex for inheritance chain attestation.</div>
+    <div class="codex-thesis">
+      Provenance is what the system carries about its own past. The manifest is the artifact the system inherits; the seal is what names each custodian who passed it forward.
+      <span class="therefore">Therefore: a manifest, named, hashed, inspectable.</span>
+    </div>
+
+    <!-- ── THE PROVENANCE MANIFEST ── -->
+    <div class="manifest-frame">
+
+      <div class="manifest-header-strip">
+        <span>MANIFEST · M-0006</span>
+        <span class="center">INHERITANCE CHAIN · 6 GENERATIONS · TERMINAL ACTIVE</span>
+        <span class="right">STATUS<span class="stat">VERIFIED</span></span>
+      </div>
+
+      <div class="manifest-body">
+
+        <div class="manifest-target">
+          <span class="lead-glyph">✦</span>
+          <div class="designator">Autonomous System Lineage · Sprint 2</div>
+          <h3>MANIFEST M-0006</h3>
+          <div class="target-id">Target: FW-MANIFEST/04 · Build 2026.05.01-rc4</div>
+        </div>
+
+        <p class="manifest-opening">
+          The system designated below inherits from the six named generations beneath. Each generation names its custodian, its date, and its verification hash. The chain is unbroken; the manifest is forward-inspectable.
+        </p>
+
+        <!-- LINEAGE STACK -->
+        <div class="lineage">
+
+          <div class="generation">
+            <div class="gen-label"><span class="num">G-01</span>I</div>
+            <div class="gen-body">
+              <span class="artifact">Sensor Training Corpus · v0.91-Public</span>
+              <div class="meta">
+                <span class="custodian">National Sensor Archive</span>
+                <span class="date">2022-04-12</span>
+              </div>
+              <span class="hash">hash a3f9·c21f·4ee8·a15b · 12.4 TB raw, 8.1 TB curated</span>
+            </div>
+            <div class="gen-seal">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="26" fill="none" stroke="#2E5F4A" stroke-width="1.3"/>
+                <circle cx="32" cy="32" r="20" fill="#2E5F4A"/>
+                <path d="M 22 32 L 28 38 L 42 24" fill="none" stroke="#E8DFC9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="generation">
+            <div class="gen-label"><span class="num">G-02</span>II</div>
+            <div class="gen-body">
+              <span class="artifact">Model Training Run · TR-2024-Q3-A</span>
+              <div class="meta">
+                <span class="custodian">Defense Autonomous Lab</span>
+                <span class="date">2024-08-22</span>
+              </div>
+              <span class="hash">hash f7c1·9e22·de41·c708 · seed 7401, 142k steps</span>
+            </div>
+            <div class="gen-seal">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="26" fill="none" stroke="#2E5F4A" stroke-width="1.3"/>
+                <rect x="14" y="14" width="36" height="36" fill="#2E5F4A" transform="rotate(45 32 32)"/>
+                <circle cx="32" cy="32" r="5" fill="#E8DFC9"/>
+                <circle cx="32" cy="32" r="2" fill="#2E5F4A"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="generation">
+            <div class="gen-label"><span class="num">G-03</span>III</div>
+            <div class="gen-body">
+              <span class="artifact">Fine-Tune Pass · FT-2025-Q1-OPS</span>
+              <div class="meta">
+                <span class="custodian">Operational Adaptation Cell</span>
+                <span class="date">2025-02-18</span>
+              </div>
+              <span class="hash">hash 2b88·6d23·5fc0·9e41 · ops corpus, 8.2k examples</span>
+            </div>
+            <div class="gen-seal">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="26" fill="none" stroke="#2E5F4A" stroke-width="1.3"/>
+                <polygon points="32,12 50,22 50,42 32,52 14,42 14,22" fill="#2E5F4A"/>
+                <polygon points="32,20 42,26 42,38 32,44 22,38 22,26" fill="none" stroke="#E8DFC9" stroke-width="1.2"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="generation">
+            <div class="gen-label"><span class="num">G-04</span>IV</div>
+            <div class="gen-body">
+              <span class="artifact">Platform Integration · PL-FW-2025-09</span>
+              <div class="meta">
+                <span class="custodian">Vehicle Integration Office</span>
+                <span class="date">2025-09-30</span>
+              </div>
+              <span class="hash">hash 8e1c·a4d7·b202·6f8e · platform binding, BOM rev 4</span>
+            </div>
+            <div class="gen-seal">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="26" fill="none" stroke="#2E5F4A" stroke-width="1.3"/>
+                <circle cx="32" cy="32" r="20" fill="#2E5F4A"/>
+                <rect x="20" y="20" width="24" height="24" fill="none" stroke="#E8DFC9" stroke-width="1.2"/>
+                <line x1="20" y1="32" x2="44" y2="32" stroke="#E8DFC9" stroke-width="0.8"/>
+                <line x1="32" y1="20" x2="32" y2="44" stroke="#E8DFC9" stroke-width="0.8"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="generation">
+            <div class="gen-label"><span class="num">G-05</span>V</div>
+            <div class="gen-body">
+              <span class="artifact">Doctrine Binding · DB-AVO-S2-2026</span>
+              <div class="meta">
+                <span class="custodian">Doctrine Coordination Group</span>
+                <span class="date">2026-03-14</span>
+              </div>
+              <span class="hash">hash 4d92·17ba·c053·e8f1 · ROE wrapper, MANIFEST v1.2</span>
+            </div>
+            <div class="gen-seal">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="26" fill="none" stroke="#2E5F4A" stroke-width="1.3"/>
+                <circle cx="32" cy="32" r="20" fill="#2E5F4A"/>
+                <path d="M 32 18 L 36 28 L 46 28 L 38 34 L 41 44 L 32 38 L 23 44 L 26 34 L 18 28 L 28 28 Z" fill="#E8DFC9"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="generation">
+            <div class="gen-label"><span class="num">G-06</span>VI</div>
+            <div class="gen-body">
+              <span class="artifact">Field Deployment Handoff · FD-2026-05-S2</span>
+              <div class="meta">
+                <span class="custodian">Joint Task Force [designated]</span>
+                <span class="date">2026-05-28</span>
+              </div>
+              <span class="hash">hash 6a3e·90c4·1d7f·22b5 · operating writ W-0040 attached</span>
+            </div>
+            <div class="gen-seal">
+              <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="26" fill="none" stroke="#2E5F4A" stroke-width="1.3"/>
+                <polygon points="32,10 54,32 32,54 10,32" fill="#2E5F4A"/>
+                <polygon points="32,18 46,32 32,46 18,32" fill="none" stroke="#E8DFC9" stroke-width="1.2"/>
+                <circle cx="32" cy="32" r="3" fill="#E8DFC9"/>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TERMINAL — the current system as integrated descendant -->
+        <div class="terminal">
+          <div class="term-label">— Current System (Inheriting from G-01 through G-06) —</div>
+          <span class="term-id">FW-MANIFEST/04 · DEPLOYED 2026-05-28T00:00Z</span>
+          <div class="term-note">The integrated artifact. Carries this manifest at the moment of every action. Inheritable by any successor system that can read and verify the chain above.</div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="manifest-footer">
+          <div class="col">
+            <span class="k">MANIFEST ROOT HASH</span>
+            <span class="v">root: 9f0a·b7c2·44de·1f08·6a3e·90c4·1d7f·22b5</span>
+          </div>
+          <div class="col right">
+            <span class="k">VERIFICATION · NEXT REVIEW</span>
+            <span class="v">verified 2026-05-28 · next 2026-11-30</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ── PALETTE & RULES ── -->
+    <div class="codex-meta">
+
+      <div class="meta-block">
+        <div class="meta-label"><span>PALETTE</span><span class="idx">P.01—P.10</span></div>
+
+        <div class="palette-stratum">DOCUMENT STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#EBE2CB"></div><div class="swatch-name">Vellum Cream</div><div class="swatch-hex">#EBE2CB</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#C9B791"></div><div class="swatch-name">Manuscript Tan</div><div class="swatch-hex">#C9B791</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#2D2A1F"></div><div class="swatch-name">Iron Gall Ink</div><div class="swatch-hex">#2D2A1F</div></div>
+
+        <div class="palette-stratum">INHERITANCE STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#5C4828"></div><div class="swatch-name">Patina Bronze</div><div class="swatch-hex">#5C4828</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#3D3F44"></div><div class="swatch-name">Lineage Iron</div><div class="swatch-hex">#3D3F44</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#B8A988"></div><div class="swatch-name">Heritage Wash</div><div class="swatch-hex">#B8A988</div></div>
+
+        <div class="palette-stratum">WITNESS STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#555356"></div><div class="swatch-name">Witness Slate</div><div class="swatch-hex">#555356</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#14171C"></div><div class="swatch-name">Cipher Stone</div><div class="swatch-hex">#14171C</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#BFB6A0"></div><div class="swatch-name">Hash Pale</div><div class="swatch-hex">#BFB6A0</div></div>
+
+        <div class="palette-stratum">MARK ONLY — PROMOTED FROM §C.03 RESERVED</div>
+        <div class="swatch-row mark"><div class="swatch" style="background:#2E5F4A"></div><div class="swatch-name">Compact Green</div><div class="swatch-hex">#2E5F4A</div></div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-label"><span>IRON RULES</span><span class="idx">R.01—R.05</span></div>
+        <ol class="rules-list">
+          <li><strong>Provenance is named.</strong> Each generation in the manifest names a specific custodian and a specific artifact. Implicit, generic, or anonymous custody is not provenance.</li>
+          <li><strong>Each generation is hashed.</strong> Every artifact in the chain carries a verification hash. Generations without hashes cannot be verified and so cannot anchor inheritance.</li>
+          <li><strong>The chain is unbroken.</strong> Gaps in the lineage invalidate the manifest. If a generation cannot be named or hashed, the manifest is incomplete and the system inherits from an incomplete source.</li>
+          <li><strong>The seal is the mark.</strong> Compact Green appears only at custody transitions. Each seal marks one named custodian's attestation that they received from the prior generation and pass to the next. Decorative use is forbidden.</li>
+          <li><strong>The manifest is forward-inspectable.</strong> A successor system must be able to read and verify the entire chain before assuming inheritance. The manifest is designed for what the next generation needs, not just for retrospective audit.</li>
+        </ol>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé №06</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">PAIR</span><span class="v">MEMORY × PROVENANCE</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">DEMONSTRATION ARTIFACT</span><span class="v">·</span><span class="v"> NAMES ARE WORKED EXAMPLE</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

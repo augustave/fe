@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASSAY × ÚR — Fé №02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Stock stratum — bench, neutral display ground */
+  --bench-steel:  #56544C;
+  --anneal-grey:  #9A9A95;
+  --cold-mill:    #C4C0B6;
+  --linen-slip:   #E3DCC9;
+  /* True iron stratum — verified substance */
+  --true-iron:    #1A1D1F;
+  --cold-carbon:  #3D3F42;
+  --polish:       #B0AEA8;
+  /* Slag stratum — residue, false metal */
+  --slag-brown:   #5C4530;
+  --cinder:       #3A2A1F;
+  --oxide-bloom:  #A07050;
+  /* Slag Mark — discrimination, used here only */
+  --slag-mark:    #A33A1A;
+
+  --serif: 'EB Garamond', 'Times New Roman', serif;
+  --mono:  'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--true-iron); }
+body {
+  background: var(--true-iron);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--linen-slip);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.65),
+    0 12px 32px rgba(0,0,0,0.45),
+    0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--true-iron);
+  padding: 30px 56px 26px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--true-iron);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--bench-steel); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 2px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--bench-steel);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.masthead-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--true-iron);
+}
+.masthead-title .assay {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  font-size: 30px;
+}
+.masthead-title .x {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 26px;
+  vertical-align: 4px;
+  margin: 0 18px;
+  color: var(--bench-steel);
+}
+.masthead-title .ur {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 42px;
+}
+.masthead-title .subtitle {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--bench-steel);
+  letter-spacing: 0.01em;
+}
+
+/* ───────── SPINE ───────── */
+.spine {
+  grid-area: spine;
+  background: var(--true-iron);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+.spine-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.36em;
+  color: var(--cold-mill);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+.spine-ornaments { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spine-mark {
+  width: 6px; height: 6px;
+  border: 1px solid var(--cold-mill);
+  transform: rotate(45deg);
+}
+.spine-mark.filled { background: var(--cold-mill); }
+.spine-rule { width: 14px; height: 1px; background: var(--cold-mill); }
+
+/* ───────── LEFT PAGE — DOCTRINE (ÚR) ───────── */
+.page-left {
+  grid-area: left;
+  background: var(--linen-slip);
+  padding: 52px 56px 56px 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--bench-steel);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--bench-steel);
+  padding-bottom: 7px;
+  margin-bottom: 30px;
+}
+.page-header .folio { color: var(--true-iron); }
+
+.doctrine-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--bench-steel);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.doctrine-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--true-iron);
+  margin-bottom: 8px;
+}
+.doctrine-title em { font-style: italic; font-weight: 400; }
+.doctrine-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--bench-steel);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--bench-steel);
+}
+
+.doctrine-body {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: var(--true-iron);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid rgba(90, 94, 99, 0.4);
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+
+.doctrine-body .thesis-block { margin-bottom: 16px; break-inside: avoid; }
+.doctrine-body .thesis-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bench-steel);
+  margin-bottom: 4px;
+}
+.doctrine-body .thesis-text { font-size: 14.5px; line-height: 1.5; }
+
+.doctrine-body h3 {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--true-iron);
+  margin-top: 18px;
+  margin-bottom: 9px;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.doctrine-body h3 .num {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--bench-steel);
+  letter-spacing: 0.18em;
+  font-variant: normal;
+}
+.doctrine-body h3 .num::after { content: "·"; margin-left: 10px; color: var(--bench-steel); }
+
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; margin-bottom: 9px; }
+.doctrine-body p.lead { text-indent: 0; }
+
+.doctrine-body em.kenning {
+  font-style: italic;
+  color: var(--slag-brown);
+  font-weight: 500;
+}
+
+.doctrine-body strong.case {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--true-iron);
+}
+
+.doctrine-body ol {
+  list-style: none;
+  counter-reset: doct-rule;
+  margin: 4px 0 10px 0;
+}
+.doctrine-body ol li {
+  counter-increment: doct-rule;
+  margin-bottom: 9px;
+  padding-left: 26px;
+  position: relative;
+  break-inside: avoid;
+}
+.doctrine-body ol li::before {
+  content: counter(doct-rule, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--bench-steel);
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.doctrine-body ol li strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.doctrine-coda { margin-top: 12px; break-inside: avoid; }
+
+/* ───────── RIGHT PAGE — CODEX (ASSAY) ───────── */
+.page-right {
+  grid-area: right;
+  background: var(--linen-slip);
+  padding: 52px 64px 56px 56px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.codex-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--bench-steel);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.codex-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.24em;
+  color: var(--true-iron);
+  margin-bottom: 4px;
+}
+.codex-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--bench-steel);
+  margin-bottom: 14px;
+}
+.codex-thesis {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--true-iron);
+  margin-bottom: 24px;
+  padding-left: 14px;
+  border-left: 2px solid var(--slag-brown);
+  font-style: italic;
+  line-height: 1.5;
+}
+.codex-thesis .therefore {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--bench-steel);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6px;
+}
+
+/* ── ASSAY BENCH ── */
+.bench-frame {
+  border: 1px solid var(--true-iron);
+  background: var(--cold-mill);
+  margin-bottom: 16px;
+}
+.bench-label-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--true-iron);
+  text-transform: uppercase;
+  padding: 6px 10px;
+  background: var(--linen-slip);
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--true-iron);
+}
+.bench-label-strip .center {
+  text-align: center;
+  font-size: 7.5px;
+  color: var(--bench-steel);
+  letter-spacing: 0.22em;
+}
+.bench-label-strip .right { text-align: right; color: var(--bench-steel); }
+
+.bench-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.sample-cell {
+  position: relative;
+  padding: 14px 12px 10px;
+  border-right: 1px solid var(--bench-steel);
+  border-bottom: 1px solid var(--bench-steel);
+}
+.sample-cell:nth-child(4n) { border-right: none; }
+.sample-cell:nth-child(n+5) { border-bottom: none; }
+
+.sample-svg { display: block; width: 100%; height: auto; }
+
+.sample-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--true-iron);
+  text-transform: uppercase;
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+.sample-label .id { font-weight: 500; }
+.sample-label .mass { color: var(--bench-steel); font-size: 7px; }
+
+/* THE SLAG MARK — Slag Mark colour, used here only */
+.slag-mark-overlay {
+  position: absolute;
+  inset: 14px 12px auto 12px;
+  pointer-events: none;
+  aspect-ratio: 1 / 1;
+}
+.slag-mark-overlay svg { width: 100%; height: 100%; display: block; }
+
+.slag-tag {
+  font-family: var(--mono);
+  font-size: 7px;
+  color: var(--slag-mark);
+  letter-spacing: 0.14em;
+  font-weight: 500;
+}
+
+/* ── REFERENCE PANEL ── */
+.reference-panel {
+  border: 1px solid var(--true-iron);
+  background: var(--linen-slip);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+}
+.ref-cell {
+  padding: 14px 14px 12px;
+  position: relative;
+}
+.ref-cell:first-child { border-right: 1px solid var(--true-iron); }
+
+.ref-header {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--bench-steel);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--bench-steel);
+}
+.ref-header .status { color: var(--true-iron); font-weight: 500; }
+.ref-header .status.slag { color: var(--slag-mark); }
+
+.ref-body {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.ref-svg { width: 100%; height: auto; display: block; }
+
+.ref-readout {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  line-height: 1.65;
+  color: var(--true-iron);
+  letter-spacing: 0.05em;
+}
+.ref-readout .k {
+  color: var(--bench-steel);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: block;
+  font-size: 6.5px;
+  margin-top: 4px;
+}
+.ref-readout .k:first-child { margin-top: 0; }
+.ref-readout .v.slag { color: var(--slag-mark); font-weight: 500; }
+
+/* ───────── Codex meta ───────── */
+.codex-meta {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  margin-top: auto;
+}
+.meta-block { font-family: var(--mono); color: var(--true-iron); }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--bench-steel);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--true-iron);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.meta-label .idx { color: var(--bench-steel); font-weight: 400; }
+
+.palette-stratum {
+  font-size: 7.5px;
+  color: var(--bench-steel);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 6px;
+}
+.palette-stratum:first-of-type { margin-top: 0; }
+.swatch-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3px;
+  font-size: 8.5px;
+}
+.swatch { width: 14px; height: 14px; border: 1px solid var(--true-iron); }
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--bench-steel); letter-spacing: 0.06em; }
+.swatch-row.mark .swatch-name { color: var(--slag-mark); }
+
+.rules-list { list-style: none; counter-reset: rule; }
+.rules-list li {
+  counter-increment: rule;
+  font-size: 8.5px;
+  margin-bottom: 7px;
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.rules-list li::before {
+  content: "R." counter(rule, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--bench-steel);
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+}
+.rules-list li strong {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--true-iron);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--bench-steel);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--bench-steel); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--true-iron); }
+
+/* Print */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> №02</div>
+      <div class="row"><span class="k">DATE</span> 2026-05-28</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · Substance Verification / Counter-Deception</div>
+      <h1>
+        <span class="assay">ASSAY</span>
+        <span class="x">×</span>
+        <span class="ur">Úr</span>
+      </h1>
+      <div class="subtitle">A codex for substance verification, paired with a doctrine on counter-deception as assay discipline.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">CLASSIFICATION</span> OPEN</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE (ÚR) ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>STOCK STRATUM</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read 02</div>
+    <h2 class="doctrine-title">Úr and the Smith</h2>
+    <div class="doctrine-subtitle">Counter-deception as assay discipline.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text">Counter-deception is read in the modern operational frame as detecting adversary attempts to mislead. The older frame, preserved in the Old Norwegian Rune Poem's Úr stanza, reads the question one step earlier: before adversary deception, there is the question of substance. Is what you hold even iron? The assay precedes the engagement. Counter-deception, read this way, is a forge discipline before it is a sensing discipline.</p>
+      </div>
+
+      <h3><span class="num">I</span>The Úr Problem</h3>
+      <p class="lead">The rune poem's Úr stanza names a metallurgical condition and a survival condition in two lines: slag is the residue of bad iron, and the reindeer runs across hard snow. The slag is what appears to be metal but is dross — the failure mode of the smelt itself, before any adversary is involved. The reindeer running on hard snow is the creature crossing a surface where a single mis-discrimination kills. Both lines are about the same problem read at different scales: distinguishing the substance from its false form, with consequence.</p>
+      <p>Modern counter-deception inherited the reindeer and forgot the smith. Sensing chains, ML perception, OSINT verification — all addressed at the surface, at the moment of crossing. The Úr frame insists the harder problem is upstream: the forge that produces your iron also produces your slag, and you cannot distinguish adversary craft from your own manufacturing residue unless you have first assayed your own forge.</p>
+
+      <h3><span class="num">II</span>Why the Forge Frame Bites Now</h3>
+      <p class="lead"><strong class="case">Synthetic-media flood and the verification stack.</strong> Open-source intelligence now sits downstream of generative models that can manufacture any artefact cheaply. The bottleneck is no longer collection; it is discrimination at scale. Each candidate input is a sample of unknown <em class="kenning">illu jarne</em> — iron of dross — and the receiving pipeline has no native assay. Treating this as a sensor problem misreads it. The forge has shifted; the bench has not.</p>
+      <p><strong class="case">GPS / PNT spoofing and the assay problem.</strong> When the signal can be synthesized, the receiver must assay every fix. The reindeer on hard snow. Operational designs that treat positioning as ground truth are surface inspections in a world where the surface is now manufacturable. PNT robustness is not a sensor upgrade; it is the installation of a sovereign reference.</p>
+      <p><strong class="case">Adversarial ML in sensing chains.</strong> ML perception layers are themselves slag-prone. The model that confidently identifies a target may be reporting its own training-set residue. Most "deception" attributed to adversary craft is in fact one's own forge slag — distribution shift, label noise, dataset poisoning by neglect. The Úr frame names the failure mode correctly before reaching for the adversary.</p>
+
+      <h3><span class="num">III</span>What the Frame Recommends</h3>
+      <ol>
+        <li><strong>Assay before you engage.</strong> Treat every input as potentially slag until verified against a reference. The assay is a procedural commitment, not a sensor: a separate epistemic act before the data is permitted to act.</li>
+        <li><strong>Know your forge's slag rate.</strong> Most attributed adversary deception is manufacturing residue from your own pipeline. The two must be discriminated before either can be addressed. A program that conflates them defends against the wrong threat at expense it cannot recover.</li>
+        <li><strong>Keep the reference standard sovereign.</strong> Discrimination requires a reference the adversary cannot corrupt. If your reference is in the same epistemic supply chain as your sensors, you have no reference — you have a louder sample.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">The reindeer runs across hard snow because the snow looks like ground. It is not. The smith's apprentice picks up the slag because the slag looks like iron. It is not. Counter-deception is the discipline of knowing which surface holds and which does not, performed before the engagement begins. It is not paranoia. It is the working assumption that one's own tools and senses are products of a forge whose slag rate is non-zero, and that the adversary's craft is a problem one is permitted to address only after that rate is known.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · ASSAY × ÚR · №02</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX (ASSAY) ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>SLAG STRATUM</span>
+      <span>CODEX</span>
+      <span class="folio">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · System 02</div>
+    <h2 class="codex-title">ASSAY</h2>
+    <div class="codex-subtitle">A visual codex for substance verification.</div>
+    <div class="codex-thesis">
+      Iron is presumed. Slag is marked. Discrimination is by exclusion.
+      <span class="therefore">Therefore: a bench of samples, a sovereign reference, one Slag Mark.</span>
+    </div>
+
+    <!-- ── ASSAYER'S BENCH — 8 samples, 2 marked ── -->
+    <div class="bench-frame">
+
+      <div class="bench-label-strip">
+        <span>BENCH · ASSAY</span>
+        <span class="center">SAMPLE SET FW-12 · 8 SPECIMENS · INTAKE 2026-05-28T0100Z</span>
+        <span class="right">SHEET 01 / 8 OF 8 EXAMINED</span>
+      </div>
+
+      <div class="bench-grid">
+
+        <!-- S-01 : IRON -->
+        <div class="sample-cell">
+          <svg class="sample-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="#3D3F42"/>
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="none" stroke="#1A1D1F" stroke-width="0.8"/>
+            <line x1="22" y1="32" x2="98" y2="32" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="48" x2="98" y2="48" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="62" x2="98" y2="62" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+          </svg>
+          <div class="sample-label"><span class="id">S-01</span><span class="mass">214.6 G</span></div>
+        </div>
+
+        <!-- S-02 : IRON -->
+        <div class="sample-cell">
+          <svg class="sample-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="#3D3F42"/>
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="none" stroke="#1A1D1F" stroke-width="0.8"/>
+            <line x1="22" y1="30" x2="98" y2="30" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="50" x2="98" y2="50" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+          </svg>
+          <div class="sample-label"><span class="id">S-02</span><span class="mass">208.1 G</span></div>
+        </div>
+
+        <!-- S-03 : SLAG · marked -->
+        <div class="sample-cell">
+          <svg class="sample-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="#3D3F42"/>
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="none" stroke="#1A1D1F" stroke-width="0.8"/>
+            <line x1="22" y1="32" x2="98" y2="32" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="48" x2="98" y2="48" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <!-- subtle surface — visually indistinguishable from iron at this register -->
+          </svg>
+          <div class="slag-mark-overlay">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <line x1="10" y1="14" x2="90" y2="84" stroke="#A33A1A" stroke-width="1.6" stroke-linecap="square"/>
+              <line x1="90" y1="14" x2="10" y2="84" stroke="#A33A1A" stroke-width="1.6" stroke-linecap="square"/>
+            </svg>
+          </div>
+          <div class="sample-label"><span class="id">S-03</span><span class="slag-tag">SLAG</span></div>
+        </div>
+
+        <!-- S-04 : IRON -->
+        <div class="sample-cell">
+          <svg class="sample-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="#3D3F42"/>
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="none" stroke="#1A1D1F" stroke-width="0.8"/>
+            <line x1="22" y1="34" x2="98" y2="34" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="56" x2="98" y2="56" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+          </svg>
+          <div class="sample-label"><span class="id">S-04</span><span class="mass">221.3 G</span></div>
+        </div>
+
+        <!-- S-05 : IRON -->
+        <div class="sample-cell">
+          <svg class="sample-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="#3D3F42"/>
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="none" stroke="#1A1D1F" stroke-width="0.8"/>
+            <line x1="22" y1="28" x2="98" y2="28" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="46" x2="98" y2="46" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="64" x2="98" y2="64" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+          </svg>
+          <div class="sample-label"><span class="id">S-05</span><span class="mass">217.4 G</span></div>
+        </div>
+
+        <!-- S-06 : IRON -->
+        <div class="sample-cell">
+          <svg class="sample-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="#3D3F42"/>
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="none" stroke="#1A1D1F" stroke-width="0.8"/>
+            <line x1="22" y1="36" x2="98" y2="36" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="54" x2="98" y2="54" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+          </svg>
+          <div class="sample-label"><span class="id">S-06</span><span class="mass">210.9 G</span></div>
+        </div>
+
+        <!-- S-07 : SLAG · marked -->
+        <div class="sample-cell">
+          <svg class="sample-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="#3D3F42"/>
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="none" stroke="#1A1D1F" stroke-width="0.8"/>
+            <line x1="22" y1="30" x2="98" y2="30" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="50" x2="98" y2="50" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+          </svg>
+          <div class="slag-mark-overlay">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <line x1="10" y1="14" x2="90" y2="84" stroke="#A33A1A" stroke-width="1.6" stroke-linecap="square"/>
+              <line x1="90" y1="14" x2="10" y2="84" stroke="#A33A1A" stroke-width="1.6" stroke-linecap="square"/>
+            </svg>
+          </div>
+          <div class="sample-label"><span class="id">S-07</span><span class="slag-tag">SLAG</span></div>
+        </div>
+
+        <!-- S-08 : IRON -->
+        <div class="sample-cell">
+          <svg class="sample-svg" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="#3D3F42"/>
+            <rect x="14" y="14" width="92" height="62" rx="6" fill="none" stroke="#1A1D1F" stroke-width="0.8"/>
+            <line x1="22" y1="32" x2="98" y2="32" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="50" x2="98" y2="50" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+            <line x1="22" y1="64" x2="98" y2="64" stroke="#B0AEA8" stroke-width="0.3" opacity="0.3"/>
+          </svg>
+          <div class="sample-label"><span class="id">S-08</span><span class="mass">219.0 G</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── REFERENCE PANEL — sovereign references, with cross-sections ── -->
+    <div class="reference-panel">
+
+      <!-- TRUE-IRON REFERENCE -->
+      <div class="ref-cell">
+        <div class="ref-header"><span>REFERENCE · TRUE-IRON</span><span class="status">PASS</span></div>
+        <div class="ref-body">
+          <svg class="ref-svg" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="45" cy="45" r="36" fill="#1A1D1F" stroke="#1A1D1F" stroke-width="0.8"/>
+            <circle cx="45" cy="45" r="36" fill="none" stroke="#56544C" stroke-width="0.4" stroke-dasharray="2 2"/>
+            <!-- uniform internal structure -->
+            <line x1="20" y1="36" x2="70" y2="36" stroke="#3D3F42" stroke-width="0.4"/>
+            <line x1="18" y1="45" x2="72" y2="45" stroke="#3D3F42" stroke-width="0.4"/>
+            <line x1="20" y1="54" x2="70" y2="54" stroke="#3D3F42" stroke-width="0.4"/>
+            <!-- cross-section indicator -->
+            <line x1="0"  y1="45" x2="9"  y2="45" stroke="#1A1D1F" stroke-width="0.6"/>
+            <line x1="81" y1="45" x2="90" y2="45" stroke="#1A1D1F" stroke-width="0.6"/>
+            <text x="4" y="44" font-family="JetBrains Mono" font-size="4" fill="#56544C" letter-spacing="0.3">B</text>
+            <text x="82" y="44" font-family="JetBrains Mono" font-size="4" fill="#56544C" letter-spacing="0.3">B′</text>
+          </svg>
+          <div class="ref-readout">
+            <span class="k">SUBSTANCE</span><span class="v">FE / 0.18% C</span>
+            <span class="k">INCLUSIONS</span><span class="v">0.0%</span>
+            <span class="k">VOIDS</span><span class="v">0.0%</span>
+            <span class="k">PROVENANCE</span><span class="v">SOVEREIGN STANDARD</span>
+            <span class="k">RESULT</span><span class="v">IRON · CONFIRMED</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KNOWN-SLAG CONTROL -->
+      <div class="ref-cell">
+        <div class="ref-header"><span>CONTROL · KNOWN-SLAG</span><span class="status slag">REJECT</span></div>
+        <div class="ref-body">
+          <svg class="ref-svg" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="45" cy="45" r="36" fill="#3A2A1F" stroke="#1A1D1F" stroke-width="0.8"/>
+            <circle cx="45" cy="45" r="36" fill="none" stroke="#56544C" stroke-width="0.4" stroke-dasharray="2 2"/>
+            <!-- inclusions / voids -->
+            <ellipse cx="33" cy="32" rx="6" ry="3" fill="#A07050" opacity="0.85"/>
+            <ellipse cx="55" cy="40" rx="4" ry="2.5" fill="#A07050" opacity="0.85"/>
+            <ellipse cx="42" cy="56" rx="5" ry="3" fill="#A07050" opacity="0.85"/>
+            <circle cx="58" cy="58" r="2.2" fill="#5C4530"/>
+            <circle cx="28" cy="48" r="1.8" fill="#5C4530"/>
+            <!-- voids (dark) -->
+            <circle cx="48" cy="44" r="1.6" fill="#1A1D1F"/>
+            <circle cx="38" cy="40" r="1.2" fill="#1A1D1F"/>
+            <!-- cross-section indicator -->
+            <line x1="0"  y1="45" x2="9"  y2="45" stroke="#1A1D1F" stroke-width="0.6"/>
+            <line x1="81" y1="45" x2="90" y2="45" stroke="#1A1D1F" stroke-width="0.6"/>
+            <text x="4" y="44" font-family="JetBrains Mono" font-size="4" fill="#56544C" letter-spacing="0.3">C</text>
+            <text x="82" y="44" font-family="JetBrains Mono" font-size="4" fill="#56544C" letter-spacing="0.3">C′</text>
+          </svg>
+          <div class="ref-readout">
+            <span class="k">SUBSTANCE</span><span class="v">FE / SI / O / S</span>
+            <span class="k">INCLUSIONS</span><span class="v">14.2%</span>
+            <span class="k">VOIDS</span><span class="v">3.6%</span>
+            <span class="k">PROVENANCE</span><span class="v">FORGE RESIDUE</span>
+            <span class="k">RESULT</span><span class="v slag">SLAG · CONFIRMED</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── PALETTE & RULES ── -->
+    <div class="codex-meta">
+
+      <div class="meta-block">
+        <div class="meta-label"><span>PALETTE</span><span class="idx">P.01—P.11</span></div>
+
+        <div class="palette-stratum">STOCK STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#56544C"></div><div class="swatch-name">Bench Steel</div><div class="swatch-hex">#56544C</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#9A9A95"></div><div class="swatch-name">Anneal Grey</div><div class="swatch-hex">#9A9A95</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#C4C0B6"></div><div class="swatch-name">Cold Mill</div><div class="swatch-hex">#C4C0B6</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#E3DCC9"></div><div class="swatch-name">Linen Slip</div><div class="swatch-hex">#E3DCC9</div></div>
+
+        <div class="palette-stratum">TRUE-IRON STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#1A1D1F"></div><div class="swatch-name">True Iron</div><div class="swatch-hex">#1A1D1F</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#3D3F42"></div><div class="swatch-name">Cold Carbon</div><div class="swatch-hex">#3D3F42</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#B0AEA8"></div><div class="swatch-name">Polish</div><div class="swatch-hex">#B0AEA8</div></div>
+
+        <div class="palette-stratum">SLAG STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#5C4530"></div><div class="swatch-name">Slag Brown</div><div class="swatch-hex">#5C4530</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#3A2A1F"></div><div class="swatch-name">Cinder</div><div class="swatch-hex">#3A2A1F</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#A07050"></div><div class="swatch-name">Oxide Bloom</div><div class="swatch-hex">#A07050</div></div>
+
+        <div class="palette-stratum">DISCRIMINATION MARK ONLY</div>
+        <div class="swatch-row mark"><div class="swatch" style="background:#A33A1A"></div><div class="swatch-name">Slag Mark</div><div class="swatch-hex">#A33A1A</div></div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-label"><span>IRON RULES</span><span class="idx">R.01—R.05</span></div>
+        <ol class="rules-list">
+          <li><strong>Discrimination by negation.</strong> Iron is presumed. Slag is marked with Slag Mark X. Nothing else carries judgment.</li>
+          <li><strong>No verification without sovereign reference.</strong> Every bench includes a TRUE-IRON reference and a KNOWN-SLAG control. Discrimination without reference is forbidden.</li>
+          <li><strong>Forge residue beside adversary craft.</strong> One's own slag and adversary slag sit on the same bench. Separation is editorial deception and forbidden.</li>
+          <li><strong>Cross-section mandatory.</strong> Surface inspection alone is forbidden. Every bench is accompanied by at least one cross-section.</li>
+          <li><strong>No retroactive assay.</strong> Marks are permanent. Revision is by replacing the sample, never by editing the mark.</li>
+        </ol>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé №02</span>
+      <span style="margin: 0 14px; color: var(--bench-steel);">·</span>
+      <span class="k">PAIR</span><span class="v">ÚR × ASSAY</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">PRIMARY SOURCE</span><span class="v">OND.RP §ÚR · ca. 13th C.</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--bench-steel);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

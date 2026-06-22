@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fé — On the Series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --folio-black:        #1F2024;
+  --folio-mute-strong:  #56544C;
+  --folio-mute:         #7E7C72;
+  --folio-hairline:     rgba(126, 124, 114, 0.35);
+  --paper:              #E8DFC9;
+
+  /* mark swatches for the contents */
+  --slow-red:           #5A1F1F;
+  --slag-mark:          #A33A1A;
+  --margin-gold:        #6A5111;
+  --bind-blue:          #1F4F73;
+  --crown-indigo:       #1A2A66;
+  --compact-green:      #2E5F4A;
+  --sigil-mauve:        #5F2F4A;
+
+  --serif:    'EB Garamond', 'Times New Roman', serif;
+  --display:  'Fraunces', 'EB Garamond', serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--folio-black); }
+body {
+  background: var(--folio-black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.cover {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--paper);
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead"
+    "body"
+    "slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.7),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--folio-black);
+  padding: 44px 56px 38px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--folio-mute-strong); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 4px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.masthead-title h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 76px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+  color: var(--folio-black);
+}
+.masthead-title .subtitle {
+  margin-top: 16px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.01em;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+.masthead-title .edition-line {
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+}
+
+/* ───────── BODY ───────── */
+.body {
+  grid-area: body;
+  display: grid;
+  grid-template-columns: 1fr 540px 1fr;
+  padding: 48px 56px 32px;
+  gap: 36px;
+  align-items: start;
+}
+
+.note-section {
+  grid-column: 2;
+}
+
+.note-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.note-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 34px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--folio-black);
+  letter-spacing: 0.005em;
+  margin-bottom: 26px;
+  text-align: center;
+  line-height: 1.1;
+}
+.note-title::after {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 1px;
+  background: var(--folio-mute-strong);
+  margin: 18px auto 0;
+}
+
+.note-body {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--folio-black);
+  text-align: justify;
+  hyphens: auto;
+}
+.note-body p { margin-bottom: 12px; }
+.note-body p.lead { text-indent: 0; }
+.note-body p + p { text-indent: 1.4em; }
+
+.note-body em.term {
+  font-style: italic;
+  color: var(--folio-mute-strong);
+}
+.note-body em {
+  font-style: italic;
+}
+
+.note-body .dropcap {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 56px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  float: left;
+  line-height: 0.86;
+  padding: 6px 8px 0 0;
+  color: var(--folio-black);
+}
+
+.note-signature {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--folio-hairline);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--folio-mute-strong);
+  text-align: right;
+  line-height: 1.5;
+}
+.note-signature .name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 18px;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+  color: var(--folio-black);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ─── CONTENTS ─── */
+.contents {
+  grid-column: 2;
+  margin-top: 36px;
+  padding-top: 22px;
+  border-top: 1px solid var(--folio-black);
+}
+.contents-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.contents-list { list-style: none; }
+.contents-row {
+  display: grid;
+  grid-template-columns: 58px 1fr auto 18px 18px;
+  align-items: baseline;
+  gap: 14px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--folio-hairline);
+}
+.contents-row:last-child { border-bottom: none; }
+.contents-num {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 22px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--folio-black);
+  line-height: 1;
+  letter-spacing: -0.005em;
+}
+.contents-num.foundation { color: var(--folio-mute-strong); font-style: italic; }
+.contents-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.contents-title .pair {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.contents-title .epithet {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--folio-mute-strong);
+}
+.contents-page {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+}
+.contents-paper, .contents-mark {
+  width: 14px; height: 14px;
+  border: 1px solid var(--folio-black);
+  justify-self: center;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--folio-black);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--folio-mute-strong); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--folio-black); }
+
+/* Print */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .cover { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">VOLUME</span> 01</div>
+      <div class="row"><span class="k">DATE</span> 2026-06-01</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">A Bound Volume · Eight Folios</div>
+      <h1>Fé</h1>
+      <div class="subtitle">Doctrine recto, codex verso, one mark per folio — a discipline for legibility under contested conditions.</div>
+      <div class="edition-line">Volume One · Editions №00 through №07 · First Binding</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">PUBLISHER</span> DEVGRU.COMPUTER</div>
+      <div class="row"><span class="k">IMPRINT</span> DEFENSE.OBSERVER</div>
+      <div class="row"><span class="k">CITY</span> NEW YORK</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ BODY ═══════════ -->
+  <div class="body">
+    <section class="note-section">
+      <div class="note-eyebrow">Editor's Note</div>
+      <h2 class="note-title">On the Series</h2>
+
+      <div class="note-body">
+        <p class="lead"><span class="dropcap">T</span>hese eight folios are one work read in eight lights. The form is fixed: doctrine on the recto, codex on the verso, one mark used exclusively to one operational moment, three strata of palette per folio. The folios obey this form not because the form is decorative, but because it makes the discipline auditable at the artifact level. A reader holding any single folio can verify, in one glance, that the codex obeys the doctrine. The form is the enforcement surface.</p>
+
+        <p>The journey is sequenced. <em class="term">Folio №00</em>, the foundation, documents what the form is and what it earns. The Norse trio that follows — <em>Fé and the Wolf</em>, <em>Úr and the Smith</em>, <em>Þurs and the Horizon</em> — applies the form to three questions the rune poems framed long before contemporary defense doctrine reached them: wealth as the engine of kin-strife, substance verification as the discipline upstream of engagement, and strategic estimation under capability overhang. Each pairs an ancient stanza with a codex that operationalizes its reading.</p>
+
+        <p>The contemporary quartet breaks register and completes a single argument across four bound dimensions. <em>MANIFEST and Intent</em> binds the action: an autonomous-fleet orchestrator's competitive surface is not the parser but the <em class="term">seam</em> between operator and fleet, rendered as a continuously legible artifact. <em>WRIT and Oath</em> names the authority above that binding — whose sovereignty warrants the action — in a codex that is itself a formal writ, the first in the series that is a document rather than a visualization, its attestation chain sealed in Crown Indigo. <em>PROVENANCE and Memory</em> carries the origin: the corpus, weight lineage, and custody an actor must inherit to be trusted, drawn as a six-generation chain in Compact Green. <em>COMMISSION and Name</em> closes on identity — an instance must be named, not numbered, for a serial is a count but a name is an actor — bound to its writ and its provenance by a central heraldic blazon in Sigil Mauve.</p>
+
+        <p>What the eight folios collectively argue is the standing thesis of the practice they emerge from: that <em class="term">legibility</em> — the ability to maintain an accurate read of a situation when the situation is actively trying to destroy your ability to do so — is the load-bearing concept under defense systems design, brand systems design, and any complex-systems discipline that operates under contested conditions. The doctrine pages name the legibility problem in each domain; the codex pages render the answer.</p>
+
+        <p>Read in sequence. The Norse trio establishes the philosophical spine. The contemporary quartet proves the form carries working artifacts and brackets a single bound action in all four of its dimensions — action, authority, origin, and identity, each made legible in the artifact that acts. The foundation folio documents the discipline that produces all of them. The form is older than this series; sovereignty has always operated through named, attested, legible artifacts. What the series demonstrates is that the form still works.</p>
+      </div>
+
+      <div class="note-signature">
+        <span class="name">— Ven Augustave</span>
+        DEVGRU.COMPUTER &middot; DEFENSE.OBSERVER<br>
+        New York, June 2026
+      </div>
+    </section>
+
+    <!-- ─── CONTENTS ─── -->
+    <section class="contents">
+      <div class="contents-label">— Contents —</div>
+      <ul class="contents-list">
+
+        <li class="contents-row">
+          <div class="contents-num foundation">№00</div>
+          <div class="contents-title">
+            <span class="pair">CANON × FORM</span>
+            <span class="epithet">The system documents itself.</span>
+          </div>
+          <span class="contents-page">FOUNDATION</span>
+          <div class="contents-paper" style="background:#E8DFC9" title="Bone Pale"></div>
+          <div class="contents-mark" style="background:transparent; border-style:dashed" title="No mark — catalogues all"></div>
+        </li>
+
+        <li class="contents-row">
+          <div class="contents-num">№01</div>
+          <div class="contents-title">
+            <span class="pair">FALLOW × FÉ</span>
+            <span class="epithet">Latent threat in the frame.</span>
+          </div>
+          <span class="contents-page">NORSE I</span>
+          <div class="contents-paper" style="background:#E8DFC9" title="Bone Pale"></div>
+          <div class="contents-mark" style="background:#5A1F1F" title="Slow Red"></div>
+        </li>
+
+        <li class="contents-row">
+          <div class="contents-num">№02</div>
+          <div class="contents-title">
+            <span class="pair">ASSAY × ÚR</span>
+            <span class="epithet">Substance verification before engagement.</span>
+          </div>
+          <span class="contents-page">NORSE II</span>
+          <div class="contents-paper" style="background:#E3DCC9" title="Linen Slip"></div>
+          <div class="contents-mark" style="background:#A33A1A" title="Slag Mark"></div>
+        </li>
+
+        <li class="contents-row">
+          <div class="contents-num">№03</div>
+          <div class="contents-title">
+            <span class="pair">MARGIN × ÞURS</span>
+            <span class="epithet">Strategic estimation under capability overhang.</span>
+          </div>
+          <span class="contents-page">NORSE III</span>
+          <div class="contents-paper" style="background:#D8CFB8" title="Survey Vellum"></div>
+          <div class="contents-mark" style="background:#6A5111" title="Margin Gold"></div>
+        </li>
+
+        <li class="contents-row">
+          <div class="contents-num">№04</div>
+          <div class="contents-title">
+            <span class="pair">MANIFEST × INTENT</span>
+            <span class="epithet">The operator–fleet seam under degradation.</span>
+          </div>
+          <span class="contents-page">CONTEMPORARY I</span>
+          <div class="contents-paper" style="background:#E4DDC7" title="Operator Cream"></div>
+          <div class="contents-mark" style="background:#1F4F73" title="Bind Blue"></div>
+        </li>
+
+        <li class="contents-row">
+          <div class="contents-num">№05</div>
+          <div class="contents-title">
+            <span class="pair">WRIT × OATH</span>
+            <span class="epithet">Sovereignty as operational legibility.</span>
+          </div>
+          <span class="contents-page">CONTEMPORARY II</span>
+          <div class="contents-paper" style="background:#E3DCC9" title="Linen Slip"></div>
+          <div class="contents-mark" style="background:#1A2A66" title="Crown Indigo"></div>
+        </li>
+
+        <li class="contents-row">
+          <div class="contents-num">№06</div>
+          <div class="contents-title">
+            <span class="pair">PROVENANCE × MEMORY</span>
+            <span class="epithet">Lineage as auditable inheritance.</span>
+          </div>
+          <span class="contents-page">CONTEMPORARY III</span>
+          <div class="contents-paper" style="background:#E8DFC9" title="Bone Pale"></div>
+          <div class="contents-mark" style="background:#2E5F4A" title="Compact Green"></div>
+        </li>
+
+        <li class="contents-row">
+          <div class="contents-num">№07</div>
+          <div class="contents-title">
+            <span class="pair">COMMISSION × NAME</span>
+            <span class="epithet">Named-instance accountability.</span>
+          </div>
+          <span class="contents-page">CONTEMPORARY IV</span>
+          <div class="contents-paper" style="background:#E3DCC9" title="Linen Slip"></div>
+          <div class="contents-mark" style="background:#5F2F4A" title="Sigil Mauve"></div>
+        </li>
+
+      </ul>
+    </section>
+  </div>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">BINDING</span><span class="v">VOLUME 01 · FIRST</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">EIGHT FOLIOS · ONE FORM</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">EDITOR</span><span class="v">VEN AUGUSTAVE · 2026</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMMISSION × NAME — Fé №07</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* SYSTEM CORE — from Stage A foundation */
+  --folio-black:        #1F2024;
+  --folio-mute-strong:  #56544C;
+  --folio-mute:         #7E7C72;
+  --folio-hairline:     rgba(126, 124, 114, 0.35);
+
+  /* PAPER — Linen Slip (formal document register, matches WRIT) */
+  --paper:              #E3DCC9;
+
+  /* INSIGNIA STRATUM — the heraldic medium */
+  --vellum-cream:       #EBE2CB;
+  --parchment-stain:    #C4B395;
+  --quill-sepia:        #6B4F32;
+
+  /* NAME STRATUM — the formal record */
+  --decree-iron:        #1D1F22;
+  --engrossed-ink:      #36322A;
+  --stamp-grey:         #6E6C62;
+
+  /* RECOGNITION STRATUM — naming and technical identifiers */
+  --hash-pale:          #C2BEB4;
+  --cipher-slate:       #4A4E55;
+  --honor-brown:        #5A4738;
+
+  /* MARK ONLY — Sigil Mauve, last from §C.03 reserved index */
+  --sigil-mauve:        #5F2F4A;
+
+  /* TYPEFACES */
+  --serif:    'EB Garamond', 'Times New Roman', serif;
+  --display:  'Fraunces', 'EB Garamond', serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--folio-black); }
+body {
+  background: var(--folio-black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--paper);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.7),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--folio-black);
+  padding: 30px 56px 26px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--folio-mute-strong); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 2px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.masthead-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--folio-black);
+}
+.masthead-title .commission {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  font-size: 30px;
+}
+.masthead-title .x {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 26px;
+  vertical-align: 4px;
+  margin: 0 18px;
+  color: var(--folio-mute-strong);
+}
+.masthead-title .name {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 42px;
+}
+.masthead-title .subtitle {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.01em;
+}
+
+/* ───────── SPINE ───────── */
+.spine {
+  grid-area: spine;
+  background: var(--folio-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+.spine-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.36em;
+  color: var(--paper);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+.spine-ornaments { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spine-mark {
+  width: 6px; height: 6px;
+  border: 1px solid var(--paper);
+  transform: rotate(45deg);
+}
+.spine-mark.filled { background: var(--paper); }
+.spine-rule { width: 14px; height: 1px; background: var(--paper); }
+
+/* ───────── LEFT PAGE — DOCTRINE (NAME) ───────── */
+.page-left {
+  grid-area: left;
+  padding: 52px 56px 56px 64px;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--folio-mute-strong);
+  padding-bottom: 7px;
+  margin-bottom: 30px;
+}
+.page-header .folio-mark { color: var(--folio-black); }
+
+.doctrine-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.doctrine-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--folio-black);
+  margin-bottom: 8px;
+}
+.doctrine-title em { font-style: italic; font-weight: 400; }
+.doctrine-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--folio-mute-strong);
+}
+
+.doctrine-body {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: var(--folio-black);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid var(--folio-hairline);
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+.doctrine-body .thesis-block { margin-bottom: 16px; break-inside: avoid; }
+.doctrine-body .thesis-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--folio-mute-strong);
+  margin-bottom: 4px;
+}
+.doctrine-body .thesis-text { font-size: 14.5px; line-height: 1.5; }
+
+.doctrine-body h3 {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  margin-top: 18px;
+  margin-bottom: 9px;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.doctrine-body h3 .num {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.18em;
+  font-variant: normal;
+}
+.doctrine-body h3 .num::after { content: "·"; margin-left: 10px; color: var(--folio-mute-strong); }
+
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; margin-bottom: 9px; }
+.doctrine-body p.lead { text-indent: 0; }
+
+.doctrine-body em.term {
+  font-style: italic;
+  color: var(--honor-brown);
+  font-weight: 500;
+}
+
+.doctrine-body strong.case {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--folio-black);
+}
+
+.doctrine-body ol { list-style: none; counter-reset: doct-rule; margin: 4px 0 10px 0; }
+.doctrine-body ol li {
+  counter-increment: doct-rule;
+  margin-bottom: 9px;
+  padding-left: 26px;
+  position: relative;
+  break-inside: avoid;
+}
+.doctrine-body ol li::before {
+  content: counter(doct-rule, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.doctrine-body ol li strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.doctrine-coda { margin-top: 12px; break-inside: avoid; }
+
+/* ───────── RIGHT PAGE — CODEX (COMMISSION) ───────── */
+.page-right {
+  grid-area: right;
+  padding: 52px 64px 56px 56px;
+  display: flex;
+  flex-direction: column;
+}
+
+.codex-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.codex-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.24em;
+  color: var(--folio-black);
+  margin-bottom: 4px;
+}
+.codex-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 14px;
+}
+.codex-thesis {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--folio-black);
+  margin-bottom: 22px;
+  padding-left: 14px;
+  border-left: 2px solid var(--sigil-mauve);
+  font-style: italic;
+  line-height: 1.5;
+}
+.codex-thesis .therefore {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6px;
+}
+
+/* ── THE COMMISSION DOCUMENT ── */
+.commission-frame {
+  border: 1px solid var(--decree-iron);
+  background: var(--vellum-cream);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.commission-header-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--decree-iron);
+  text-transform: uppercase;
+  padding: 7px 12px;
+  background: var(--paper);
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--decree-iron);
+}
+.commission-header-strip .center {
+  text-align: center;
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+}
+.commission-header-strip .right {
+  text-align: right;
+  color: var(--sigil-mauve);
+  font-weight: 500;
+}
+.commission-header-strip .stat {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid var(--sigil-mauve);
+  color: var(--sigil-mauve);
+  letter-spacing: 0.18em;
+  margin-left: 4px;
+}
+
+.commission-body {
+  padding: 22px 32px 20px;
+  position: relative;
+}
+
+.commission-display-heading {
+  text-align: center;
+  margin-bottom: 6px;
+}
+.commission-display-heading .lead-glyph {
+  font-family: var(--display);
+  font-size: 22px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 1;
+  color: var(--decree-iron);
+  letter-spacing: 0.08em;
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.commission-display-heading h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 32px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.commission-display-heading .designator {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--sigil-mauve);
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.commission-opening {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--engrossed-ink);
+  text-align: center;
+  margin: 14px 24px 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--parchment-stain);
+}
+.commission-opening .opening-cap {
+  font-family: var(--display);
+  font-weight: 600;
+  font-style: normal;
+  font-size: 13px;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── THE BLAZON — central heraldic identity in Sigil Mauve ── */
+.blazon-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 6px 0 22px;
+}
+.blazon {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+.blazon svg { width: 100%; height: 100%; display: block; }
+
+.blazon-name {
+  margin-top: 16px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-style: normal;
+  font-size: 26px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--sigil-mauve);
+  letter-spacing: 0.3em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.blazon-epithet {
+  margin-top: 8px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--engrossed-ink);
+}
+.blazon-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--sigil-mauve);
+  margin: 12px auto 0;
+}
+
+/* ── IDENTITY GRID ── */
+.identity-block {
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--parchment-stain);
+}
+.identity-header {
+  font-family: var(--display);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 13px;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.identity-grid {
+  display: grid;
+  grid-template-columns: 124px 1fr;
+  gap: 5px 14px;
+  font-family: var(--serif);
+  font-size: 12px;
+  color: var(--decree-iron);
+}
+.identity-grid .label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.identity-grid .value {
+  font-size: 12.5px;
+  color: var(--decree-iron);
+}
+.identity-grid .value.named {
+  font-weight: 600;
+  font-style: italic;
+  color: var(--sigil-mauve);
+  letter-spacing: 0.04em;
+}
+.identity-grid .value .mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+.identity-grid .value .ref {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--honor-brown);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* ── ATTESTATIONS ── */
+.attestation-block {
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--decree-iron);
+}
+.attestation-header {
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 13px;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.attestation-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.attestation {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+.seal {
+  width: 30px; height: 30px;
+}
+.seal svg { width: 100%; height: 100%; display: block; }
+.att-body {
+  font-family: var(--serif);
+}
+.att-body .att-id {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.18em;
+  color: var(--sigil-mauve);
+  text-transform: uppercase;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 1px;
+}
+.att-body .att-role {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--decree-iron);
+  letter-spacing: 0.01em;
+}
+.att-body .att-name {
+  font-family: var(--serif);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--engrossed-ink);
+  margin-left: 8px;
+}
+.att-mark {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.16em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+}
+
+/* ── COMMISSION FOOTER ── */
+.commission-footer {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--parchment-stain);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.commission-footer .col span.k {
+  display: block;
+  color: var(--folio-mute-strong);
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  margin-bottom: 2px;
+}
+.commission-footer .col span.v {
+  color: var(--decree-iron);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.commission-footer .col.right { text-align: right; }
+
+/* ── Codex meta blocks ── */
+.codex-meta {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  margin-top: auto;
+}
+.meta-block { font-family: var(--mono); color: var(--folio-black); }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--folio-black);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.meta-label .idx { color: var(--folio-mute-strong); font-weight: 400; }
+
+.palette-stratum {
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 6px;
+}
+.palette-stratum:first-of-type { margin-top: 0; }
+.swatch-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3px;
+  font-size: 8.5px;
+}
+.swatch { width: 14px; height: 14px; border: 1px solid var(--folio-black); }
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--folio-mute-strong); letter-spacing: 0.06em; }
+.swatch-row.mark .swatch-name { color: var(--sigil-mauve); }
+
+.rules-list { list-style: none; counter-reset: rule; }
+.rules-list li {
+  counter-increment: rule;
+  font-size: 8.5px;
+  margin-bottom: 7px;
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.rules-list li::before {
+  content: "R." counter(rule, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--folio-mute-strong);
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+}
+.rules-list li strong {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--folio-black);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--folio-mute-strong); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--folio-black); }
+
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> №07</div>
+      <div class="row"><span class="k">DATE</span> 2026-06-01</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · Recognition / Named Instance Accountability</div>
+      <h1>
+        <span class="commission">COMMISSION</span>
+        <span class="x">×</span>
+        <span class="name">Name</span>
+      </h1>
+      <div class="subtitle">A codex for instance naming and ceremonial recognition, paired with a doctrine on why autonomous actors must be named into accountability.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">REFERENCE</span> C-0040 · BINDS W-0040 / M-0006</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE (NAME) ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio-mark">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>INSIGNIA STRATUM</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read 07</div>
+    <h2 class="doctrine-title">Name and the Commission</h2>
+    <div class="doctrine-subtitle">Why autonomous instances must be named into accountability.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text">Autonomous systems must be named, not numbered. A serial is a count; a name is an actor. The <em class="term">commission</em> is the formal act of bringing a specific autonomous instance into the system of operational accountability — naming it, recognizing it as a discrete actor, binding it to the writ that authorizes it and the provenance that produced it. Anonymous instances are unaccountable instances. Type-level attribution is not actor-level accountability. The instance must have a name, or it cannot be answered for.</p>
+      </div>
+
+      <h3><span class="num">I</span>The Identity Problem</h3>
+      <p class="lead">Current architectures treat autonomous platforms as instances of a type. <em class="term">Drone N of Type T.</em> When N acts, the action is attributed to T (the platform class) with N as a serial. But T is a type, not an actor; types do not bear responsibility, types do not have histories, types are not answered for in legal or political review. The identity problem is that the move from type-based to instance-based accountability has not been made — the systems still treat their actors as countable interchangeables.</p>
+      <p>The commission frame insists this is the older shape of the question. Combatants have always been named. Vessels are named at launch. Units are commissioned with names that travel with them through their operational life and are formally retired at decommissioning. What modernity stripped from autonomous systems is not the underlying logic; it is the operational legibility. An autonomous platform without a bestowed name acts as an anonymous instrument, and anonymous instruments cannot be answered for — only their operators can, and only generically.</p>
+
+      <h3><span class="num">II</span>What the Commission Frame Predicts</h3>
+      <p class="lead"><strong class="case">Casualty attribution without named actor.</strong> When an autonomous platform is involved in a civilian casualty, current architectures attribute to the platform class — "an FW-MANIFEST/04 platform was responsible." The commission frame predicts that without named-instance accountability, the attribution is generic and so unactionable for legal review. The named sovereign cannot answer for an unnamed actor any more than a state can answer for an unnamed citizen.</p>
+      <p><strong class="case">Coalition operations under generic attribution.</strong> Multi-national autonomous fleets operate under coalition command. Without per-instance naming, partners cannot say <em>this</em> specific platform, with <em>this</em> specific commission, took <em>this</em> specific action under <em>this</em> writ. Generic attribution fragments coalition accountability — each sovereign attributes to the type but none to the actor, and the actor falls between them.</p>
+      <p><strong class="case">Lifecycle drift without ceremony.</strong> Autonomous platforms move from training to limited deployment to full operations to retirement. Without commission discipline, the state transitions are informal — software updates, configuration changes, scope expansions — and the platform's effective authority creeps without formal recognition. The commission frame predicts that named lifecycle states (commissioning, scope-expansion, decommissioning) prevent authority creep where informal transitions invite it.</p>
+
+      <h3><span class="num">III</span>What the Commission Frame Recommends</h3>
+      <ol>
+        <li><strong>Every autonomous instance is named.</strong> Not a serial. Not a designator. A bestowed name, given by named authority, carried through the instance's operational life as part of every action it takes.</li>
+        <li><strong>The commission is ceremonial.</strong> A specific moment of formal naming, witnessed by named sovereign authority and named operational authority. The ceremony produces an artifact — the commission — that travels with the instance.</li>
+        <li><strong>The commission binds to writ and provenance.</strong> Every commissioned instance references its operating writ (the authority that warrants its actions) and its provenance manifest (the lineage that produced it). The name is the third pillar; writ and provenance are the other two.</li>
+        <li><strong>Decommissioning is the inverse ceremony.</strong> When the instance is retired, its name is formally retired with it. A retired name does not return; a new instance requires a new commission. Names are not recycled. The retirement is itself an act of sovereignty.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">Naming brings into accountability. Without commission, the autonomous system is a type acting through interchangeable instances — and types cannot be answered for. With commission, the system is a named actor whose actions are attributable, whose history is traceable, and whose retirement is itself an act of recognized sovereignty. The writ named who could authorize; the provenance named what produced the actor; the commission names <em>the actor itself</em>. Three names, one artifact: the autonomous instance fully legible to the system of accountability that warrants it.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · COMMISSION × NAME · №07</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX (COMMISSION) ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>RECOGNITION STRATUM</span>
+      <span>CODEX</span>
+      <span class="folio-mark">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · System 07 · Demonstration Commission</div>
+    <h2 class="codex-title">COMMISSION</h2>
+    <div class="codex-subtitle">A codex for instance naming under recognized authority.</div>
+    <div class="codex-thesis">
+      The named sovereign authorized (W-0040), the named provenance produced (M-0006), and the named instance acts. The commission is the artifact that names that instance into the system of accountability the writ and the provenance together define.
+      <span class="therefore">Therefore: a commission, bestowed, witnessed, ceremonially closed.</span>
+    </div>
+
+    <!-- ── THE COMMISSION DOCUMENT ── -->
+    <div class="commission-frame">
+
+      <div class="commission-header-strip">
+        <span>COMMISSION · C-0040</span>
+        <span class="center">NAMED INSTANCE RECOGNITION · TRIAD COMPLETE</span>
+        <span class="right">STATUS<span class="stat">ACTIVE</span></span>
+      </div>
+
+      <div class="commission-body">
+
+        <div class="commission-display-heading">
+          <span class="lead-glyph">✦</span>
+          <h3>COMMISSION C-0040</h3>
+          <div class="designator">Named Instance · Bestowed Recognition · Sprint 2</div>
+        </div>
+
+        <p class="commission-opening">
+          <span class="opening-cap">Be it known by these presents</span> that the autonomous instance designated below is commissioned by the named authority herein, recognized as a discrete actor under sovereignty, and named into the system of operational accountability defined by W-0040 and M-0006.
+        </p>
+
+        <!-- ── THE BLAZON — central heraldic identity ── -->
+        <div class="blazon-block">
+          <div class="blazon">
+            <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer band -->
+              <circle cx="120" cy="120" r="116" fill="none" stroke="#5F2F4A" stroke-width="1.4"/>
+              <circle cx="120" cy="120" r="104" fill="none" stroke="#5F2F4A" stroke-width="0.6"/>
+
+              <!-- Cardinal direction tick marks on outer band -->
+              <line x1="120" y1="4"   x2="120" y2="20"  stroke="#5F2F4A" stroke-width="1.2"/>
+              <line x1="120" y1="220" x2="120" y2="236" stroke="#5F2F4A" stroke-width="1"/>
+              <line x1="4"   y1="120" x2="20"  y2="120" stroke="#5F2F4A" stroke-width="1"/>
+              <line x1="220" y1="120" x2="236" y2="120" stroke="#5F2F4A" stroke-width="1"/>
+
+              <!-- Lodestar (north emphasis) -->
+              <path d="M 120 6 L 124 15 L 132 14 L 126 19 L 128 27 L 120 22 L 112 27 L 114 19 L 108 14 L 116 15 Z"
+                    fill="#5F2F4A"/>
+
+              <!-- Compass rose — 8-pointed star -->
+              <!-- Long cardinal points -->
+              <path d="M 120 28 L 130 118 L 120 116 L 110 118 Z" fill="#5F2F4A"/>
+              <path d="M 120 212 L 130 122 L 120 124 L 110 122 Z" fill="#5F2F4A"/>
+              <path d="M 28 120 L 118 130 L 116 120 L 118 110 Z" fill="#5F2F4A"/>
+              <path d="M 212 120 L 122 130 L 124 120 L 122 110 Z" fill="#5F2F4A"/>
+
+              <!-- Short intercardinal points (NE, NW, SE, SW) -->
+              <path d="M 175 65 L 128 112 L 120 120 L 128 112 Z" fill="#5F2F4A" opacity="0.7"/>
+              <path d="M 65 65   L 112 112 L 120 120 L 112 112 Z" fill="#5F2F4A" opacity="0.7"/>
+              <path d="M 175 175 L 128 128 L 120 120 L 128 128 Z" fill="#5F2F4A" opacity="0.7"/>
+              <path d="M 65 175  L 112 128 L 120 120 L 112 128 Z" fill="#5F2F4A" opacity="0.7"/>
+
+              <!-- Intercardinal lines (subtle) -->
+              <line x1="60"  y1="60"  x2="180" y2="180" stroke="#5F2F4A" stroke-width="0.5" opacity="0.5"/>
+              <line x1="180" y1="60"  x2="60"  y2="180" stroke="#5F2F4A" stroke-width="0.5" opacity="0.5"/>
+
+              <!-- Central rose -->
+              <circle cx="120" cy="120" r="18" fill="#E3DCC9" stroke="#5F2F4A" stroke-width="1.4"/>
+              <circle cx="120" cy="120" r="11" fill="none" stroke="#5F2F4A" stroke-width="0.6"/>
+              <circle cx="120" cy="120" r="4"  fill="#5F2F4A"/>
+
+              <!-- Inscription dots around outer band (heraldic ornament) -->
+              <circle cx="170" cy="34" r="1.5" fill="#5F2F4A"/>
+              <circle cx="206" cy="70" r="1.5" fill="#5F2F4A"/>
+              <circle cx="206" cy="170" r="1.5" fill="#5F2F4A"/>
+              <circle cx="170" cy="206" r="1.5" fill="#5F2F4A"/>
+              <circle cx="70"  cy="206" r="1.5" fill="#5F2F4A"/>
+              <circle cx="34"  cy="170" r="1.5" fill="#5F2F4A"/>
+              <circle cx="34"  cy="70"  r="1.5" fill="#5F2F4A"/>
+              <circle cx="70"  cy="34"  r="1.5" fill="#5F2F4A"/>
+            </svg>
+          </div>
+          <div class="blazon-name">Wayfinder</div>
+          <div class="blazon-epithet">Bestowed name · borne by this instance</div>
+          <div class="blazon-rule"></div>
+        </div>
+
+        <!-- ── IDENTITY GRID ── -->
+        <div class="identity-block">
+          <div class="identity-header">— Identity —</div>
+          <div class="identity-grid">
+            <span class="label">Bestowed Name</span>
+            <span class="value named">WAYFINDER</span>
+
+            <span class="label">Designation</span>
+            <span class="value"><span class="mono">FW-MANIFEST/04 · build 2026.05.01-rc4</span></span>
+
+            <span class="label">Class</span>
+            <span class="value">Heterogeneous Fleet Orchestrator · software-only, vehicle-agnostic</span>
+
+            <span class="label">Commissioned</span>
+            <span class="value"><span class="mono">2026-05-28T00:00:00Z</span></span>
+
+            <span class="label">Operating Writ</span>
+            <span class="value"><span class="ref">W-0040</span> &nbsp;<em>see Folio №05</em></span>
+
+            <span class="label">Provenance</span>
+            <span class="value"><span class="ref">M-0006</span> &nbsp;<em>see Folio №06</em></span>
+
+            <span class="label">Status</span>
+            <span class="value">RECOGNIZED ACTOR · ACTIVE</span>
+
+            <span class="label">Scope of Recognition</span>
+            <span class="value">orchestration authority within W-0040 scope; identification persistent across operational lifecycle</span>
+          </div>
+        </div>
+
+        <!-- ── ATTESTATIONS ── -->
+        <div class="attestation-block">
+          <div class="attestation-header">— Attestations of Recognition —</div>
+
+          <div class="attestation-grid">
+
+            <div class="attestation">
+              <div class="seal">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#5F2F4A" stroke-width="1.2"/>
+                  <circle cx="16" cy="16" r="11" fill="#5F2F4A"/>
+                  <path d="M 16 6 L 18 14 L 26 15 L 19 19 L 21 27 L 16 22 L 11 27 L 13 19 L 6 15 L 14 14 Z" fill="#E3DCC9"/>
+                </svg>
+              </div>
+              <div class="att-body">
+                <span class="att-id">C-01 · COMMISSIONING SOVEREIGN</span>
+                <span class="att-role">Sovereign Authority<span class="att-name">Commander-in-Chief, by writ W-0040</span></span>
+              </div>
+              <span class="att-mark">RECOGNIZED</span>
+            </div>
+
+            <div class="attestation">
+              <div class="seal">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#5F2F4A" stroke-width="1.2"/>
+                  <circle cx="16" cy="16" r="11" fill="#5F2F4A"/>
+                  <text x="16" y="20.2" font-family="JetBrains Mono" font-size="10" fill="#E3DCC9" text-anchor="middle" font-weight="700">N</text>
+                </svg>
+              </div>
+              <div class="att-body">
+                <span class="att-id">C-02 · NAMING OFFICER</span>
+                <span class="att-role">Naming Officer<span class="att-name">Defense Autonomous Warfare Group · Director</span></span>
+              </div>
+              <span class="att-mark">BESTOWED</span>
+            </div>
+
+            <div class="attestation">
+              <div class="seal">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="16" cy="16" r="14" fill="none" stroke="#5F2F4A" stroke-width="1.2"/>
+                  <polygon points="16,5 25,11 25,21 16,27 7,21 7,11" fill="#5F2F4A"/>
+                  <polygon points="16,11 21,14 21,20 16,23 11,20 11,14" fill="none" stroke="#E3DCC9" stroke-width="0.8"/>
+                </svg>
+              </div>
+              <div class="att-body">
+                <span class="att-id">C-03 · OPERATIONAL AUTHORITY</span>
+                <span class="att-role">Operational Authority<span class="att-name">Joint Task Force [designated] · Commander</span></span>
+              </div>
+              <span class="att-mark">ACCEPTED</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── FOOTER ── -->
+        <div class="commission-footer">
+          <div class="col">
+            <span class="k">COMMISSION HASH</span>
+            <span class="v">e7c4·a298·1f06·44bd·c819·5e2a·d703·91f8</span>
+          </div>
+          <div class="col right">
+            <span class="k">VALID FROM · DECOMMISSION PROTOCOL</span>
+            <span class="v">2026-05-28Z → at writ expiry · D-0040</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ── PALETTE & RULES ── -->
+    <div class="codex-meta">
+
+      <div class="meta-block">
+        <div class="meta-label"><span>PALETTE</span><span class="idx">P.01—P.10</span></div>
+
+        <div class="palette-stratum">INSIGNIA STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#EBE2CB"></div><div class="swatch-name">Vellum Cream</div><div class="swatch-hex">#EBE2CB</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#C4B395"></div><div class="swatch-name">Parchment Stain</div><div class="swatch-hex">#C4B395</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6B4F32"></div><div class="swatch-name">Quill Sepia</div><div class="swatch-hex">#6B4F32</div></div>
+
+        <div class="palette-stratum">NAME STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#1D1F22"></div><div class="swatch-name">Decree Iron</div><div class="swatch-hex">#1D1F22</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#36322A"></div><div class="swatch-name">Engrossed Ink</div><div class="swatch-hex">#36322A</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6E6C62"></div><div class="swatch-name">Stamp Grey</div><div class="swatch-hex">#6E6C62</div></div>
+
+        <div class="palette-stratum">RECOGNITION STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#C2BEB4"></div><div class="swatch-name">Hash Pale</div><div class="swatch-hex">#C2BEB4</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#4A4E55"></div><div class="swatch-name">Cipher Slate</div><div class="swatch-hex">#4A4E55</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#5A4738"></div><div class="swatch-name">Honor Brown</div><div class="swatch-hex">#5A4738</div></div>
+
+        <div class="palette-stratum">MARK ONLY — FROM §C.03 RESERVED INDEX</div>
+        <div class="swatch-row mark"><div class="swatch" style="background:#5F2F4A"></div><div class="swatch-name">Sigil Mauve</div><div class="swatch-hex">#5F2F4A</div></div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-label"><span>IRON RULES</span><span class="idx">R.01—R.05</span></div>
+        <ol class="rules-list">
+          <li><strong>Names are bestowed, not assigned.</strong> A bestowed name is given by named authority through a recognized ceremony; an assigned designation is generated by the system. The commission requires a name, not a designation.</li>
+          <li><strong>Identity is anchored to writ and provenance.</strong> Every commission references its operating writ (the authority warranting its actions) and its provenance manifest (the lineage that produced it). Orphan commissions are forbidden.</li>
+          <li><strong>The blazon is the mark.</strong> The heraldic identity of the named instance is rendered in Sigil Mauve at the center of the commission. The blazon is the recognition itself in visible form.</li>
+          <li><strong>Each attestation is one recognition moment.</strong> Sovereign recognition, naming officer's bestowal, operational authority's acceptance. Each is a separate seal in Sigil Mauve. Decorative use of Sigil Mauve is forbidden.</li>
+          <li><strong>Decommissioning is the inverse ceremony.</strong> Retirement of the instance retires its name with it. Retired names do not return; new instances require new commissions. Names are not recycled across instances.</li>
+        </ol>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé №07</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">PAIR</span><span class="v">NAME × COMMISSION</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">DEMONSTRATION ARTIFACT</span><span class="v">·</span><span class="v"> NAMES ARE WORKED EXAMPLE</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

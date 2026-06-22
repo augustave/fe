@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANON × FORM — Fé №00</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* SYSTEM CORE — Stage A locked values */
+  --folio-black:        #1F2024;
+  --folio-mute-strong:  #56544C;
+  --folio-mute:         #7E7C72;
+  --folio-hairline:     rgba(126, 124, 114, 0.35);
+
+  /* PAPER — this folio uses Bone Pale (foundational paper) */
+  --paper:              #E8DFC9;
+
+  /* PAPER SPECTRUM — all four approved papers */
+  --paper-bone:         #E8DFC9;
+  --paper-linen:        #E3DCC9;
+  --paper-vellum:       #D8CFB8;
+  --paper-cream:        #E4DDC7;
+
+  /* MARK COLOR INDEX — Stage A approved */
+  --slow-red:           #5A1F1F;
+  --slag-mark:          #A33A1A;
+  --margin-gold:        #6A5111;   /* REMEDIATED — was #A8862A */
+  --bind-blue:          #1F4F73;
+  --compact-green:      #2E5F4A;
+  --crown-indigo:       #1A2A66;
+  --sigil-mauve:        #5F2F4A;
+
+  /* TYPEFACES */
+  --serif:    'EB Garamond', 'Times New Roman', serif;
+  --display:  'Fraunces', 'EB Garamond', serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--folio-black); }
+body {
+  background: var(--folio-black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--paper);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.7),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--folio-black);
+  padding: 30px 56px 26px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--folio-mute-strong); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 2px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.masthead-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--folio-black);
+}
+.masthead-title .canon {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  font-size: 30px;
+}
+.masthead-title .x {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 26px;
+  vertical-align: 4px;
+  margin: 0 18px;
+  color: var(--folio-mute-strong);
+}
+.masthead-title .form {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 42px;
+}
+.masthead-title .subtitle {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.01em;
+}
+
+/* ───────── SPINE ───────── */
+.spine {
+  grid-area: spine;
+  background: var(--folio-black);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+.spine-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.36em;
+  color: var(--paper);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+.spine-ornaments { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spine-mark {
+  width: 6px; height: 6px;
+  border: 1px solid var(--paper);
+  transform: rotate(45deg);
+}
+.spine-mark.filled { background: var(--paper); }
+.spine-rule { width: 14px; height: 1px; background: var(--paper); }
+
+/* ───────── LEFT PAGE — DOCTRINE (FORM) ───────── */
+.page-left {
+  grid-area: left;
+  background: var(--paper);
+  padding: 52px 56px 56px 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--folio-mute-strong);
+  padding-bottom: 7px;
+  margin-bottom: 30px;
+}
+.page-header .folio-mark { color: var(--folio-black); }
+
+.doctrine-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.doctrine-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--folio-black);
+  margin-bottom: 8px;
+}
+.doctrine-title em { font-style: italic; font-weight: 400; }
+.doctrine-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--folio-mute-strong);
+}
+
+.doctrine-body {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: var(--folio-black);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid var(--folio-hairline);
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+
+.doctrine-body .thesis-block { margin-bottom: 16px; break-inside: avoid; }
+.doctrine-body .thesis-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--folio-mute-strong);
+  margin-bottom: 4px;
+}
+.doctrine-body .thesis-text { font-size: 14.5px; line-height: 1.5; }
+
+/* Fraunces dropcap — introduces the new display face in actual use */
+.dropcap {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 64px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  float: left;
+  line-height: 0.86;
+  padding: 6px 8px 0 0;
+  color: var(--folio-black);
+}
+
+.doctrine-body h3 {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  margin-top: 18px;
+  margin-bottom: 9px;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.doctrine-body h3 .num {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.18em;
+  font-variant: normal;
+}
+.doctrine-body h3 .num::after { content: "·"; margin-left: 10px; color: var(--folio-mute-strong); }
+
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; margin-bottom: 9px; }
+.doctrine-body p.lead { text-indent: 0; }
+
+.doctrine-body strong.case {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--folio-black);
+}
+
+.doctrine-body ol { list-style: none; counter-reset: doct-rule; margin: 4px 0 10px 0; }
+.doctrine-body ol li {
+  counter-increment: doct-rule;
+  margin-bottom: 9px;
+  padding-left: 26px;
+  position: relative;
+  break-inside: avoid;
+}
+.doctrine-body ol li::before {
+  content: counter(doct-rule, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.doctrine-body ol li strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.doctrine-coda { margin-top: 12px; break-inside: avoid; }
+
+/* ───────── RIGHT PAGE — CODEX (CANON) ───────── */
+.page-right {
+  grid-area: right;
+  background: var(--paper);
+  padding: 52px 64px 56px 56px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.codex-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.codex-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.24em;
+  color: var(--folio-black);
+  margin-bottom: 4px;
+}
+.codex-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 14px;
+}
+.codex-thesis {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--folio-black);
+  margin-bottom: 22px;
+  padding-left: 14px;
+  border-left: 2px solid var(--folio-black);
+  font-style: italic;
+  line-height: 1.5;
+}
+.codex-thesis .therefore {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6px;
+}
+
+/* ── PANEL BASE ── */
+.panel {
+  border: 1px solid var(--folio-black);
+  background: var(--paper);
+  margin-bottom: 16px;
+}
+.panel-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  padding: 6px 12px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--folio-black);
+  align-items: center;
+  gap: 12px;
+}
+.panel-header .title { color: var(--folio-black); font-weight: 500; }
+.panel-header .right  { text-align: right; }
+.panel-body { padding: 14px 14px 16px; }
+
+/* ── TYPE SPECIMEN ── */
+.specimen-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--folio-hairline);
+}
+.specimen-row:last-child { border-bottom: none; }
+.specimen-label {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.16em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.specimen-label .name { color: var(--folio-black); font-weight: 500; display: block; margin-bottom: 3px; font-size: 8px; }
+.specimen-label .role { display: block; margin-top: 4px; }
+.specimen-content {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.spec-garamond-display {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--folio-black);
+  line-height: 1;
+}
+.spec-garamond-body {
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--folio-black);
+  line-height: 1.4;
+  max-width: 240px;
+}
+.spec-fraunces-display {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 34px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--folio-black);
+  line-height: 1;
+  letter-spacing: -0.005em;
+}
+.spec-fraunces-soft {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 18px;
+  font-variation-settings: "opsz" 48, "SOFT" 80, "WONK" 0;
+  color: var(--folio-black);
+  font-style: italic;
+}
+.spec-mono-caps {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.24em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+}
+.spec-mono-small {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--folio-black);
+}
+.spec-mono-tiny {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.1em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+}
+
+/* ── PALETTE PANEL ── */
+.palette-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.palette-stratum {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--folio-mute-strong);
+}
+.swatch-row {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: var(--folio-black);
+}
+.swatch-row.thick { grid-template-columns: 22px 1fr auto; }
+.swatch { width: 16px; height: 16px; border: 1px solid var(--folio-black); }
+.swatch.tall { width: 22px; height: 22px; }
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--folio-mute-strong); letter-spacing: 0.06em; }
+.swatch-role {
+  font-size: 7px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: -2px;
+  padding-left: 26px;
+  margin-bottom: 4px;
+  font-style: normal;
+}
+.swatch-role.deep { padding-left: 32px; }
+
+/* ── MARK INDEX ── */
+.mark-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 8.5px;
+}
+.mark-table th {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  text-align: left;
+  padding: 4px 6px 6px;
+  border-bottom: 1px solid var(--folio-mute-strong);
+  font-weight: 500;
+}
+.mark-table td {
+  padding: 5px 6px;
+  border-bottom: 1px solid var(--folio-hairline);
+  letter-spacing: 0.04em;
+  color: var(--folio-black);
+  vertical-align: middle;
+}
+.mark-table tr:last-child td { border-bottom: none; }
+.mark-table .sw {
+  width: 16px; height: 16px;
+  display: inline-block;
+  border: 1px solid var(--folio-black);
+  vertical-align: middle;
+}
+.mark-table .mname { font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+.mark-table .mhex  { font-size: 7.5px; color: var(--folio-mute-strong); }
+.mark-table .mstatus.use      { color: var(--folio-black); font-weight: 500; }
+.mark-table .mstatus.reserved { color: var(--folio-mute-strong); }
+.mark-table .mzone { font-size: 7.5px; letter-spacing: 0.08em; }
+
+/* ── IRON RULES OF THE SYSTEM ── */
+.system-rules { list-style: none; counter-reset: srule; padding: 0; margin: 0; }
+.system-rules li {
+  counter-increment: srule;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  margin-bottom: 9px;
+  line-height: 1.5;
+  padding-left: 30px;
+  position: relative;
+  letter-spacing: 0.02em;
+  color: var(--folio-black);
+}
+.system-rules li::before {
+  content: "S." counter(srule, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--folio-mute-strong);
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+.system-rules li strong {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+}
+
+/* ── FOLIO INDEX ── */
+.folio-index {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.folio-entry {
+  display: grid;
+  grid-template-columns: 56px 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--folio-hairline);
+  font-family: var(--mono);
+}
+.folio-entry:last-child { border-bottom: none; }
+.folio-entry.self { background: rgba(31, 32, 36, 0.04); }
+.folio-num {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 24px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--folio-black);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.folio-num.self { color: var(--folio-mute-strong); }
+.folio-title {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.folio-epithet {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.folio-paper-sw {
+  width: 14px; height: 14px;
+  border: 1px solid var(--folio-black);
+}
+.folio-mark-sw {
+  width: 14px; height: 14px;
+  border: 1px solid var(--folio-black);
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--folio-black);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--folio-mute-strong); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--folio-black); }
+
+/* Print */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> №00 / FOUNDATION</div>
+      <div class="row"><span class="k">DATE</span> 2026-05-28</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · The System Documents Itself</div>
+      <h1>
+        <span class="canon">CANON</span>
+        <span class="x">×</span>
+        <span class="form">Form</span>
+      </h1>
+      <div class="subtitle">A codex of the system itself, paired with a doctrine on form as discipline.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">CLASSIFICATION</span> OPEN</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE (FORM) ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio-mark">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>SYSTEM STRATUM</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read 00 · Foundation</div>
+    <h2 class="doctrine-title">The Folio Argument</h2>
+    <div class="doctrine-subtitle">Why doctrine recto, codex verso, one mark — and what the form earns.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text"><span class="dropcap">T</span>he Fé is not a layout. It is a discipline. Doctrine on the recto and codex on the verso, joined at the spine, is the form that produces legibility for any complex system the discipline names. The form is load-bearing because it makes the argument inspectable in the same artifact as the artifact that argues for it. The four prior folios demonstrate the form's range across philosophical and contemporary briefs. This folio documents the form itself.</p>
+      </div>
+
+      <h3><span class="num">I</span>The Form Problem</h3>
+      <p class="lead">Brand systems treat documentation as auxiliary. The work renders the system; a separate document describes the rules; the two never sit in the same artifact at the same scale. This separation makes the discipline arbitrary — rules in the documentation, work in the world, no enforcement surface between them. The system's authority is asserted but not visible. A reader holding any single artifact cannot verify it obeys the system; they have to consult a second document and trust the mapping.</p>
+      <p>The Fé inverts this. The doctrine recto argues for the discipline; the codex verso <em>is</em> the discipline operating on its own subject matter. The two are bound at the spine and read at the same scale. Anyone holding the folio can verify, in one glance, that the codex obeys the doctrine. The form makes the discipline auditable at the artifact level.</p>
+
+      <h3><span class="num">II</span>What the Form Earns</h3>
+      <p class="lead"><strong class="case">Range without dilution.</strong> Folios №01–04 carry radically different epistemic stances — latent threat in the frame, substance verification, estimation under overhang, operator-fleet seam — and the form holds across all of them without modification. The masthead, spine, slug, and the doctrine-recto / codex-verso pairing are identical. What varies is the palette discipline, the visualization geometry, and the single mark. The form proves it can carry distinct arguments without forcing them into one aesthetic.</p>
+      <p><strong class="case">Self-proving artifacts.</strong> Each folio's codex demonstrates the discipline its doctrine argues for. FALLOW renders surface-and-subsurface stratification while arguing for it. ASSAY renders sample discrimination while arguing for assay procedure. The reader does not have to take the argument on faith — the artifact under their eyes either obeys the rule or does not. The discipline is enforced by the form itself, not by external review.</p>
+      <p><strong class="case">A discipline ratchet.</strong> Each folio adds a discrimination signature — Slow Red, Slag Mark, Margin Gold, Bind Blue — to a shared index. The index accumulates semantic zones. Future folios pick from a deliberately constrained palette rather than improvising. The system gets richer over time without losing coherence, because each addition is bound to the form that precedes it.</p>
+
+      <h3><span class="num">III</span>What the Form Requires</h3>
+      <ol>
+        <li><strong>Doctrine on the recto. Always.</strong> Argument carries the recto register because the recto is the page the reader sees first when opening the folio. The argument must be holdable before the discipline is shown.</li>
+        <li><strong>Codex on the verso. Always.</strong> The codex must <em>demonstrate</em> the discipline the doctrine argues for, not just declare it. The folio's competitive surface is whether the codex actually obeys the doctrine — visible to any reader at any moment.</li>
+        <li><strong>One mark. Per folio.</strong> The single-mark color is the folio's discrimination signature, applied exclusively to one operational moment. Two marks collapse to none. The discipline is exclusivity.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">The form is older than this series. The illuminated manuscript pairs scripture with marginal gloss. The legal brief pairs argument with precedent. The scientific paper pairs claim with experimental record. The Fé recovers the ancient pattern for contemporary work, and what it earns is the same thing those forms earned: a discipline that is auditable at the artifact level. The system is its form. The form is the discipline. The remaining folios are what the discipline produces.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · CANON × FORM · №00</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX (CANON) ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>SYSTEM STRATUM</span>
+      <span>CODEX</span>
+      <span class="folio-mark">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · System 00 · Foundation</div>
+    <h2 class="codex-title">CANON</h2>
+    <div class="codex-subtitle">The system's own ratified index.</div>
+    <div class="codex-thesis">
+      The Fé is its own discipline. CANON catalogues what that discipline ratifies — typefaces, system core, paper spectrum, mark index, iron rules of the form, and the running index of folios produced.
+      <span class="therefore">Therefore: the codex of the codex.</span>
+    </div>
+
+    <!-- ── TYPE SPECIMEN ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="title">TYPE SPECIMEN · §C.01</span>
+        <span></span>
+        <span class="right">3 FACES · ALL OPEN-SOURCE · SIL OFL</span>
+      </div>
+      <div class="panel-body">
+
+        <div class="specimen-row">
+          <div class="specimen-label">
+            <span class="name">EB GARAMOND</span>
+            old-style serif
+            <span class="role">role: body, doctrine title (italic), traditional editorial</span>
+          </div>
+          <div class="specimen-content">
+            <span class="spec-garamond-display">Fé · Úr · Þurs</span>
+            <span class="spec-garamond-body">The form is older than this series. The illuminated manuscript pairs scripture with marginal gloss.</span>
+          </div>
+        </div>
+
+        <div class="specimen-row">
+          <div class="specimen-label">
+            <span class="name">FRAUNCES</span>
+            variable display serif
+            <span class="role">role: dropcaps, folio designators, display moments — new addition Stage B</span>
+          </div>
+          <div class="specimen-content">
+            <span class="spec-fraunces-display">CANON</span>
+            <span class="spec-fraunces-soft">opsz · SOFT · WONK</span>
+            <span class="spec-mono-tiny">opsz 9–144 · wght 300–900</span>
+          </div>
+        </div>
+
+        <div class="specimen-row">
+          <div class="specimen-label">
+            <span class="name">JETBRAINS MONO</span>
+            technical mono
+            <span class="role">role: meta, slug, mono labels, identifiers, codex annotations</span>
+          </div>
+          <div class="specimen-content">
+            <span class="spec-mono-caps">Fé</span>
+            <span class="spec-mono-small">R.01 · S.05 · §C.02</span>
+            <span class="spec-mono-tiny">38°44′31″N · T+05:30 · #1F2024</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── PALETTE + PAPER SPECTRUM ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="title">PALETTE · §C.02</span>
+        <span></span>
+        <span class="right">SYSTEM CORE + PAPER SPECTRUM · WCAG 2.1 VERIFIED</span>
+      </div>
+      <div class="panel-body">
+
+        <div class="palette-cols">
+
+          <div>
+            <div class="palette-stratum">SYSTEM CORE — every folio</div>
+            <div class="swatch-row thick"><div class="swatch tall" style="background:#1F2024"></div><div class="swatch-name">Folio Black</div><div class="swatch-hex">#1F2024</div></div>
+            <div class="swatch-role deep">body, headings, rules · AAA all papers</div>
+
+            <div class="swatch-row thick"><div class="swatch tall" style="background:#56544C"></div><div class="swatch-name">Folio Mute Strong</div><div class="swatch-hex">#56544C</div></div>
+            <div class="swatch-role deep">info mono ≤9pt · AA all papers</div>
+
+            <div class="swatch-row thick"><div class="swatch tall" style="background:#7E7C72"></div><div class="swatch-name">Folio Mute</div><div class="swatch-hex">#7E7C72</div></div>
+            <div class="swatch-role deep">decorative ≥10pt only · AA Large</div>
+
+            <div class="swatch-row thick"><div class="swatch tall" style="background:rgba(126,124,114,0.35); border-color: var(--folio-mute-strong);"></div><div class="swatch-name">Folio Hairline</div><div class="swatch-hex">#7E7C72 / 35%</div></div>
+            <div class="swatch-role deep">grids, rules · non-text, no minimum</div>
+          </div>
+
+          <div>
+            <div class="palette-stratum">PAPER SPECTRUM — per folio</div>
+            <div class="swatch-row thick"><div class="swatch tall" style="background:#E8DFC9"></div><div class="swatch-name">Bone Pale</div><div class="swatch-hex">#E8DFC9</div></div>
+            <div class="swatch-role deep">№01 · FALLOW · L=0.7193</div>
+
+            <div class="swatch-row thick"><div class="swatch tall" style="background:#E3DCC9"></div><div class="swatch-name">Linen Slip</div><div class="swatch-hex">#E3DCC9</div></div>
+            <div class="swatch-role deep">№02 · ASSAY · L=0.6953</div>
+
+            <div class="swatch-row thick"><div class="swatch tall" style="background:#D8CFB8"></div><div class="swatch-name">Survey Vellum</div><div class="swatch-hex">#D8CFB8</div></div>
+            <div class="swatch-role deep">№03 · MARGIN · L=0.6094</div>
+
+            <div class="swatch-row thick"><div class="swatch tall" style="background:#E4DDC7"></div><div class="swatch-name">Operator Cream</div><div class="swatch-hex">#E4DDC7</div></div>
+            <div class="swatch-role deep">№04 · MANIFEST · L=0.7017</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── MARK COLOR INDEX ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="title">MARK COLOR INDEX · §C.03</span>
+        <span></span>
+        <span class="right">7 IN USE · 0 RESERVED · CAPACITY 7</span>
+      </div>
+      <div class="panel-body">
+
+        <table class="mark-table">
+          <thead>
+            <tr>
+              <th style="width:24px"></th>
+              <th>Mark</th>
+              <th>Hex</th>
+              <th>Semantic Zone</th>
+              <th>Assignment</th>
+              <th class="right">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="sw" style="background:#5A1F1F"></span></td>
+              <td class="mname">Slow Red</td>
+              <td class="mhex">#5A1F1F</td>
+              <td class="mzone">warm red · contact</td>
+              <td>№01 FALLOW · sighting, presence revealed</td>
+              <td class="mstatus use right">IN USE</td>
+            </tr>
+            <tr>
+              <td><span class="sw" style="background:#A33A1A"></span></td>
+              <td class="mname">Slag Mark</td>
+              <td class="mhex">#A33A1A</td>
+              <td class="mzone">hot red-orange · rejection</td>
+              <td>№02 ASSAY · negative selection, disqualification</td>
+              <td class="mstatus use right">IN USE</td>
+            </tr>
+            <tr>
+              <td><span class="sw" style="background:#6A5111"></span></td>
+              <td class="mname">Margin Gold</td>
+              <td class="mhex">#6A5111</td>
+              <td class="mzone">warm gold · limit</td>
+              <td>№03 MARGIN · horizons, sealed claims</td>
+              <td class="mstatus use right">IN USE</td>
+            </tr>
+            <tr>
+              <td><span class="sw" style="background:#1F4F73"></span></td>
+              <td class="mname">Bind Blue</td>
+              <td class="mhex">#1F4F73</td>
+              <td class="mzone">cool blue · commitment</td>
+              <td>№04 MANIFEST · acknowledged commitment, oath</td>
+              <td class="mstatus use right">IN USE</td>
+            </tr>
+            <tr>
+              <td><span class="sw" style="background:#2E5F4A"></span></td>
+              <td class="mname">Compact Green</td>
+              <td class="mhex">#2E5F4A</td>
+              <td class="mzone">cool green · preservation</td>
+              <td>№06 PROVENANCE · custodial memory, inheritance</td>
+              <td class="mstatus use right">IN USE</td>
+            </tr>
+            <tr>
+              <td><span class="sw" style="background:#1A2A66"></span></td>
+              <td class="mname">Crown Indigo</td>
+              <td class="mhex">#1A2A66</td>
+              <td class="mzone">deep ultramarine · sovereignty</td>
+              <td>№05 WRIT · sovereignty, attested authority</td>
+              <td class="mstatus use right">IN USE</td>
+            </tr>
+            <tr>
+              <td><span class="sw" style="background:#5F2F4A"></span></td>
+              <td class="mname">Sigil Mauve</td>
+              <td class="mhex">#5F2F4A</td>
+              <td class="mzone">warm purple · recognition</td>
+              <td>№07 COMMISSION · named-instance accountability</td>
+              <td class="mstatus use right">IN USE</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <!-- ── IRON RULES OF THE SYSTEM ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="title">IRON RULES OF THE SYSTEM · §C.04</span>
+        <span></span>
+        <span class="right">S.01—S.05 · BIND EVERY FOLIO</span>
+      </div>
+      <div class="panel-body">
+
+        <ol class="system-rules">
+          <li><strong>Doctrine on the recto.</strong> Argument lives on the page the reader opens to first. No folio is approved without a doctrine essay carrying the argument the codex demonstrates.</li>
+          <li><strong>Codex on the verso.</strong> The codex must demonstrate the discipline the doctrine argues for, not just declare it. Self-proving or it does not ship.</li>
+          <li><strong>One mark per folio.</strong> A folio uses exactly one mark color from the Mark Color Index, applied exclusively to one operational moment. Two marks in one folio is forbidden.</li>
+          <li><strong>Three strata per palette.</strong> Per-folio palettes carry exactly three strata of 3–4 colors each, plus the mark. Two collapses the discipline; four dilutes it.</li>
+          <li><strong>Iron rules govern.</strong> Every folio's codex declares R.01–R.05 specific to its system. The pattern is itself the discipline; departure from it is grounds for refusal.</li>
+        </ol>
+
+      </div>
+    </div>
+
+    <!-- ── FOLIO INDEX ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="title">FOLIO INDEX · §C.05</span>
+        <span></span>
+        <span class="right">8 EDITIONS · NORSE TRIO + 4 CONTEMPORARY + 1 FOUNDATION</span>
+      </div>
+      <div class="panel-body">
+
+        <div class="folio-index">
+
+          <div class="folio-entry self">
+            <div class="folio-num self">№00</div>
+            <div>
+              <div class="folio-title">CANON × FORM</div>
+              <div class="folio-epithet">The system documents itself.</div>
+            </div>
+            <div class="folio-paper-sw" style="background:#E8DFC9" title="Bone Pale"></div>
+            <div class="folio-mark-sw" style="background:transparent; border-style:dashed" title="No mark — catalogues all"></div>
+          </div>
+
+          <div class="folio-entry">
+            <div class="folio-num">№01</div>
+            <div>
+              <div class="folio-title">FALLOW × FÉ</div>
+              <div class="folio-epithet">Latent threat in the frame.</div>
+            </div>
+            <div class="folio-paper-sw" style="background:#E8DFC9" title="Bone Pale"></div>
+            <div class="folio-mark-sw" style="background:#5A1F1F" title="Slow Red"></div>
+          </div>
+
+          <div class="folio-entry">
+            <div class="folio-num">№02</div>
+            <div>
+              <div class="folio-title">ASSAY × ÚR</div>
+              <div class="folio-epithet">Substance verification before engagement.</div>
+            </div>
+            <div class="folio-paper-sw" style="background:#E3DCC9" title="Linen Slip"></div>
+            <div class="folio-mark-sw" style="background:#A33A1A" title="Slag Mark"></div>
+          </div>
+
+          <div class="folio-entry">
+            <div class="folio-num">№03</div>
+            <div>
+              <div class="folio-title">MARGIN × ÞURS</div>
+              <div class="folio-epithet">Strategic estimation under capability overhang.</div>
+            </div>
+            <div class="folio-paper-sw" style="background:#D8CFB8" title="Survey Vellum"></div>
+            <div class="folio-mark-sw" style="background:#6A5111" title="Margin Gold (remediated)"></div>
+          </div>
+
+          <div class="folio-entry">
+            <div class="folio-num">№04</div>
+            <div>
+              <div class="folio-title">MANIFEST × INTENT</div>
+              <div class="folio-epithet">The operator–fleet seam under degradation.</div>
+            </div>
+            <div class="folio-paper-sw" style="background:#E4DDC7" title="Operator Cream"></div>
+            <div class="folio-mark-sw" style="background:#1F4F73" title="Bind Blue"></div>
+          </div>
+
+          <div class="folio-entry">
+            <div class="folio-num">№05</div>
+            <div>
+              <div class="folio-title">WRIT × OATH</div>
+              <div class="folio-epithet">Sovereignty as operational legibility.</div>
+            </div>
+            <div class="folio-paper-sw" style="background:#E3DCC9" title="Linen Slip"></div>
+            <div class="folio-mark-sw" style="background:#1A2A66" title="Crown Indigo"></div>
+          </div>
+
+          <div class="folio-entry">
+            <div class="folio-num">№06</div>
+            <div>
+              <div class="folio-title">PROVENANCE × MEMORY</div>
+              <div class="folio-epithet">Lineage as auditable inheritance.</div>
+            </div>
+            <div class="folio-paper-sw" style="background:#E8DFC9" title="Bone Pale"></div>
+            <div class="folio-mark-sw" style="background:#2E5F4A" title="Compact Green"></div>
+          </div>
+
+          <div class="folio-entry">
+            <div class="folio-num">№07</div>
+            <div>
+              <div class="folio-title">COMMISSION × NAME</div>
+              <div class="folio-epithet">Named-instance accountability.</div>
+            </div>
+            <div class="folio-paper-sw" style="background:#E3DCC9" title="Linen Slip"></div>
+            <div class="folio-mark-sw" style="background:#5F2F4A" title="Sigil Mauve"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé №00</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">PAIR</span><span class="v">FORM × CANON</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">PRIMARY SOURCE</span><span class="v">THE SYSTEM ITSELF · STAGE A FOUNDATION</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

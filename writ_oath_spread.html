@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WRIT × OATH — Fé №05</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* SYSTEM CORE — from Stage A foundation */
+  --folio-black:        #1F2024;
+  --folio-mute-strong:  #56544C;
+  --folio-mute:         #7E7C72;
+  --folio-hairline:     rgba(126, 124, 114, 0.35);
+
+  /* PAPER — this folio uses Linen Slip */
+  --paper:              #E3DCC9;
+
+  /* DOCUMENT STRATUM — parchment and chancery */
+  --vellum-cream:       #EBE2CB;
+  --parchment-stain:    #C4B395;
+  --quill-sepia:        #6B4F32;
+
+  /* AUTHORITY STRATUM — formal document register */
+  --decree-iron:        #1D1F22;
+  --engrossed-ink:      #36322A;
+  --stamp-grey:         #6E6C62;
+
+  /* CODE STRATUM — technical identifiers */
+  --hash-pale:          #C2BEB4;
+  --cipher-slate:       #4A4E55;
+  --cipher-black:       #14171C;
+
+  /* MARK ONLY — from reserved index §C.03 */
+  --crown-indigo:       #1A2A66;
+
+  /* TYPEFACES */
+  --serif:    'EB Garamond', 'Times New Roman', serif;
+  --display:  'Fraunces', 'EB Garamond', serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--cipher-black); }
+body {
+  background: var(--cipher-black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--paper);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.7),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--folio-black);
+  padding: 30px 56px 26px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--folio-mute-strong); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 2px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.masthead-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--folio-black);
+}
+.masthead-title .writ {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  font-size: 30px;
+}
+.masthead-title .x {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 26px;
+  vertical-align: 4px;
+  margin: 0 18px;
+  color: var(--folio-mute-strong);
+}
+.masthead-title .oath {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 42px;
+}
+.masthead-title .subtitle {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.01em;
+}
+
+/* ───────── SPINE ───────── */
+.spine {
+  grid-area: spine;
+  background: var(--folio-black);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+.spine-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.36em;
+  color: var(--paper);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+.spine-ornaments { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spine-mark {
+  width: 6px; height: 6px;
+  border: 1px solid var(--paper);
+  transform: rotate(45deg);
+}
+.spine-mark.filled { background: var(--paper); }
+.spine-rule { width: 14px; height: 1px; background: var(--paper); }
+
+/* ───────── LEFT PAGE — DOCTRINE (OATH) ───────── */
+.page-left {
+  grid-area: left;
+  background: var(--paper);
+  padding: 52px 56px 56px 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--folio-mute-strong);
+  padding-bottom: 7px;
+  margin-bottom: 30px;
+}
+.page-header .folio-mark { color: var(--folio-black); }
+
+.doctrine-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.doctrine-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--folio-black);
+  margin-bottom: 8px;
+}
+.doctrine-title em { font-style: italic; font-weight: 400; }
+.doctrine-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--folio-mute-strong);
+}
+
+.doctrine-body {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: var(--folio-black);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid var(--folio-hairline);
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+
+.doctrine-body .thesis-block { margin-bottom: 16px; break-inside: avoid; }
+.doctrine-body .thesis-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--folio-mute-strong);
+  margin-bottom: 4px;
+}
+.doctrine-body .thesis-text { font-size: 14.5px; line-height: 1.5; }
+
+.doctrine-body h3 {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--folio-black);
+  margin-top: 18px;
+  margin-bottom: 9px;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.doctrine-body h3 .num {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.18em;
+  font-variant: normal;
+}
+.doctrine-body h3 .num::after { content: "·"; margin-left: 10px; color: var(--folio-mute-strong); }
+
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; margin-bottom: 9px; }
+.doctrine-body p.lead { text-indent: 0; }
+
+.doctrine-body em.term {
+  font-style: italic;
+  color: var(--quill-sepia);
+  font-weight: 500;
+}
+
+.doctrine-body strong.case {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--folio-black);
+}
+
+.doctrine-body ol { list-style: none; counter-reset: doct-rule; margin: 4px 0 10px 0; }
+.doctrine-body ol li {
+  counter-increment: doct-rule;
+  margin-bottom: 9px;
+  padding-left: 26px;
+  position: relative;
+  break-inside: avoid;
+}
+.doctrine-body ol li::before {
+  content: counter(doct-rule, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.doctrine-body ol li strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.doctrine-coda { margin-top: 12px; break-inside: avoid; }
+
+/* ───────── RIGHT PAGE — CODEX (WRIT) ───────── */
+.page-right {
+  grid-area: right;
+  background: var(--paper);
+  padding: 52px 64px 56px 56px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.codex-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.codex-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.24em;
+  color: var(--folio-black);
+  margin-bottom: 4px;
+}
+.codex-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--folio-mute-strong);
+  margin-bottom: 14px;
+}
+.codex-thesis {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--folio-black);
+  margin-bottom: 22px;
+  padding-left: 14px;
+  border-left: 2px solid var(--crown-indigo);
+  font-style: italic;
+  line-height: 1.5;
+}
+.codex-thesis .therefore {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6px;
+}
+
+/* ── WRIT DOCUMENT ── */
+.writ-frame {
+  border: 1px solid var(--decree-iron);
+  background: var(--vellum-cream);
+  margin-bottom: 18px;
+  position: relative;
+  overflow: hidden;
+}
+.writ-header-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--decree-iron);
+  text-transform: uppercase;
+  padding: 7px 12px;
+  background: var(--paper);
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--decree-iron);
+}
+.writ-header-strip .center {
+  text-align: center;
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+}
+.writ-header-strip .right {
+  text-align: right;
+  color: var(--crown-indigo);
+  font-weight: 500;
+}
+.writ-header-strip .stat {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid var(--crown-indigo);
+  color: var(--crown-indigo);
+  letter-spacing: 0.18em;
+  margin-left: 4px;
+}
+
+.writ-body {
+  padding: 26px 36px 22px;
+  position: relative;
+}
+
+/* Decorative parchment-stain rule */
+.writ-body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--parchment-stain), transparent);
+  transform: translateX(-50%);
+  opacity: 0.4;
+}
+
+.writ-display-heading {
+  text-align: center;
+  margin-bottom: 6px;
+}
+.writ-display-heading .lead-glyph {
+  font-family: var(--display);
+  font-size: 26px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 1;
+  color: var(--decree-iron);
+  letter-spacing: 0.08em;
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.writ-display-heading h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 38px;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.writ-display-heading .designator {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--crown-indigo);
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+.writ-opening {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--engrossed-ink);
+  text-align: center;
+  margin: 18px 18px 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--parchment-stain);
+}
+.writ-opening .opening-cap {
+  font-family: var(--display);
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.writ-section {
+  margin-bottom: 14px;
+}
+.writ-section-label {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.28em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--parchment-stain);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.writ-section-label .roman {
+  font-family: var(--display);
+  font-size: 11px;
+  font-style: italic;
+  font-variation-settings: "opsz" 48, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.04em;
+}
+
+.writ-section .primary {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--decree-iron);
+  letter-spacing: 0.01em;
+}
+.writ-section .secondary {
+  font-family: var(--serif);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--engrossed-ink);
+  margin-top: 2px;
+}
+.writ-section .citation {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+.delegation-chain {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+.delegation-row {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  font-family: var(--serif);
+  align-items: baseline;
+}
+.delegation-row .num {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.14em;
+  font-weight: 500;
+}
+.delegation-row .name {
+  font-size: 12.5px;
+  color: var(--decree-iron);
+  letter-spacing: 0.01em;
+}
+.delegation-row .name .role {
+  font-style: italic;
+  color: var(--engrossed-ink);
+  font-size: 11px;
+}
+
+.authorized-actions { margin-top: 4px; }
+.authorized-actions li {
+  font-family: var(--serif);
+  font-size: 12.5px;
+  color: var(--decree-iron);
+  line-height: 1.55;
+  margin-bottom: 4px;
+  padding-left: 18px;
+  position: relative;
+  list-style: none;
+}
+.authorized-actions li::before {
+  content: "·";
+  position: absolute;
+  left: 6px;
+  color: var(--quill-sepia);
+  font-weight: 700;
+}
+
+.scope-grid {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 4px 12px;
+  font-family: var(--serif);
+  font-size: 12px;
+  color: var(--decree-iron);
+  margin-top: 4px;
+}
+.scope-grid .label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+
+/* ── ATTESTATION BLOCK — Crown Indigo seals appear here only ── */
+.attestation-block {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--decree-iron);
+}
+.attestation-header {
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 14px;
+  font-variation-settings: "opsz" 96, "SOFT" 0, "WONK" 0;
+  color: var(--decree-iron);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.attestation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 22px;
+}
+.attestation {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+.seal {
+  width: 32px; height: 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.seal svg { width: 100%; height: 100%; display: block; }
+.attestation-body {
+  font-family: var(--serif);
+  line-height: 1.3;
+}
+.attestation-body .att-id {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.18em;
+  color: var(--crown-indigo);
+  text-transform: uppercase;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 1px;
+}
+.attestation-body .att-role {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--decree-iron);
+  letter-spacing: 0.01em;
+  display: block;
+}
+.attestation-body .att-name {
+  font-size: 11.5px;
+  font-style: italic;
+  color: var(--engrossed-ink);
+  display: block;
+}
+
+/* ── FOOTER OF WRIT — hash + verification ── */
+.writ-footer {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--parchment-stain);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.writ-footer .col span.k {
+  display: block;
+  color: var(--folio-mute-strong);
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  margin-bottom: 2px;
+}
+.writ-footer .col span.v {
+  color: var(--decree-iron);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.writ-footer .col.right { text-align: right; }
+
+/* ── Codex meta blocks ── */
+.codex-meta {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  margin-top: auto;
+}
+.meta-block { font-family: var(--mono); color: var(--folio-black); }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--folio-black);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.meta-label .idx { color: var(--folio-mute-strong); font-weight: 400; }
+
+.palette-stratum {
+  font-size: 7.5px;
+  color: var(--folio-mute-strong);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 6px;
+}
+.palette-stratum:first-of-type { margin-top: 0; }
+.swatch-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3px;
+  font-size: 8.5px;
+}
+.swatch { width: 14px; height: 14px; border: 1px solid var(--folio-black); }
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--folio-mute-strong); letter-spacing: 0.06em; }
+.swatch-row.mark .swatch-name { color: var(--crown-indigo); }
+
+.rules-list { list-style: none; counter-reset: rule; }
+.rules-list li {
+  counter-increment: rule;
+  font-size: 8.5px;
+  margin-bottom: 7px;
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.rules-list li::before {
+  content: "R." counter(rule, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--folio-mute-strong);
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+}
+.rules-list li strong {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--folio-black);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--folio-mute-strong);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--folio-mute-strong); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--folio-black); }
+
+/* Print */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> №05</div>
+      <div class="row"><span class="k">DATE</span> 2026-05-28</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · Sovereignty / Legibility of Authority</div>
+      <h1>
+        <span class="writ">WRIT</span>
+        <span class="x">×</span>
+        <span class="oath">Oath</span>
+      </h1>
+      <div class="subtitle">A codex for authority chain attestation, paired with a doctrine on sovereignty as operational legibility.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">REFERENCE</span> AVO · AUTONOMOUS WARRANT</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE (OATH) ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio-mark">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>AUTHORITY STRATUM</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read 05</div>
+    <h2 class="doctrine-title">Oath and the Writ</h2>
+    <div class="doctrine-subtitle">Why autonomous action needs legible sovereignty.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text">Autonomous systems act. The sovereignty that warrants those actions must be legible in the artifact that acts, not asserted by a separate document filed elsewhere. The writ frame — every action carrying its named authority chain in operational form — is the older shape of the sovereignty problem, and it is the structural answer to what contemporary autonomous systems lack: not capability, but a visible warrant for what they do.</p>
+      </div>
+
+      <h3><span class="num">I</span>The Sovereignty Problem</h3>
+      <p class="lead">Current architectures of autonomous defense systems separate authority from action. Authorization documents — rules of engagement, command directives, treaty ratifications — live in one register; system actions — kinetic effects, autonomous decisions, ISR products — live in another. The two are bound by procedural review after the fact. When the action runs at machine tempo, the procedural binding fails. There is no after-the-fact-review at microsecond cadence. The sovereignty question — <em class="term">whose authority underwrites this action</em> — has no representation in the action itself.</p>
+      <p>The oath frame insists this is the older shape of the question. Sovereignty has always operated through named, attested commitments — the oath of office, the writ of authority, the seal upon the order. What modernity stripped from defense systems is not the underlying logic; it is the operational legibility. An autonomous system that acts without carrying its writ acts in the same legal posture as a courier without papers — capable of action, indistinguishable from an irregular force.</p>
+
+      <h3><span class="num">II</span>What the Writ Frame Predicts</h3>
+      <p class="lead"><strong class="case">Rules of engagement encoded as weights.</strong> Without writ representation, ROE become rules-of-engineering — encoded into model parameters, training data, and platform configurations. The sovereign's authority is implicit in the engineering rather than visible in the action. The writ frame predicts this representation is unauditable. After-action review reconstructs sovereignty by inference, rather than reading it from the artifact. In contested cases, the inference is contestable; the writ would not be.</p>
+      <p><strong class="case">Coalition autonomous operations under multiple sovereigns.</strong> Multi-national autonomous fleets operate under different ROE per sovereign authority. Current architectures cannot represent which sovereignty governed which action. The writ frame predicts that without per-action attribution to named sovereign authority, coalition autonomous operations are legally fragile and politically deniable in a manner the sovereigns themselves would not choose.</p>
+      <p><strong class="case">Commercial-military integration without binding warrant.</strong> Autonomous platforms built by commercial entities operate under government authority. The platform's behavior is shaped by commercial engineering decisions that carry no formal authority binding. Current systems treat this as supply-chain risk; the writ frame names it as a sovereignty defect. The commercial vendor's engineering becomes operative authority by default — an inversion the named sovereign has not consented to and cannot, in the current architecture, observe.</p>
+
+      <h3><span class="num">III</span>What the Writ Frame Recommends</h3>
+      <ol>
+        <li><strong>Every action carries its writ.</strong> The artifact that acts must include, at the moment of action, the named authority chain that warrants it. Not in logs available on request. In the action itself, inspectable in flight.</li>
+        <li><strong>Authority is named, not implicit.</strong> A writ names a specific sovereign, a specific delegation chain, and a specific operational scope. Implicit authority — "trained on US doctrine," "operating under DoD configuration" — is not a writ.</li>
+        <li><strong>Writs are inspectable to all parties.</strong> The format must be readable by humans, machines, and adversaries. Adversary readability is a feature, not a vulnerability: it makes the system's authority legible internationally and forecloses the deniability that ambiguous authority enables.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">Sovereignty in autonomous warfare is not a paperwork problem. It is a structural problem about what the system shows about itself when it acts. The writ frame insists the answer is older than the technology: every action carries its warrant, named and inspectable, or it is operating outside any sovereignty at all. The system is its writ. Action without writ is action without name — and the named sovereign has not consented to having its authority exercised anonymously, even by the platforms it built.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · WRIT × OATH · №05</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX (WRIT) ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>SOVEREIGN STRATUM</span>
+      <span>CODEX</span>
+      <span class="folio-mark">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · System 05 · Demonstration Writ</div>
+    <h2 class="codex-title">WRIT</h2>
+    <div class="codex-subtitle">A codex for authority chain attestation.</div>
+    <div class="codex-thesis">
+      Sovereignty is what the system shows when it acts. The writ is the artifact the system carries; the seal is what binds named authority to it.
+      <span class="therefore">Therefore: a writ, named, attested, inspectable.</span>
+    </div>
+
+    <!-- ── THE WRIT DOCUMENT ── -->
+    <div class="writ-frame">
+
+      <div class="writ-header-strip">
+        <span>WRIT · W-0040</span>
+        <span class="center">SOVEREIGNTY CHAIN · 4 ATTESTATIONS · BINDING IN FORCE</span>
+        <span class="right">STATUS<span class="stat">ACTIVE</span></span>
+      </div>
+
+      <div class="writ-body">
+
+        <div class="writ-display-heading">
+          <span class="lead-glyph">✦</span>
+          <h3>WRIT W-0040</h3>
+          <div class="designator">Autonomous System Warrant · Sprint 2</div>
+        </div>
+
+        <p class="writ-opening">
+          <span class="opening-cap">Know by these presents</span> that the undersigned authorities, by the writ herein named and attested below, do empower the system designated to bind autonomous commitments within the specified scope.
+        </p>
+
+        <!-- §I AUTHORIZING SOVEREIGN -->
+        <div class="writ-section">
+          <div class="writ-section-label"><span>Authorizing Sovereign</span><span class="roman">i</span></div>
+          <div class="primary">The United States of America</div>
+          <div class="secondary">acting through its executive and legislative authorities</div>
+          <div class="citation">basis: 10 USC §161, §162 · Title 50 §401</div>
+        </div>
+
+        <!-- §II DELEGATION CHAIN -->
+        <div class="writ-section">
+          <div class="writ-section-label"><span>Delegated Through</span><span class="roman">ii</span></div>
+          <div class="delegation-chain">
+            <div class="delegation-row"><span class="num">01</span><span class="name">Department of War · <span class="role">Under Secretary, Critical Technologies</span></span></div>
+            <div class="delegation-row"><span class="num">02</span><span class="name">Defense Autonomous Warfare Group · <span class="role">Director</span></span></div>
+            <div class="delegation-row"><span class="num">03</span><span class="name">U.S. Indo-Pacific Command · <span class="role">Combatant Commander</span></span></div>
+            <div class="delegation-row"><span class="num">04</span><span class="name">Joint Task Force [designated] · <span class="role">Operational Authority</span></span></div>
+          </div>
+        </div>
+
+        <!-- §III AUTHORIZED SYSTEM -->
+        <div class="writ-section">
+          <div class="writ-section-label"><span>Authorized System</span><span class="roman">iii</span></div>
+          <div class="primary">FW-MANIFEST/04 · Heterogeneous Fleet Orchestrator</div>
+          <div class="secondary">software-only, vehicle-agnostic, operates per Folio №04 MANIFEST artifact</div>
+          <div class="citation">designator: FW-MANIFEST-04-S2-PROD · build: 2026.05.01-rc4</div>
+        </div>
+
+        <!-- §IV AUTHORIZED ACTION SET -->
+        <div class="writ-section">
+          <div class="writ-section-label"><span>Authorized Action Set</span><span class="roman">iv</span></div>
+          <ul class="authorized-actions">
+            <li>Bind operator-acknowledged commitments per MANIFEST R.02 (commit-on-ack)</li>
+            <li>Maintain manifest legibility through degraded comms windows per R.03</li>
+            <li>Update mission graph from acknowledged commits only; reject system-generated bindings without operator acknowledgment</li>
+            <li>Surface fleet writeback divergences from planner intent without silent reconciliation per R.05</li>
+          </ul>
+        </div>
+
+        <!-- §V SCOPE -->
+        <div class="writ-section">
+          <div class="writ-section-label"><span>Scope</span><span class="roman">v</span></div>
+          <div class="scope-grid">
+            <span class="label">Geographic</span><span>CONUS exercise ranges and INDOPACOM Sprint 2 corridor</span>
+            <span class="label">Temporal</span><span>2026-05-28T00:00:00Z through 2026-11-30T23:59:59Z</span>
+            <span class="label">Basis</span><span>U.S. sovereign authority; treaty arrangements as ratified, Article-II commitments inclusive</span>
+            <span class="label">Constraint</span><span>No kinetic effect authority; navigation and orchestration only per AVO Sprint 2 charter</span>
+          </div>
+        </div>
+
+        <!-- ═══ ATTESTATION BLOCK — Crown Indigo seals here only ═══ -->
+        <div class="attestation-block">
+          <div class="attestation-header">— Attestations —</div>
+
+          <div class="attestation-grid">
+
+            <div class="attestation">
+              <div class="seal">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="28" fill="none" stroke="#1A2A66" stroke-width="1.4"/>
+                  <circle cx="32" cy="32" r="22" fill="none" stroke="#1A2A66" stroke-width="0.7"/>
+                  <path d="M 32 12 L 36 26 L 50 28 L 39 38 L 42 52 L 32 44 L 22 52 L 25 38 L 14 28 L 28 26 Z" fill="#1A2A66"/>
+                  <circle cx="32" cy="32" r="3" fill="#E3DCC9"/>
+                </svg>
+              </div>
+              <div class="attestation-body">
+                <span class="att-id">A-01 · SOVEREIGN</span>
+                <span class="att-role">Sovereign Authority</span>
+                <span class="att-name">Commander-in-Chief</span>
+              </div>
+            </div>
+
+            <div class="attestation">
+              <div class="seal">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="28" fill="none" stroke="#1A2A66" stroke-width="1.4"/>
+                  <rect x="14" y="14" width="36" height="36" fill="none" stroke="#1A2A66" stroke-width="0.7" transform="rotate(45 32 32)"/>
+                  <path d="M 32 16 L 48 32 L 32 48 L 16 32 Z" fill="#1A2A66"/>
+                  <text x="32" y="36" font-family="JetBrains Mono" font-size="9" fill="#E3DCC9" text-anchor="middle" font-weight="600">DoW</text>
+                </svg>
+              </div>
+              <div class="attestation-body">
+                <span class="att-id">A-02 · CABINET</span>
+                <span class="att-role">Department of War</span>
+                <span class="att-name">Secretary of War</span>
+              </div>
+            </div>
+
+            <div class="attestation">
+              <div class="seal">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="28" fill="none" stroke="#1A2A66" stroke-width="1.4"/>
+                  <circle cx="32" cy="32" r="22" fill="#1A2A66"/>
+                  <circle cx="32" cy="32" r="14" fill="none" stroke="#E3DCC9" stroke-width="0.8"/>
+                  <path d="M 32 22 L 42 32 L 32 42 L 22 32 Z" fill="none" stroke="#E3DCC9" stroke-width="1"/>
+                  <circle cx="32" cy="32" r="2.4" fill="#E3DCC9"/>
+                </svg>
+              </div>
+              <div class="attestation-body">
+                <span class="att-id">A-03 · COMBATANT CMD</span>
+                <span class="att-role">U.S. Indo-Pacific Command</span>
+                <span class="att-name">Combatant Commander</span>
+              </div>
+            </div>
+
+            <div class="attestation">
+              <div class="seal">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="28" fill="none" stroke="#1A2A66" stroke-width="1.4"/>
+                  <polygon points="32,10 50,22 50,42 32,54 14,42 14,22" fill="#1A2A66"/>
+                  <polygon points="32,20 42,26 42,38 32,44 22,38 22,26" fill="none" stroke="#E3DCC9" stroke-width="0.9"/>
+                  <line x1="32" y1="20" x2="32" y2="44" stroke="#E3DCC9" stroke-width="0.6"/>
+                  <line x1="22" y1="32" x2="42" y2="32" stroke="#E3DCC9" stroke-width="0.6"/>
+                </svg>
+              </div>
+              <div class="attestation-body">
+                <span class="att-id">A-04 · OPERATIONAL</span>
+                <span class="att-role">Joint Task Force [designated]</span>
+                <span class="att-name">Operational Authority Commander</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══ FOOTER — hash + verification ═══ -->
+        <div class="writ-footer">
+          <div class="col">
+            <span class="k">WRIT HASH</span>
+            <span class="v">a3f9·c21f·4ee8·a15b·22de·41c7·08bf·6d23</span>
+          </div>
+          <div class="col right">
+            <span class="k">ISSUED · EXPIRES</span>
+            <span class="v">2026-05-28T00:00Z → 2026-11-30T23:59Z</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ── PALETTE & RULES ── -->
+    <div class="codex-meta">
+
+      <div class="meta-block">
+        <div class="meta-label"><span>PALETTE</span><span class="idx">P.01—P.10</span></div>
+
+        <div class="palette-stratum">DOCUMENT STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#EBE2CB"></div><div class="swatch-name">Vellum Cream</div><div class="swatch-hex">#EBE2CB</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#E3DCC9"></div><div class="swatch-name">Linen Slip</div><div class="swatch-hex">#E3DCC9</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#C4B395"></div><div class="swatch-name">Parchment Stain</div><div class="swatch-hex">#C4B395</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6B4F32"></div><div class="swatch-name">Quill Sepia</div><div class="swatch-hex">#6B4F32</div></div>
+
+        <div class="palette-stratum">AUTHORITY STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#1D1F22"></div><div class="swatch-name">Decree Iron</div><div class="swatch-hex">#1D1F22</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#36322A"></div><div class="swatch-name">Engrossed Ink</div><div class="swatch-hex">#36322A</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6E6C62"></div><div class="swatch-name">Stamp Grey</div><div class="swatch-hex">#6E6C62</div></div>
+
+        <div class="palette-stratum">CODE STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#C2BEB4"></div><div class="swatch-name">Hash Pale</div><div class="swatch-hex">#C2BEB4</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#4A4E55"></div><div class="swatch-name">Cipher Slate</div><div class="swatch-hex">#4A4E55</div></div>
+
+        <div class="palette-stratum">MARK ONLY — FROM §C.03 RESERVED INDEX</div>
+        <div class="swatch-row mark"><div class="swatch" style="background:#1A2A66"></div><div class="swatch-name">Crown Indigo</div><div class="swatch-hex">#1A2A66</div></div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-label"><span>IRON RULES</span><span class="idx">R.01—R.05</span></div>
+        <ol class="rules-list">
+          <li><strong>Authority is named.</strong> Every writ names a specific sovereign and a specific delegation chain. Implicit, inherited, or inferred authority is not a writ.</li>
+          <li><strong>Attestation is in chain.</strong> The writ shows the named delegation cascade from sovereign down to operational authority. Gaps in the chain invalidate the writ.</li>
+          <li><strong>Action is bounded.</strong> A writ authorizes specific actions, specific platforms, specific scopes, specific times. Unbounded writs are forbidden — they cannot be inspected and so cannot be sovereign.</li>
+          <li><strong>The seal is the mark.</strong> Crown Indigo appears only at attestation moments. Each named authority's mark is one seal application. Decorative use of Crown Indigo is forbidden.</li>
+          <li><strong>The writ is internationally inspectable.</strong> The artifact is readable by human, machine, and adversary. Adversary readability is a feature: it makes sovereignty legible and forecloses ambiguous-authority deniability.</li>
+        </ol>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé №05</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">PAIR</span><span class="v">OATH × WRIT</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">DEMONSTRATION ARTIFACT</span><span class="v">·</span><span class="v"> NAMES ARE WORKED EXAMPLE</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

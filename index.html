@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fé — Volume 01</title>
+<meta name="description" content="A bound-folio design system for legibility under contested conditions. Eight folios, one fixed form, one mark per folio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* system core (locked) */
+  --folio-black:   #1F2024;
+  --ink:           #E8DFC9;   /* Bone Pale — body ink on the dark canvas */
+  --ink-soft:      #C9C1AC;
+  --ink-mute:      #9A968A;   /* AA mono meta on near-black */
+  --hairline:      rgba(232, 223, 201, 0.16);
+  --hairline-hard: rgba(232, 223, 201, 0.32);
+
+  /* paper spectrum */
+  --bone-pale:     #E8DFC9;
+  --linen-slip:    #E3DCC9;
+  --survey-vellum: #D8CFB8;
+  --operator-cream:#E4DDC7;
+
+  /* mark color index — closed, 7/7 */
+  --slow-red:      #5A1F1F;
+  --slag-mark:     #A33A1A;
+  --margin-gold:   #6A5111;
+  --compact-green: #2E5F4A;
+  --bind-blue:     #1F4F73;
+  --crown-indigo:  #1A2A66;
+  --sigil-mauve:   #5F2F4A;
+
+  --paper-black:   #1F2024;   /* ink on paper cards */
+  --paper-mute:    #56544C;
+
+  --serif:   'EB Garamond', 'Times New Roman', serif;
+  --display: 'Fraunces', 'EB Garamond', serif;
+  --mono:    'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--folio-black);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
+
+.mono {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 10px;
+  color: var(--ink-mute);
+}
+
+/* progressive reveal — content is visible by default; JS hides-then-reveals */
+.js .reveal { opacity: 0; transform: translateY(18px); }
+.js .reveal.in { opacity: 1; transform: none; transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+
+/* ───────────────── HERO ───────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 80px 32px 64px;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(232,223,201,0.05), transparent 60%),
+    radial-gradient(80% 60% at 50% 120%, rgba(31,79,115,0.10), transparent 70%);
+}
+.hero .eyebrow { margin-bottom: 30px; }
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  font-size: clamp(52px, 11vw, 132px);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.hero .subtitle {
+  margin-top: 26px;
+  font-style: italic;
+  font-size: clamp(17px, 2.4vw, 23px);
+  color: var(--ink-soft);
+  max-width: 640px;
+  line-height: 1.45;
+}
+.hero .meta {
+  margin-top: 34px;
+  display: flex;
+  gap: 14px 26px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero .meta span { white-space: nowrap; }
+.hero .meta span b { color: var(--ink-soft); font-weight: 500; }
+
+/* the seven-mark spectrum, as a signature motif */
+.spectrum-dots { margin-top: 44px; display: flex; gap: 0; border: 1px solid var(--hairline-hard); }
+.spectrum-dots i {
+  display: block; width: 46px; height: 14px;
+  border-right: 1px solid rgba(31,32,36,0.5);
+}
+.spectrum-dots i:last-child { border-right: none; }
+
+.scrollcue {
+  position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,7px)} }
+
+/* ───────────────── SECTIONS ───────────────── */
+section { padding: 96px 0; border-top: 1px solid var(--hairline); }
+.sec-label { margin-bottom: 28px; }
+.sec-title {
+  font-family: var(--display);
+  font-weight: 400; font-style: italic;
+  font-variation-settings: "opsz" 120;
+  font-size: clamp(30px, 4.6vw, 46px);
+  line-height: 1.05; color: var(--ink);
+  letter-spacing: 0.005em;
+  margin-bottom: 22px;
+}
+.lede { font-size: clamp(17px, 2.1vw, 20px); color: var(--ink-soft); max-width: 720px; line-height: 1.7; }
+.lede + .lede { margin-top: 18px; }
+.lede em { font-style: italic; color: var(--ink); }
+
+/* THE FORM — schematic */
+.form-grid {
+  margin-top: 48px;
+  display: grid; grid-template-columns: 1fr 2px 1fr;
+  gap: 0; border: 1px solid var(--hairline-hard);
+  background: var(--hairline);
+  max-width: 760px;
+}
+.form-cell { background: var(--folio-black); padding: 30px 28px; }
+.form-cell .role { color: var(--ink); font-family: var(--mono); font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; }
+.form-cell .what { margin-top: 12px; font-style: italic; color: var(--ink-soft); font-size: 16px; line-height: 1.5; }
+.form-spine { background: var(--hairline-hard); }
+.form-note { margin-top: 22px; }
+.form-note .mono { display: block; }
+.principles { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); }
+.principle { background: var(--folio-black); padding: 22px 22px 24px; }
+.principle h4 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; margin-bottom: 10px; }
+.principle p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+
+/* THE CATALOGUE */
+.group-label { margin: 56px 0 20px; display: flex; align-items: baseline; gap: 16px; }
+.group-label:first-of-type { margin-top: 40px; }
+.group-label .ttl { font-family: var(--mono); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink); }
+.group-label .rule { flex: 1; height: 1px; background: var(--hairline); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 18px; }
+
+.card {
+  position: relative;
+  background: var(--paper);
+  color: var(--paper-black);
+  text-decoration: none;
+  display: flex; flex-direction: column;
+  min-height: 226px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45), 0 3px 8px rgba(0,0,0,0.4);
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+  overflow: hidden;
+}
+.card::before {
+  content: ""; display: block; height: 6px; background: var(--mark);
+  transition: height .35s cubic-bezier(.2,.7,.2,1);
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 30px 64px rgba(0,0,0,0.55), 0 6px 14px rgba(0,0,0,0.45); }
+.card:hover::before { height: 12px; }
+.card.foundation::before { background: repeating-linear-gradient(90deg, var(--paper-mute) 0 7px, transparent 7px 14px); }
+
+.card-body { padding: 22px 24px 18px; flex: 1; display: flex; flex-direction: column; }
+.card-num {
+  font-family: var(--display); font-weight: 500;
+  font-variation-settings: "opsz" 144;
+  font-size: 30px; line-height: 1; color: var(--paper-black);
+  letter-spacing: -0.01em;
+}
+.card-pair {
+  margin-top: 14px;
+  font-family: var(--mono); font-weight: 500; font-size: 13px;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-black);
+}
+.card-epithet { margin-top: 7px; font-style: italic; font-size: 16px; color: var(--paper-mute); line-height: 1.4; }
+.card-foot {
+  margin-top: auto; padding: 13px 24px;
+  border-top: 1px solid rgba(31,32,36,0.16);
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper-mute);
+}
+.card-foot .sw { width: 13px; height: 13px; border: 1px solid rgba(31,32,36,0.5); flex: none; }
+.card-foot .reg { flex: 1; }
+.card-foot .open { color: var(--paper-black); font-weight: 500; }
+.card:hover .card-foot .open { text-decoration: underline; }
+
+/* MARK INDEX */
+.index-spectrum { margin-top: 44px; border: 1px solid var(--hairline-hard); display: grid; grid-template-columns: repeat(7, 1fr); }
+.index-seg { position: relative; }
+.index-seg .bar { height: 64px; border-right: 1px solid rgba(31,32,36,0.45); }
+.index-seg:last-child .bar { border-right: none; }
+.index-seg .lab { padding: 12px 10px 0; }
+.index-seg .lab .nm { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); display: block; }
+.index-seg .lab .hx { font-family: var(--mono); font-size: 9px; color: var(--ink-mute); display: block; margin-top: 3px; }
+.index-seg .lab .sl { font-family: var(--mono); font-size: 8.5px; color: var(--ink-mute); display: block; margin-top: 2px; }
+
+/* READ / CTA */
+.cta-row { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 14px; }
+.btn {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  text-decoration: none; padding: 15px 22px; border: 1px solid var(--hairline-hard); color: var(--ink);
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+.btn .arw { color: var(--ink-mute); transition: transform .25s ease; }
+.btn:hover { background: rgba(232,223,201,0.06); border-color: var(--ink-mute); transform: translateY(-2px); }
+.btn:hover .arw { transform: translateX(4px); }
+.btn.primary { background: var(--ink); color: var(--folio-black); border-color: var(--ink); }
+.btn.primary .arw { color: var(--paper-mute); }
+.btn.primary:hover { background: #fff; }
+.cuts { margin-top: 18px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--ink-mute); }
+.cuts a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--hairline-hard); }
+.cuts a:hover { color: var(--ink); }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--hairline); padding: 54px 0 70px; }
+.foot-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; align-items: baseline; }
+.foot-title { font-family: var(--display); font-style: italic; font-size: 22px; color: var(--ink); }
+.foot-meta { text-align: right; line-height: 2; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 22px; }
+  section { padding: 72px 0; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-spine { display: none; }
+  .index-spectrum { grid-template-columns: repeat(7, 1fr); }
+  .index-seg .lab { display: none; }
+  .cards { grid-template-columns: 1fr; }
+  .foot-meta { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<!-- ───────────────── HERO ───────────────── -->
+<header class="hero">
+  <div class="eyebrow mono">DEVGRU.COMPUTER · DEFENSE.OBSERVER</div>
+  <h1>Fé</h1>
+  <p class="subtitle">A bound-folio design system for legibility under contested conditions — doctrine on the recto, codex on the verso, one mark per folio.</p>
+  <div class="meta mono">
+    <span>Volume <b>01</b></span>
+    <span>Eight <b>Folios</b></span>
+    <span>Mark Index <b>7 / 7</b></span>
+    <span>Status <b>Complete</b></span>
+  </div>
+  <div class="spectrum-dots" title="The Mark Color Index — closed at seven">
+    <i style="background:var(--slow-red)"></i>
+    <i style="background:var(--slag-mark)"></i>
+    <i style="background:var(--margin-gold)"></i>
+    <i style="background:var(--compact-green)"></i>
+    <i style="background:var(--bind-blue)"></i>
+    <i style="background:var(--crown-indigo)"></i>
+    <i style="background:var(--sigil-mauve)"></i>
+  </div>
+  <a class="scrollcue mono" href="#thesis" aria-label="Scroll">↓</a>
+</header>
+
+<!-- ───────────────── THESIS ───────────────── -->
+<section id="thesis">
+  <div class="wrap reveal">
+    <div class="sec-label mono">§ The Thesis</div>
+    <h2 class="sec-title">Legibility is the load-bearing concept.</h2>
+    <p class="lede">Legibility is the ability to hold an accurate read of a situation while the situation actively works to destroy that read — under degraded communications, contested authority, and machine-tempo action faster than human review.</p>
+    <p class="lede">It is not transparency, and not documentation. A logging system documents after the fact; a <em>legible</em> system shows in the moment, in the artifact itself, inspectable in flight. The doctrine pages name a legibility problem; the codex pages render the answer.</p>
+  </div>
+</section>
+
+<!-- ───────────────── THE FORM ───────────────── -->
+<section id="form">
+  <div class="wrap reveal">
+    <div class="sec-label mono">§ The Form</div>
+    <h2 class="sec-title">The form is the enforcement surface.</h2>
+    <p class="lede">Every folio obeys one fixed architecture. The discipline is not decorative — it makes the argument-to-artifact bind auditable. A reader holding any single folio can verify, in one glance, that the codex obeys the doctrine.</p>
+
+    <div class="form-grid">
+      <div class="form-cell">
+        <div class="role">Recto · Doctrine</div>
+        <div class="what">The argument. A named legibility problem in some domain.</div>
+      </div>
+      <div class="form-spine"></div>
+      <div class="form-cell">
+        <div class="role">Verso · Codex</div>
+        <div class="what">The worked artifact. The argument rendered in operational form.</div>
+      </div>
+    </div>
+
+    <div class="principles">
+      <div class="principle"><h4>One mark per folio</h4><p>A single color, used exclusively at the one operational moment doctrine and codex agree on. Decorative use is forbidden.</p></div>
+      <div class="principle"><h4>Three palette strata</h4><p>Each folio carries 3 strata × 3–4 colors, named for its content register. Variation lives here, where it carries meaning.</p></div>
+      <div class="principle"><h4>Locked foundation</h4><p>System core colors, paper spectrum, and typography are immutable across the series. EB Garamond · JetBrains Mono · Fraunces.</p></div>
+      <div class="principle"><h4>Auditable accessibility</h4><p>Every body-text color meets WCAG 2.1 AA against its paper. The audit runs before render.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── THE CATALOGUE ───────────────── -->
+<section id="catalogue">
+  <div class="wrap reveal">
+    <div class="sec-label mono">§ The Catalogue</div>
+    <h2 class="sec-title">Volume 01 — eight folios.</h2>
+    <p class="lede">One self-documenting foundation, a Norse philosophical trio, and a contemporary defense quartet. Open any spread to read the doctrine, then the codex.</p>
+
+    <!-- Foundation -->
+    <div class="group-label"><span class="ttl">Foundation</span><span class="rule"></span></div>
+    <div class="cards">
+      <a class="card foundation" href="canon_form_spread.html" target="_blank" rel="noopener" style="--paper:var(--bone-pale); --mark:var(--paper-mute);">
+        <div class="card-body">
+          <div class="card-num">№00</div>
+          <div class="card-pair">CANON × FORM</div>
+          <div class="card-epithet">The system documents itself.</div>
+        </div>
+        <div class="card-foot"><span class="sw" style="background:var(--bone-pale)"></span><span class="sw" style="background:transparent;border-style:dashed"></span><span class="reg">Foundation · no mark</span><span class="open">Open ↗</span></div>
+      </a>
+    </div>
+
+    <!-- Norse -->
+    <div class="group-label"><span class="ttl">Norse Philosophical Trio</span><span class="rule"></span></div>
+    <div class="cards">
+      <a class="card" href="fallow_fe_spread.html" target="_blank" rel="noopener" style="--paper:var(--bone-pale); --mark:var(--slow-red);">
+        <div class="card-body"><div class="card-num">№01</div><div class="card-pair">FALLOW × FÉ</div><div class="card-epithet">Latent threat in the frame.</div></div>
+        <div class="card-foot"><span class="sw" style="background:var(--bone-pale)"></span><span class="sw" style="background:var(--slow-red)"></span><span class="reg">Norse I · Slow Red</span><span class="open">Open ↗</span></div>
+      </a>
+      <a class="card" href="assay_ur_spread.html" target="_blank" rel="noopener" style="--paper:var(--linen-slip); --mark:var(--slag-mark);">
+        <div class="card-body"><div class="card-num">№02</div><div class="card-pair">ASSAY × ÚR</div><div class="card-epithet">Substance verification before engagement.</div></div>
+        <div class="card-foot"><span class="sw" style="background:var(--linen-slip)"></span><span class="sw" style="background:var(--slag-mark)"></span><span class="reg">Norse II · Slag Mark</span><span class="open">Open ↗</span></div>
+      </a>
+      <a class="card" href="margin_thurs_spread.html" target="_blank" rel="noopener" style="--paper:var(--survey-vellum); --mark:var(--margin-gold);">
+        <div class="card-body"><div class="card-num">№03</div><div class="card-pair">MARGIN × ÞURS</div><div class="card-epithet">Strategic estimation under capability overhang.</div></div>
+        <div class="card-foot"><span class="sw" style="background:var(--survey-vellum)"></span><span class="sw" style="background:var(--margin-gold)"></span><span class="reg">Norse III · Margin Gold</span><span class="open">Open ↗</span></div>
+      </a>
+    </div>
+
+    <!-- Contemporary -->
+    <div class="group-label"><span class="ttl">Contemporary Defense Quartet</span><span class="rule"></span></div>
+    <div class="cards">
+      <a class="card" href="manifest_intent_spread.html" target="_blank" rel="noopener" style="--paper:var(--operator-cream); --mark:var(--bind-blue);">
+        <div class="card-body"><div class="card-num">№04</div><div class="card-pair">MANIFEST × INTENT</div><div class="card-epithet">The operator–fleet seam under degradation.</div></div>
+        <div class="card-foot"><span class="sw" style="background:var(--operator-cream)"></span><span class="sw" style="background:var(--bind-blue)"></span><span class="reg">Contemporary I · Bind Blue</span><span class="open">Open ↗</span></div>
+      </a>
+      <a class="card" href="writ_oath_spread.html" target="_blank" rel="noopener" style="--paper:var(--linen-slip); --mark:var(--crown-indigo);">
+        <div class="card-body"><div class="card-num">№05</div><div class="card-pair">WRIT × OATH</div><div class="card-epithet">Sovereignty as operational legibility.</div></div>
+        <div class="card-foot"><span class="sw" style="background:var(--linen-slip)"></span><span class="sw" style="background:var(--crown-indigo)"></span><span class="reg">Contemporary II · Crown Indigo</span><span class="open">Open ↗</span></div>
+      </a>
+      <a class="card" href="provenance_memory_spread.html" target="_blank" rel="noopener" style="--paper:var(--bone-pale); --mark:var(--compact-green);">
+        <div class="card-body"><div class="card-num">№06</div><div class="card-pair">PROVENANCE × MEMORY</div><div class="card-epithet">Lineage as auditable inheritance.</div></div>
+        <div class="card-foot"><span class="sw" style="background:var(--bone-pale)"></span><span class="sw" style="background:var(--compact-green)"></span><span class="reg">Contemporary III · Compact Green</span><span class="open">Open ↗</span></div>
+      </a>
+      <a class="card" href="commission_name_spread.html" target="_blank" rel="noopener" style="--paper:var(--linen-slip); --mark:var(--sigil-mauve);">
+        <div class="card-body"><div class="card-num">№07</div><div class="card-pair">COMMISSION × NAME</div><div class="card-epithet">Named-instance accountability.</div></div>
+        <div class="card-foot"><span class="sw" style="background:var(--linen-slip)"></span><span class="sw" style="background:var(--sigil-mauve)"></span><span class="reg">Contemporary IV · Sigil Mauve</span><span class="open">Open ↗</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── MARK INDEX ───────────────── -->
+<section id="index">
+  <div class="wrap reveal">
+    <div class="sec-label mono">§ The Mark Color Index</div>
+    <h2 class="sec-title">Seven marks. Closed.</h2>
+    <p class="lede">One color per operational concept, promoted exactly once and never migrated. The index is full and closed by intent — an eighth requires a deliberate AUDIT, not a routine build.</p>
+    <div class="index-spectrum">
+      <div class="index-seg"><div class="bar" style="background:var(--slow-red)"></div><div class="lab"><span class="nm">Slow Red</span><span class="hx">#5A1F1F</span><span class="sl">M.01 · №01</span></div></div>
+      <div class="index-seg"><div class="bar" style="background:var(--slag-mark)"></div><div class="lab"><span class="nm">Slag Mark</span><span class="hx">#A33A1A</span><span class="sl">M.02 · №02</span></div></div>
+      <div class="index-seg"><div class="bar" style="background:var(--margin-gold)"></div><div class="lab"><span class="nm">Margin Gold</span><span class="hx">#6A5111</span><span class="sl">M.03 · №03</span></div></div>
+      <div class="index-seg"><div class="bar" style="background:var(--compact-green)"></div><div class="lab"><span class="nm">Compact Green</span><span class="hx">#2E5F4A</span><span class="sl">M.06 · №06</span></div></div>
+      <div class="index-seg"><div class="bar" style="background:var(--bind-blue)"></div><div class="lab"><span class="nm">Bind Blue</span><span class="hx">#1F4F73</span><span class="sl">M.04 · №04</span></div></div>
+      <div class="index-seg"><div class="bar" style="background:var(--crown-indigo)"></div><div class="lab"><span class="nm">Crown Indigo</span><span class="hx">#1A2A66</span><span class="sl">M.05 · №05</span></div></div>
+      <div class="index-seg"><div class="bar" style="background:var(--sigil-mauve)"></div><div class="lab"><span class="nm">Sigil Mauve</span><span class="hx">#5F2F4A</span><span class="sl">M.07 · №07</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── READ IT ───────────────── -->
+<section id="read">
+  <div class="wrap reveal">
+    <div class="sec-label mono">§ Read It</div>
+    <h2 class="sec-title">The bound volume.</h2>
+    <p class="lede">Ten pages — cover, eight folios, and a closing colophon — each rendered at native dimensions and bound to a single PDF. Zero dependencies; every folio is plain HTML.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="double_folio_volume_01.pdf" target="_blank" rel="noopener">Open the bound volume <span class="arw">↗</span></a>
+      <a class="btn" href="canon_form_spread.html" target="_blank" rel="noopener">Start with №00 CANON <span class="arw">↗</span></a>
+    </div>
+    <div class="cuts">Alternate cuts:
+      <a href="double_folio_volume_01_spectrum.pdf" target="_blank" rel="noopener">spectrum</a> ·
+      <a href="double_folio_norse.pdf" target="_blank" rel="noopener">norse</a> ·
+      <a href="double_folio_contemporary.pdf" target="_blank" rel="noopener">contemporary</a>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── FOOTER ───────────────── -->
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-title">Fé · Volume 01</div>
+    <div class="foot-meta mono">
+      Ven Augustave · New York · 2026<br>
+      DEVGRU.COMPUTER · DEFENSE.OBSERVER
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

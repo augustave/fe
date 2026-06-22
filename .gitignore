@@ -1,0 +1,16 @@
+# Python venv (Playwright chromium ~164M — never commit)
+.venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Backups / stale artifacts
+*.bak
+
+# Junk re-bundle zips (Finder exports)
+2_files.zip
+3_files.zip
+4_files.zip
+files.zip

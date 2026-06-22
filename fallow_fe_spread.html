@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FALLOW × FÉ — Fé №01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Surface stratum */
+  --fallow-wheat: #C9B58A;
+  --cold-lime:    #A3B07B;
+  --stubble-grey: #56544C;
+  --bone-pale:    #E8DFC9;
+  /* Subsurface stratum */
+  --coiled-iron:  #2A2E33;
+  --vein-black:   #0C0E10;
+  --cold-copper:  #B07852;
+  /* Seam-only */
+  --slow-red:     #5A1F1F;
+
+  --serif: 'EB Garamond', 'Times New Roman', serif;
+  --mono:  'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--vein-black); }
+body {
+  background: var(--vein-black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--bone-pale);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.65),
+    0 12px 32px rgba(0,0,0,0.45),
+    0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--coiled-iron);
+  padding: 30px 56px 26px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--coiled-iron);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--stubble-grey); margin-right: 8px; }
+
+.masthead-title {
+  text-align: center;
+  padding-bottom: 2px;
+}
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--stubble-grey);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.masthead-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--coiled-iron);
+}
+.masthead-title .fallow {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  font-size: 30px;
+}
+.masthead-title .x {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 26px;
+  vertical-align: 4px;
+  margin: 0 18px;
+  color: var(--stubble-grey);
+}
+.masthead-title .fe {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 42px;
+  letter-spacing: 0;
+}
+.masthead-title .subtitle {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--stubble-grey);
+  letter-spacing: 0.01em;
+}
+
+/* ───────── SPINE ───────── */
+.spine {
+  grid-area: spine;
+  background: var(--coiled-iron);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+.spine-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.36em;
+  color: var(--fallow-wheat);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+.spine-ornaments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.spine-mark {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--fallow-wheat);
+  transform: rotate(45deg);
+}
+.spine-mark.filled { background: var(--fallow-wheat); }
+.spine-rule { width: 14px; height: 1px; background: var(--fallow-wheat); }
+
+/* ───────── LEFT PAGE — DOCTRINE (FÉ) ───────── */
+.page-left {
+  grid-area: left;
+  background: var(--bone-pale);
+  padding: 52px 56px 56px 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--stubble-grey);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--stubble-grey);
+  padding-bottom: 7px;
+  margin-bottom: 30px;
+}
+.page-header .folio { color: var(--coiled-iron); }
+
+.doctrine-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--stubble-grey);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.doctrine-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--coiled-iron);
+  margin-bottom: 8px;
+}
+.doctrine-title em {
+  font-style: italic;
+  font-weight: 400;
+}
+.doctrine-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--stubble-grey);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--stubble-grey);
+}
+
+.doctrine-body {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: var(--coiled-iron);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid rgba(126, 120, 105, 0.35);
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+
+.doctrine-body .thesis-block {
+  margin-bottom: 16px;
+  break-inside: avoid;
+}
+.doctrine-body .thesis-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--stubble-grey);
+  margin-bottom: 4px;
+}
+.doctrine-body .thesis-text {
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.doctrine-body h3 {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--coiled-iron);
+  margin-top: 18px;
+  margin-bottom: 9px;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.doctrine-body h3 .num {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--stubble-grey);
+  letter-spacing: 0.18em;
+  font-variant: normal;
+}
+.doctrine-body h3 .num::after {
+  content: "·";
+  margin-left: 10px;
+  color: var(--stubble-grey);
+}
+
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; margin-bottom: 9px; }
+.doctrine-body p.lead { text-indent: 0; }
+
+.doctrine-body em.kenning {
+  font-style: italic;
+  color: var(--cold-copper);
+  font-weight: 500;
+}
+
+.doctrine-body strong.case {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--coiled-iron);
+}
+
+.doctrine-body ol {
+  list-style: none;
+  counter-reset: doct-rule;
+  margin: 4px 0 10px 0;
+}
+.doctrine-body ol li {
+  counter-increment: doct-rule;
+  margin-bottom: 9px;
+  padding-left: 26px;
+  position: relative;
+  break-inside: avoid;
+}
+.doctrine-body ol li::before {
+  content: counter(doct-rule, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--stubble-grey);
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.doctrine-body ol li strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.doctrine-coda {
+  margin-top: 12px;
+  break-inside: avoid;
+}
+
+/* ───────── RIGHT PAGE — CODEX (FALLOW) ───────── */
+.page-right {
+  grid-area: right;
+  background: var(--bone-pale);
+  padding: 52px 64px 56px 56px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.codex-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--stubble-grey);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.codex-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.24em;
+  color: var(--coiled-iron);
+  margin-bottom: 4px;
+}
+.codex-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--stubble-grey);
+  margin-bottom: 14px;
+}
+.codex-thesis {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--coiled-iron);
+  margin-bottom: 26px;
+  padding-left: 14px;
+  border-left: 2px solid var(--cold-copper);
+  font-style: italic;
+  line-height: 1.5;
+}
+.codex-thesis .therefore {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--stubble-grey);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6px;
+}
+
+/* Strata visualization */
+.strata {
+  border: 1px solid var(--coiled-iron);
+  margin-bottom: 22px;
+  position: relative;
+  background: var(--vein-black);
+}
+.strata-label-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--coiled-iron);
+  text-transform: uppercase;
+  padding: 6px 10px;
+  background: var(--bone-pale);
+  align-items: center;
+  gap: 12px;
+}
+.strata-label-strip.bottom { border-top: 1px solid var(--coiled-iron); }
+.strata-label-strip:not(.bottom) { border-bottom: 1px solid var(--coiled-iron); }
+.strata-label-strip .center {
+  text-align: center;
+  font-size: 7.5px;
+  color: var(--stubble-grey);
+  letter-spacing: 0.22em;
+}
+.strata-label-strip .right { text-align: right; color: var(--stubble-grey); }
+
+.surface-panel, .subsurface-panel { width: 100%; display: block; }
+
+.seam-strip {
+  height: 30px;
+  background: var(--bone-pale);
+  border-top: 1px solid var(--coiled-iron);
+  border-bottom: 1px solid var(--coiled-iron);
+  position: relative;
+}
+
+/* THE contact mark — Slow Red, used here only */
+.contact-mark {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.contact-mark .ring {
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--slow-red);
+  border-radius: 50%;
+  animation: contactPulse 5.5s ease-in-out infinite;
+}
+.contact-mark .ring-outer {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--slow-red);
+  border-radius: 50%;
+  opacity: 0.35;
+}
+.contact-mark .cross-h, .contact-mark .cross-v {
+  position: absolute;
+  background: var(--slow-red);
+}
+.contact-mark .cross-h {
+  top: 50%; left: -6px; right: -6px; height: 1px; transform: translateY(-50%);
+}
+.contact-mark .cross-v {
+  left: 50%; top: -6px; bottom: -6px; width: 1px; transform: translateX(-50%);
+}
+.contact-readout {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.14em;
+  color: var(--slow-red);
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+@keyframes contactPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.3; transform: scale(1.5); }
+}
+
+/* The watcher under — slow, deliberate motion */
+.coil-group { animation: watcher 12s ease-in-out infinite; transform-origin: center; }
+@keyframes watcher {
+  0%, 100% { opacity: 0.92; }
+  50%      { opacity: 0.62; }
+}
+
+/* SVG strata styling */
+.surface-svg .grid-line    { stroke: var(--stubble-grey); stroke-width: 0.4; opacity: 0.4; }
+.surface-svg .contour      { stroke: var(--stubble-grey); stroke-width: 0.55; fill: none; opacity: 0.65; }
+.surface-svg .fiducial     { stroke: var(--coiled-iron); stroke-width: 0.7; fill: none; }
+.surface-svg .section-line { stroke: var(--coiled-iron); stroke-width: 0.6; stroke-dasharray: 3 2; opacity: 0.6; }
+.surface-svg .coord-label  { font-family: var(--mono); font-size: 6px; fill: var(--coiled-iron); letter-spacing: 0.06em; }
+.surface-svg .axis-label   { font-family: var(--mono); font-size: 5.5px; fill: var(--stubble-grey); letter-spacing: 0.08em; }
+
+.subsurface-svg .coil-path    { stroke: var(--coiled-iron); stroke-width: 1.4; fill: none; stroke-linecap: round; }
+.subsurface-svg .coil-shadow  { stroke: var(--coiled-iron); stroke-width: 4; fill: none; opacity: 0.25; stroke-linecap: round; }
+.subsurface-svg .strata-line  { stroke: var(--coiled-iron); stroke-width: 0.4; opacity: 0.45; }
+.subsurface-svg .node         { fill: var(--cold-copper); }
+.subsurface-svg .node-ring    { fill: none; stroke: var(--cold-copper); stroke-width: 0.5; opacity: 0.6; }
+.subsurface-svg .node-label   { font-family: var(--mono); font-size: 5px; fill: var(--fallow-wheat); letter-spacing: 0.08em; }
+.subsurface-svg .axis-label   { font-family: var(--mono); font-size: 5.5px; fill: var(--stubble-grey); letter-spacing: 0.08em; }
+.subsurface-svg .field-label  { font-family: var(--mono); font-size: 5.5px; fill: var(--fallow-wheat); letter-spacing: 0.16em; opacity: 0.6; }
+
+/* ───────── Codex meta blocks ───────── */
+.codex-meta {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  margin-top: auto;
+}
+.meta-block { font-family: var(--mono); color: var(--coiled-iron); }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--stubble-grey);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--coiled-iron);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.meta-label .idx { color: var(--stubble-grey); font-weight: 400; }
+
+/* Palette */
+.palette-stratum {
+  font-size: 7.5px;
+  color: var(--stubble-grey);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 6px;
+}
+.palette-stratum:first-of-type { margin-top: 0; }
+.swatch-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3px;
+  font-size: 8.5px;
+}
+.swatch {
+  width: 14px; height: 14px;
+  border: 1px solid var(--coiled-iron);
+}
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--stubble-grey); letter-spacing: 0.06em; }
+.swatch-row.seam .swatch-name { color: var(--slow-red); }
+
+/* Rules */
+.rules-list {
+  list-style: none;
+  counter-reset: rule;
+}
+.rules-list li {
+  counter-increment: rule;
+  font-size: 8.5px;
+  margin-bottom: 7px;
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.rules-list li::before {
+  content: "R." counter(rule, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--stubble-grey);
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+}
+.rules-list li strong {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--coiled-iron);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--stubble-grey);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right  { text-align: right; }
+.slug .k { color: var(--stubble-grey); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--coiled-iron); }
+
+/* ───────── Print ───────── */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+  .coil-group, .contact-mark .ring { animation: none; }
+  .contact-mark .ring { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> №01</div>
+      <div class="row"><span class="k">DATE</span> 2026-05-28</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · Latent Threat / Kinship Strife</div>
+      <h1>
+        <span class="fallow">FALLOW</span>
+        <span class="x">×</span>
+        <span class="fe">Fé</span>
+      </h1>
+      <div class="subtitle">A codex for latent-threat domains, paired with a doctrine on deterrence as kinship management.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">CLASSIFICATION</span> OPEN</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE (FÉ) ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>SURFACE STRATUM</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read 01</div>
+    <h2 class="doctrine-title">Fé and the Wolf</h2>
+    <div class="doctrine-subtitle">Deterrence as kinship management.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text">Deterrence is read in the West as a calculus performed against an adversary's mind. The older frame, preserved in the Old Norwegian Rune Poem, reads it the other way: deterrence is first the management of your own kindred's appetites for the wealth that summons the wolf. The perimeter is downstream of the household.</p>
+      </div>
+
+      <h3><span class="num">I</span>The Fé Problem</h3>
+      <p class="lead">The rune poem's stanza on Fé — wealth, cattle, movable property — names two consequences in two lines: wealth causes kinsmen's strife, and the wolf is fed in the forest. These are not separate observations. They are the same observation read twice, inside and outside the household. Wealth is simultaneously the prize the kindred fights over and the scent that draws the predator. Gold is the serpent's road — <em class="kenning">gravseiðis gata</em> — because the dragon's hoard and the kindred's quarrel are the same accumulation seen from different angles.</p>
+      <p>Modern deterrence theory inherited the wolf and forgot the kin. Schelling's bargaining, Kahn's escalation ladders, Mearsheimer's offensive realism — elegant, addressed outward. The Norse frame insists the harder problem was always inward.</p>
+
+      <h3><span class="num">II</span>Why the Inward Frame Bites Now</h3>
+      <p class="lead"><strong class="case">AUKUS and the tech-transfer fault line.</strong> The wealth being shared — submarine reactor technology, autonomous systems, advanced manufacturing — is the same wealth generating friction between US primes, Australian industrial base, UK sovereignty concerns, and Five Eyes IP regimes. The pact deters Beijing while producing strife inside the kindred. Standard alliance theory mistakes this for transaction cost. It is the Fé problem operating exactly as the rune poem describes.</p>
+      <p><strong class="case">Pacific Deterrence Initiative as a kinship rite.</strong> Forward basing, exercises, posture investments — the visible material is hardware and dollars. The actual product is binding: the ritual demonstration that the kindred will spend on the shared perimeter. Reduce the ritual and the perimeter holds for a season; reduce it past a threshold and kin-strife — Manila, Tokyo, Seoul, Canberra each separately calculating — replaces the kindred.</p>
+      <p><strong class="case">Allied drone and autonomy stacks.</strong> The wealth — proliferated, attritable autonomous systems — is the wolf-attractor and the strife generator at once. Whose autonomy stack runs the swarm? Whose data trains the model? Whose export controls govern the chips? The Fé problem industrialized.</p>
+
+      <h3><span class="num">III</span>What the Frame Recommends</h3>
+      <ol>
+        <li><strong>Treat alliance management as the load-bearing deterrent.</strong> Adversary calculus is downstream. If the kindred fractures over the wealth, the wolf does not need to be persuaded; it walks in.</li>
+        <li><strong>Distribute the prize before the predator arrives.</strong> Burden-sharing, co-production, sovereign capability transfers — these read as concessions in transactional frames and as kinship rites in the older one. The kinship frame predicts which sharing arrangements deter and which corrode.</li>
+        <li><strong>Watch the kennings.</strong> Gold is the serpent's road. In modern terms: the wealth you are accumulating to deter the wolf is legible to the wolf as a target list. Procurement budgets, basing arrangements, and tech roadmaps are kennings of intent. They draw what they are meant to deter. Plan accordingly.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">The wolf in the forest was always going to be there. The rune poem does not promise its absence; it promises its appetite. What the kindred controls is whether the wealth that feeds the wolf also tears the kindred apart before the wolf arrives. Deterrence, read this way, is not a policy directed outward. It is a discipline directed inward, and the perimeter is its visible residue.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · FALLOW × FÉ · №01</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX (FALLOW) ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>SUBSURFACE STRATUM</span>
+      <span>CODEX</span>
+      <span class="folio">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · System 01</div>
+    <h2 class="codex-title">FALLOW</h2>
+    <div class="codex-subtitle">A visual codex for latent-threat domains.</div>
+    <div class="codex-thesis">
+      The field is not empty. It is composed.
+      <span class="therefore">Therefore: two strata, one seam, one Slow Red.</span>
+    </div>
+
+    <!-- ── STRATA VISUALIZATION ── -->
+    <div class="strata">
+
+      <!-- Surface stratum label -->
+      <div class="strata-label-strip">
+        <span>SURFACE · FALLOW</span>
+        <span class="center">GRID NK-12 · 38°44′31″N 109°35′02″W</span>
+        <span class="right">SHEET 01 / SCALE 1:2000</span>
+      </div>
+
+      <!-- SURFACE STRATUM SVG — cultivated, civilian-legible, uninhabited -->
+      <svg class="surface-svg surface-panel" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <!-- ground -->
+        <rect width="600" height="220" fill="#C9B58A"/>
+
+        <!-- second-growth / sparse patches in Cold Lime -->
+        <g opacity="0.22">
+          <rect x="40"  y="28"  width="78"  height="5" fill="#A3B07B"/>
+          <rect x="180" y="92"  width="120" height="4" fill="#A3B07B"/>
+          <rect x="380" y="50"  width="58"  height="5" fill="#A3B07B"/>
+          <rect x="460" y="158" width="96"  height="6" fill="#A3B07B"/>
+          <rect x="60"  y="178" width="86"  height="4" fill="#A3B07B"/>
+          <rect x="240" y="172" width="64"  height="3" fill="#A3B07B"/>
+          <rect x="350" y="190" width="78"  height="4" fill="#A3B07B"/>
+        </g>
+
+        <!-- turned-earth patches in Stubble Grey -->
+        <g opacity="0.18">
+          <rect x="120" y="48"  width="46" height="3" fill="#56544C"/>
+          <rect x="320" y="120" width="40" height="3" fill="#56544C"/>
+          <rect x="480" y="80"  width="34" height="3" fill="#56544C"/>
+        </g>
+
+        <!-- survey grid -->
+        <g class="grid-line">
+          <line x1="0" y1="40"  x2="600" y2="40"/>
+          <line x1="0" y1="80"  x2="600" y2="80"/>
+          <line x1="0" y1="120" x2="600" y2="120"/>
+          <line x1="0" y1="160" x2="600" y2="160"/>
+          <line x1="0" y1="200" x2="600" y2="200"/>
+          <line x1="100" y1="0" x2="100" y2="220"/>
+          <line x1="200" y1="0" x2="200" y2="220"/>
+          <line x1="300" y1="0" x2="300" y2="220"/>
+          <line x1="400" y1="0" x2="400" y2="220"/>
+          <line x1="500" y1="0" x2="500" y2="220"/>
+        </g>
+
+        <!-- topographic contours -->
+        <path class="contour" d="M 0 70  Q 90 50,  180 78  T 380 82  T 600 65"/>
+        <path class="contour" d="M 0 118 Q 90 100, 180 124 T 380 128 T 600 112"/>
+        <path class="contour" d="M 0 168 Q 90 152, 180 172 T 380 178 T 600 162"/>
+
+        <!-- fiducial marks (surveyor's register) -->
+        <g class="fiducial">
+          <line x1="86" y1="56" x2="94" y2="56"/>
+          <line x1="90" y1="52" x2="90" y2="60"/>
+        </g>
+        <g class="fiducial">
+          <line x1="506" y1="186" x2="514" y2="186"/>
+          <line x1="510" y1="182" x2="510" y2="190"/>
+        </g>
+
+        <!-- section line A — A' (cross-section indicator) -->
+        <line class="section-line" x1="20" y1="208" x2="580" y2="208"/>
+        <text class="coord-label" x="6"   y="211">A</text>
+        <text class="coord-label" x="586" y="211">A′</text>
+
+        <!-- coord & meta labels -->
+        <text class="coord-label" x="6"   y="12">38°44′31″N · 109°35′02″W</text>
+        <text class="coord-label" x="498" y="12">SECTION A—A′</text>
+        <text class="axis-label"  x="6"   y="218">SURFACE · FALLOW · UNINHABITED</text>
+        <text class="axis-label"  x="490" y="218">SHEET 01 · 1:2000</text>
+      </svg>
+
+      <!-- THE SEAM — Slow Red appears here only -->
+      <div class="seam-strip">
+        <div class="contact-mark" style="left: 53.33%">
+          <div class="ring-outer"></div>
+          <div class="ring"></div>
+          <div class="cross-h"></div>
+          <div class="cross-v"></div>
+        </div>
+        <div class="contact-readout" style="left: calc(53.33% + 18px)">
+          SEAM.01 · 38°44′31″N 109°35′02″W · CONTACT · LIVE
+        </div>
+      </div>
+
+      <!-- SUBSURFACE STRATUM SVG — structural, mechanism-coded, the watcher under -->
+      <svg class="subsurface-svg subsurface-panel" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <!-- deep ground -->
+        <rect width="600" height="220" fill="#0C0E10"/>
+
+        <!-- geological strata -->
+        <g class="strata-line">
+          <line x1="0" y1="30"  x2="600" y2="32"/>
+          <line x1="0" y1="78"  x2="600" y2="76"/>
+          <line x1="0" y1="138" x2="600" y2="140"/>
+          <line x1="0" y1="190" x2="600" y2="188"/>
+        </g>
+
+        <!-- depth axis -->
+        <g>
+          <text class="axis-label" x="6"   y="36" >−2 M</text>
+          <text class="axis-label" x="6"   y="82" >−4 M</text>
+          <text class="axis-label" x="6"   y="144">−6 M</text>
+          <text class="axis-label" x="6"   y="194">−8 M</text>
+        </g>
+
+        <!-- coil-shadow (depth halo) -->
+        <g class="coil-group">
+          <path class="coil-shadow" d="
+            M 40 50
+            C 80 50, 100 80, 140 80
+            C 180 80, 200 50, 240 50
+            C 280 50, 300 122, 280 152
+            C 260 182, 220 178, 220 138
+            C 220 98, 280 100, 320 120
+            C 360 138, 380 178, 420 178
+            C 460 178, 480 148, 520 148
+            C 548 148, 568 160, 580 168
+          "/>
+          <path class="coil-path" d="
+            M 40 50
+            C 80 50, 100 80, 140 80
+            C 180 80, 200 50, 240 50
+            C 280 50, 300 122, 280 152
+            C 260 182, 220 178, 220 138
+            C 220 98, 280 100, 320 120
+            C 360 138, 380 178, 420 178
+            C 460 178, 480 148, 520 148
+            C 548 148, 568 160, 580 168
+          "/>
+
+          <!-- nodes along the coil -->
+          <circle class="node-ring" cx="40"  cy="50"  r="5"/>
+          <circle class="node-ring" cx="140" cy="80"  r="5"/>
+          <circle class="node-ring" cx="240" cy="50"  r="5"/>
+          <circle class="node-ring" cx="280" cy="152" r="5"/>
+          <circle class="node-ring" cx="320" cy="120" r="6"/>
+          <circle class="node-ring" cx="420" cy="178" r="5"/>
+          <circle class="node-ring" cx="520" cy="148" r="5"/>
+          <circle class="node-ring" cx="580" cy="168" r="5"/>
+
+          <circle class="node" cx="40"  cy="50"  r="2.6"/>
+          <circle class="node" cx="140" cy="80"  r="2.6"/>
+          <circle class="node" cx="240" cy="50"  r="2.6"/>
+          <circle class="node" cx="280" cy="152" r="2.6"/>
+          <circle class="node" cx="320" cy="120" r="3.2"/>
+          <circle class="node" cx="420" cy="178" r="2.6"/>
+          <circle class="node" cx="520" cy="148" r="2.6"/>
+          <circle class="node" cx="580" cy="168" r="2.6"/>
+
+          <!-- node labels -->
+          <text class="node-label" x="46"  y="46" >N-01</text>
+          <text class="node-label" x="146" y="76" >N-02</text>
+          <text class="node-label" x="246" y="46" >N-03</text>
+          <text class="node-label" x="286" y="148">N-04</text>
+          <text class="node-label" x="328" y="116">N-05 ↑</text>
+          <text class="node-label" x="426" y="174">N-07</text>
+          <text class="node-label" x="526" y="144">N-08</text>
+        </g>
+
+        <!-- field labels -->
+        <text class="field-label" x="6"   y="14" >ARRAY FW-04-EAST · NODES 8 / 8 ACTIVE</text>
+        <text class="field-label" x="370" y="14" >COMPOSITION REVEAL · AUTHORIZED</text>
+        <text class="field-label" x="6"   y="216">SUBSURFACE · FALLOW · COMPOSED</text>
+        <text class="field-label" x="468" y="216">DEPTH −2M / −8M</text>
+      </svg>
+
+      <!-- Subsurface stratum label -->
+      <div class="strata-label-strip bottom">
+        <span>SUBSURFACE · FALLOW</span>
+        <span class="center">ARRAY FW-04-EAST · 8 NODES</span>
+        <span class="right">SECTION A—A′ / SCALE 1:200V</span>
+      </div>
+
+    </div>
+
+    <!-- ── PALETTE & RULES ── -->
+    <div class="codex-meta">
+
+      <div class="meta-block">
+        <div class="meta-label"><span>PALETTE</span><span class="idx">P.01—P.09</span></div>
+
+        <div class="palette-stratum">SURFACE STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#C9B58A"></div><div class="swatch-name">Fallow Wheat</div><div class="swatch-hex">#C9B58A</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#A3B07B"></div><div class="swatch-name">Cold Lime</div><div class="swatch-hex">#A3B07B</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#56544C"></div><div class="swatch-name">Stubble Grey</div><div class="swatch-hex">#56544C</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#E8DFC9"></div><div class="swatch-name">Bone Pale</div><div class="swatch-hex">#E8DFC9</div></div>
+
+        <div class="palette-stratum">SUBSURFACE STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#2A2E33"></div><div class="swatch-name">Coiled Iron</div><div class="swatch-hex">#2A2E33</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#0C0E10"></div><div class="swatch-name">Vein Black</div><div class="swatch-hex">#0C0E10</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#B07852"></div><div class="swatch-name">Cold Copper</div><div class="swatch-hex">#B07852</div></div>
+
+        <div class="palette-stratum">SEAM ONLY</div>
+        <div class="swatch-row seam"><div class="swatch" style="background:#5A1F1F"></div><div class="swatch-name">Slow Red</div><div class="swatch-hex">#5A1F1F</div></div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-label"><span>IRON RULES</span><span class="idx">R.01—R.05</span></div>
+        <ol class="rules-list">
+          <li><strong>No middle stratum.</strong> Two layers and a seam. A third dilutes the thesis.</li>
+          <li><strong>Surface lies, subsurface does not show.</strong> Surface elements render in surface palette and may mislead. Subsurface renders in deep palette and remains invisible without authorization.</li>
+          <li><strong>Seam carries the meaning.</strong> Annotations, callouts, contacts live exclusively at the seam, in Slow Red. Slow Red appears nowhere else.</li>
+          <li><strong>No motion on the surface.</strong> Surface elements are still. Subsurface may drift, slow, deliberate. The watcher under does not hurry.</li>
+          <li><strong>No symbols of inhabitance.</strong> No people, vehicles, settlements on the surface. Inhabitance is implied by the subsurface and surfaces only at the seam.</li>
+        </ol>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé №01</span>
+      <span style="margin: 0 14px; color: var(--stubble-grey);">·</span>
+      <span class="k">PAIR</span><span class="v">FÉ × FALLOW</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">PRIMARY SOURCE</span><span class="v">OND.RP §FÉ · ca. 13th C.</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--stubble-grey);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

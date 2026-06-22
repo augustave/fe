@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARGIN × ÞURS — Fé №03</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Field stratum — measured */
+  --survey-vellum:     #D8CFB8;
+  --triangulation:     #56544C;
+  --bearing-ink:       #2D2A26;
+  --range-olive:       #6E7548;
+  /* Distance stratum — inferred */
+  --pale-distance:     #B5B3A6;
+  --cold-atmosphere:   #7E8590;
+  --far-field:         #4A5566;
+  --cinder-ash:        #3D3530;
+  /* Overhang stratum — beyond measurement */
+  --margin-pale:       #9094A0;
+  --vanishing-black:   #1A1E26;
+  /* Horizon mark only */
+  --margin-gold:       #6A5111;
+
+  --serif: 'EB Garamond', 'Times New Roman', serif;
+  --mono:  'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--vanishing-black); }
+body {
+  background: var(--vanishing-black);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px;
+  min-width: 1440px;
+  background: var(--survey-vellum);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow:
+    0 60px 140px rgba(0,0,0,0.7),
+    0 12px 32px rgba(0,0,0,0.5),
+    0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead {
+  grid-area: masthead;
+  border-bottom: 1px solid var(--bearing-ink);
+  padding: 30px 56px 26px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--bearing-ink);
+  text-transform: uppercase;
+  line-height: 1.85;
+}
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--triangulation); margin-right: 8px; }
+
+.masthead-title { text-align: center; padding-bottom: 2px; }
+.masthead-title .designation {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--triangulation);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.masthead-title h1 {
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  color: var(--bearing-ink);
+}
+.masthead-title .margin {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  font-size: 30px;
+}
+.masthead-title .x {
+  font-family: var(--mono);
+  font-weight: 300;
+  font-size: 26px;
+  vertical-align: 4px;
+  margin: 0 18px;
+  color: var(--triangulation);
+}
+.masthead-title .thurs {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 42px;
+}
+.masthead-title .subtitle {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--triangulation);
+  letter-spacing: 0.01em;
+}
+
+/* ───────── SPINE ───────── */
+.spine {
+  grid-area: spine;
+  background: var(--bearing-ink);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+.spine-label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.36em;
+  color: var(--pale-distance);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+.spine-ornaments { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spine-mark {
+  width: 6px; height: 6px;
+  border: 1px solid var(--pale-distance);
+  transform: rotate(45deg);
+}
+.spine-mark.filled { background: var(--pale-distance); }
+.spine-rule { width: 14px; height: 1px; background: var(--pale-distance); }
+
+/* ───────── LEFT PAGE — DOCTRINE (ÞURS) ───────── */
+.page-left {
+  grid-area: left;
+  background: var(--survey-vellum);
+  padding: 52px 56px 56px 64px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.page-header {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  color: var(--triangulation);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--triangulation);
+  padding-bottom: 7px;
+  margin-bottom: 30px;
+}
+.page-header .folio { color: var(--bearing-ink); }
+
+.doctrine-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--triangulation);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.doctrine-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  color: var(--bearing-ink);
+  margin-bottom: 8px;
+}
+.doctrine-title em { font-style: italic; font-weight: 400; }
+.doctrine-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--triangulation);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--triangulation);
+}
+
+.doctrine-body {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  line-height: 1.58;
+  color: var(--bearing-ink);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid rgba(126, 124, 114, 0.4);
+  text-align: justify;
+  hyphens: auto;
+  flex: 1;
+}
+
+.doctrine-body .thesis-block { margin-bottom: 16px; break-inside: avoid; }
+.doctrine-body .thesis-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--triangulation);
+  margin-bottom: 4px;
+}
+.doctrine-body .thesis-text { font-size: 14.5px; line-height: 1.5; }
+
+.doctrine-body h3 {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--bearing-ink);
+  margin-top: 18px;
+  margin-bottom: 9px;
+  break-after: avoid;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.doctrine-body h3 .num {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 9px;
+  color: var(--triangulation);
+  letter-spacing: 0.18em;
+  font-variant: normal;
+}
+.doctrine-body h3 .num::after { content: "·"; margin-left: 10px; color: var(--triangulation); }
+
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; margin-bottom: 9px; }
+.doctrine-body p.lead { text-indent: 0; }
+
+.doctrine-body em.kenning {
+  font-style: italic;
+  color: var(--far-field);
+  font-weight: 500;
+}
+
+.doctrine-body strong.case {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--bearing-ink);
+}
+
+.doctrine-body ol {
+  list-style: none;
+  counter-reset: doct-rule;
+  margin: 4px 0 10px 0;
+}
+.doctrine-body ol li {
+  counter-increment: doct-rule;
+  margin-bottom: 9px;
+  padding-left: 26px;
+  position: relative;
+  break-inside: avoid;
+}
+.doctrine-body ol li::before {
+  content: counter(doct-rule, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--triangulation);
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+.doctrine-body ol li strong {
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.doctrine-coda { margin-top: 12px; break-inside: avoid; }
+
+/* ───────── RIGHT PAGE — CODEX (MARGIN) ───────── */
+.page-right {
+  grid-area: right;
+  background: var(--survey-vellum);
+  padding: 52px 64px 56px 56px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.codex-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--triangulation);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.codex-title {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.24em;
+  color: var(--bearing-ink);
+  margin-bottom: 4px;
+}
+.codex-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--triangulation);
+  margin-bottom: 14px;
+}
+.codex-thesis {
+  font-family: var(--serif);
+  font-size: 13.5px;
+  color: var(--bearing-ink);
+  margin-bottom: 22px;
+  padding-left: 14px;
+  border-left: 2px solid var(--far-field);
+  font-style: italic;
+  line-height: 1.5;
+}
+.codex-thesis .therefore {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--triangulation);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 6px;
+}
+
+/* ── HORIZON LANDSCAPE ── */
+.horizon-frame {
+  border: 1px solid var(--bearing-ink);
+  background: var(--vanishing-black);
+  margin-bottom: 16px;
+  position: relative;
+}
+.horizon-label-strip {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--bearing-ink);
+  text-transform: uppercase;
+  padding: 6px 10px;
+  background: var(--survey-vellum);
+  align-items: center;
+  gap: 12px;
+}
+.horizon-label-strip.bottom { border-top: 1px solid var(--bearing-ink); }
+.horizon-label-strip:not(.bottom) { border-bottom: 1px solid var(--bearing-ink); }
+.horizon-label-strip .center {
+  text-align: center;
+  font-size: 7.5px;
+  color: var(--triangulation);
+  letter-spacing: 0.22em;
+}
+.horizon-label-strip .right { text-align: right; color: var(--triangulation); }
+
+.horizon-panel { width: 100%; display: block; }
+
+/* ── ESTIMATION GRAPH ── */
+.graph-frame {
+  border: 1px solid var(--bearing-ink);
+  background: var(--survey-vellum);
+  margin-bottom: 20px;
+  padding: 10px 12px 12px;
+}
+.graph-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--triangulation);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--triangulation);
+}
+.graph-header .title { color: var(--bearing-ink); }
+.graph-svg { width: 100%; display: block; }
+
+/* ── Codex meta ── */
+.codex-meta {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  margin-top: auto;
+}
+.meta-block { font-family: var(--mono); color: var(--bearing-ink); }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--triangulation);
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--bearing-ink);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.meta-label .idx { color: var(--triangulation); font-weight: 400; }
+
+.palette-stratum {
+  font-size: 7.5px;
+  color: var(--triangulation);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 6px 0 6px;
+}
+.palette-stratum:first-of-type { margin-top: 0; }
+.swatch-row {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 3px;
+  font-size: 8.5px;
+}
+.swatch { width: 14px; height: 14px; border: 1px solid var(--bearing-ink); }
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--triangulation); letter-spacing: 0.06em; }
+.swatch-row.mark .swatch-name { color: var(--margin-gold); }
+
+.rules-list { list-style: none; counter-reset: rule; }
+.rules-list li {
+  counter-increment: rule;
+  font-size: 8.5px;
+  margin-bottom: 7px;
+  line-height: 1.5;
+  padding-left: 22px;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.rules-list li::before {
+  content: "R." counter(rule, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--triangulation);
+  font-size: 7.5px;
+  letter-spacing: 0.1em;
+}
+.rules-list li strong {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+}
+
+/* ───────── SLUG ───────── */
+.slug {
+  grid-area: slug;
+  border-top: 1px solid var(--bearing-ink);
+  padding: 14px 56px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--triangulation);
+  text-transform: uppercase;
+  align-items: center;
+}
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--triangulation); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--bearing-ink); }
+
+/* SVG horizon styling */
+.horizon-svg .grid-fg     { stroke: var(--triangulation); stroke-width: 0.4; opacity: 0.55; }
+.horizon-svg .grid-md     { stroke: var(--triangulation); stroke-width: 0.35; opacity: 0.28; }
+.horizon-svg .grid-far    { stroke: var(--cold-atmosphere); stroke-width: 0.3; opacity: 0.2; }
+.horizon-svg .terrain     { fill: var(--range-olive); opacity: 0.5; }
+.horizon-svg .terrain-md  { fill: var(--cold-atmosphere); opacity: 0.45; }
+.horizon-svg .terrain-far { fill: var(--far-field); opacity: 0.55; }
+.horizon-svg .cone        { stroke: var(--bearing-ink); stroke-width: 0.6; fill: none; stroke-dasharray: 3 2; opacity: 0.6; }
+.horizon-svg .cone-fill   { fill: var(--bearing-ink); opacity: 0.04; }
+.horizon-svg .range-arc   { stroke: var(--triangulation); stroke-width: 0.45; fill: none; opacity: 0.55; }
+.horizon-svg .bearing     { stroke: var(--bearing-ink); stroke-width: 0.7; fill: none; }
+.horizon-svg .observer    { fill: var(--bearing-ink); }
+.horizon-svg .mono-label  { font-family: var(--mono); font-size: 5.5px; fill: var(--bearing-ink); letter-spacing: 0.08em; }
+.horizon-svg .mono-far    { font-family: var(--mono); font-size: 5px; fill: var(--cold-atmosphere); letter-spacing: 0.08em; }
+.horizon-svg .mono-mute   { font-family: var(--mono); font-size: 5px; fill: var(--triangulation); letter-spacing: 0.1em; }
+.horizon-svg .horizon-line { stroke: var(--margin-gold); stroke-width: 1.2; }
+.horizon-svg .horizon-text { font-family: var(--mono); font-size: 6px; fill: var(--margin-gold); letter-spacing: 0.18em; font-weight: 500; }
+.horizon-svg .effect      { stroke: var(--margin-gold); stroke-width: 0.5; fill: none; opacity: 0.6; stroke-dasharray: 1 2; }
+
+/* Graph styling */
+.graph-svg .axis           { stroke: var(--bearing-ink); stroke-width: 0.7; }
+.graph-svg .gridline       { stroke: var(--triangulation); stroke-width: 0.3; opacity: 0.3; }
+.graph-svg .measured       { stroke: var(--bearing-ink); stroke-width: 1.4; fill: none; }
+.graph-svg .inferred       { stroke: var(--bearing-ink); stroke-width: 1.2; fill: none; stroke-dasharray: 4 2; opacity: 0.55; }
+.graph-svg .uncertainty    { fill: var(--cold-atmosphere); opacity: 0.18; }
+.graph-svg .horizon-line   { stroke: var(--margin-gold); stroke-width: 1.2; }
+.graph-svg .horizon-text   { font-family: var(--mono); font-size: 6px; fill: var(--margin-gold); letter-spacing: 0.18em; font-weight: 500; }
+.graph-svg .axis-label     { font-family: var(--mono); font-size: 6px; fill: var(--bearing-ink); letter-spacing: 0.1em; }
+.graph-svg .axis-tick      { font-family: var(--mono); font-size: 5.5px; fill: var(--triangulation); letter-spacing: 0.06em; }
+
+/* Print */
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> №03</div>
+      <div class="row"><span class="k">DATE</span> 2026-05-28</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · Strategic Estimation / Capability Overhang</div>
+      <h1>
+        <span class="margin">MARGIN</span>
+        <span class="x">×</span>
+        <span class="thurs">Þurs</span>
+      </h1>
+      <div class="subtitle">A codex for estimation beyond direct observation, paired with a doctrine on strategic posture under capability overhang.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">CLASSIFICATION</span> OPEN</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE (ÞURS) ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>FIELD STRATUM</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read 03</div>
+    <h2 class="doctrine-title">Þurs and the Horizon</h2>
+    <div class="doctrine-subtitle">Strategic estimation under capability overhang.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text">Adversary capability is no longer principally a problem of intelligence collection. It is a problem of horizon. The edge of capability sits beyond what direct observation can resolve, and the strategic question becomes what to do when the wealth one has assayed sits inside a frame whose magnitude is set by something one can only measure through its effects. The rune poem's stanza on Þurs names this condition — the baleful agent inferred from its afflictions — and clarifies its second weapon: the despair the thurse produces is itself a capability, and treating despair as terrain rather than weakness is the first move.</p>
+      </div>
+
+      <h3><span class="num">I</span>The Þurs Problem</h3>
+      <p class="lead">The Þurs stanza names two conditions in two lines: the thurse causes affliction whose source is unseen — <em class="kenning">kvinna kvillu</em>, in the archaic phrasing, the sickness whose cause was attributed to malevolent agency precisely because direct observation failed — and few are cheerful in the presence of misfortune. The first line is the older shape of the overhang problem: the adversary whose works become visible only as effects, never as cause. The second names the strategic consequence: despair as a load-bearing state that the adversary's capability is in part designed to produce.</p>
+      <p>Modern strategy treats overhang as a measurement gap to be closed. The Þurs frame is sharper. The gap will not close. The cause is structurally unseen — by composition, by deployment latency, by the asymmetry between training and observation. What can be addressed is the affective response to the gap, and what the frame insists is that despair is itself the adversary's product. The thurse causes the sickness. The sickness depletes the kindred. Both are the same operation.</p>
+
+      <h3><span class="num">II</span>Why the Horizon Frame Bites Now</h3>
+      <p class="lead"><strong class="case">Frontier model proliferation and the deployment-latency gap.</strong> Capability development now occurs on cycles faster than observation. A model trained in quarter Q is fielded in some operational form before traditional intelligence cycles resolve its existence. The estimation problem is no longer what the adversary has — it is what the adversary will have done by the time one knows what they have. Standard signals cycles run against a tempo the underlying technology has structurally exceeded.</p>
+      <p><strong class="case">Civilian deployment as capability proxy.</strong> Adversary military capability is in many cases inferred from civilian deployments where models are visible. This is sensible until one assumes the inference is reliable. The civilian deployment is a controlled disclosure; the operational version is not its sibling, it is its descendant. Reading the disclosure as the capability is the structural error the Þurs frame anticipates.</p>
+      <p><strong class="case">The despair vector.</strong> Adversary strategic communications increasingly include capability claims engineered to produce demoralization in opposing publics and procurement bureaucracies. These claims are not principally intelligence products — they are weapons designed to produce <em class="kenning">fár af illu</em>, the cheerless response to misfortune that depletes funding cycles, hardens kindred-strife (see Folio №01), and shapes acquisition toward defeatist postures. The Þurs frame names this as adversary capability rather than as discrete information.</p>
+
+      <h3><span class="num">III</span>What the Frame Recommends</h3>
+      <ol>
+        <li><strong>Estimate from effects backward.</strong> Treat observed effects as the primary signal and capability as the inference. Programs that estimate capability first and then predict effects invert the epistemic order and are reliably wrong.</li>
+        <li><strong>Fund the horizon-mapping function.</strong> A defense enterprise that cannot say where its assertions end is asserting beyond its evidence. The horizon-mapping function — the discipline of drawing the line — must be funded, staffed, and given authority to refuse claims. It is the assay of Folio №02 extended to estimation.</li>
+        <li><strong>Name despair as adversary capability.</strong> Demoralization, defeatism, procurement paralysis — these are not internal failures, they are productive adversary effects. Treating them as terrain to be navigated rather than as weakness to be ashamed of is the move that restores agency.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">The thurse is unseen. The poem does not promise its visibility; it promises its effects. What the kindred controls is whether the affliction the thurse produces is correctly named — as adversary capability operating at strategic distance — or misnamed as internal weakness, in which case the kindred turns its tools on itself and the thurse's work is done by proxy. Strategic estimation under overhang is the discipline of naming a cause one cannot see, accepting the irreducible distance, and operating at the horizon without pretending the beyond is mapped.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · MARGIN × ÞURS · №03</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX (MARGIN) ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>OVERHANG STRATUM</span>
+      <span>CODEX</span>
+      <span class="folio">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · System 03</div>
+    <h2 class="codex-title">MARGIN</h2>
+    <div class="codex-subtitle">A visual codex for estimation beyond direct observation.</div>
+    <div class="codex-thesis">
+      The measured field has an edge. The codex names it.
+      <span class="therefore">Therefore: a horizon line, a bearing, a cone of inference, no claim beyond.</span>
+    </div>
+
+    <!-- ── HORIZON LANDSCAPE ── -->
+    <div class="horizon-frame">
+
+      <div class="horizon-label-strip">
+        <span>FIELD · MARGIN</span>
+        <span class="center">OBSERVER BEARING 067° · STATION OBS-04 · 2026-05-28T0100Z</span>
+        <span class="right">SHEET 01 / RANGE 0—∞ KM</span>
+      </div>
+
+      <svg class="horizon-svg horizon-panel" viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+
+        <!-- Overhang sky : gradient -->
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="#9094A0"/>
+            <stop offset="60%"  stop-color="#6A707D"/>
+            <stop offset="100%" stop-color="#1A1E26"/>
+          </linearGradient>
+          <linearGradient id="skyV" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#1A1E26"/>
+            <stop offset="100%" stop-color="#9094A0" stop-opacity="0.95"/>
+          </linearGradient>
+        </defs>
+
+        <rect x="0" y="0" width="600" height="160" fill="url(#sky)"/>
+        <rect x="0" y="0" width="600" height="160" fill="url(#skyV)" opacity="0.55"/>
+
+        <!-- Far terrain band, just below horizon -->
+        <rect class="terrain-far" x="0" y="160" width="600" height="14"/>
+
+        <!-- Middle distance band -->
+        <rect class="terrain-md" x="0" y="174" width="600" height="22"/>
+
+        <!-- Foreground field background -->
+        <rect x="0" y="196" width="600" height="124" fill="#D8CFB8"/>
+
+        <!-- Foreground grid (denser near observer) -->
+        <g class="grid-fg">
+          <!-- horizontal -->
+          <line x1="0" y1="210" x2="600" y2="210"/>
+          <line x1="0" y1="226" x2="600" y2="226"/>
+          <line x1="0" y1="244" x2="600" y2="244"/>
+          <line x1="0" y1="266" x2="600" y2="266"/>
+          <line x1="0" y1="292" x2="600" y2="292"/>
+          <!-- vertical, denser at left (observer) -->
+          <line x1="40"  y1="196" x2="40"  y2="320"/>
+          <line x1="80"  y1="196" x2="80"  y2="320"/>
+          <line x1="120" y1="196" x2="120" y2="320"/>
+          <line x1="160" y1="196" x2="160" y2="320"/>
+          <line x1="200" y1="196" x2="200" y2="320"/>
+          <line x1="240" y1="196" x2="240" y2="320"/>
+        </g>
+        <g class="grid-md">
+          <line x1="300" y1="196" x2="300" y2="320"/>
+          <line x1="370" y1="196" x2="370" y2="320"/>
+          <line x1="440" y1="196" x2="440" y2="320"/>
+        </g>
+        <g class="grid-far">
+          <line x1="510" y1="196" x2="510" y2="320"/>
+        </g>
+
+        <!-- Middle-distance terrain hints -->
+        <g class="terrain" opacity="0.35">
+          <ellipse cx="180" cy="220" rx="50" ry="3"/>
+          <ellipse cx="260" cy="232" rx="40" ry="2.5"/>
+          <ellipse cx="120" cy="246" rx="60" ry="3"/>
+          <ellipse cx="330" cy="218" rx="36" ry="2"/>
+        </g>
+
+        <!-- Estimation cone : from observer (50, 290) toward (560, 160) -->
+        <path class="cone-fill" d="M 50 290 L 560 175 L 560 145 L 50 290 Z"/>
+        <line class="cone" x1="50" y1="290" x2="560" y2="172"/>
+        <line class="cone" x1="50" y1="290" x2="560" y2="148"/>
+        <line class="cone" x1="50" y1="290" x2="560" y2="160" stroke-dasharray="1 2"/>
+
+        <!-- Range arcs -->
+        <path class="range-arc" d="M  90 290 A 50 50 0 0 1  90 250"/>
+        <path class="range-arc" d="M 140 290 A 100 100 0 0 1 140 210"/>
+        <path class="range-arc" d="M 200 290 A 160 160 0 0 1 200 180"/>
+        <path class="range-arc" d="M 280 290 A 240 240 0 0 1 280 165"/>
+
+        <!-- Range tick labels along cone center -->
+        <text class="mono-label" x="92"  y="288">5 KM</text>
+        <text class="mono-label" x="142" y="288">25 KM</text>
+        <text class="mono-label" x="202" y="288">100 KM</text>
+        <text class="mono-mute"  x="282" y="288">500 KM ±</text>
+        <text class="mono-far"   x="400" y="288">2000 KM ?</text>
+        <text class="mono-far"   x="500" y="288">∞ · BEYOND</text>
+
+        <!-- Observer / bearing rosette at (50, 290) -->
+        <g>
+          <circle class="observer" cx="50" cy="290" r="2.6"/>
+          <circle class="bearing" cx="50" cy="290" r="9"/>
+          <line class="bearing" x1="50" y1="278" x2="50" y2="302"/>
+          <line class="bearing" x1="38" y1="290" x2="62" y2="290"/>
+          <line class="bearing" x1="42" y1="282" x2="58" y2="298"/>
+          <line class="bearing" x1="58" y1="282" x2="42" y2="298"/>
+          <text class="mono-label" x="22" y="310">OBS-04</text>
+          <text class="mono-mute" x="22" y="316.5">067° / N53.6°</text>
+        </g>
+
+        <!-- Foreground annotations (dense near observer, fading) -->
+        <text class="mono-label" x="76"  y="220">FIX 01 · 38°44′N</text>
+        <text class="mono-label" x="76"  y="232">FIX 02 · 38°51′N</text>
+        <text class="mono-label" x="138" y="216">FIX 03 · 39°02′N ±0.04</text>
+        <text class="mono-mute"  x="208" y="214">FIX 04 · 39°18′N ±0.31</text>
+        <text class="mono-mute"  x="290" y="210">EST 05 · 39°40′ ±2°</text>
+        <text class="mono-far"   x="380" y="206">INF 06 · ±BEARING ONLY</text>
+
+        <!-- THE HORIZON LINE — Margin Gold, used here only -->
+        <line class="horizon-line" x1="0" y1="160" x2="600" y2="160"/>
+        <text class="horizon-text" x="6" y="155">HORIZON · ASSERTION LIMIT</text>
+        <text class="horizon-text" x="490" y="155" text-anchor="start">R = ∞ →</text>
+
+        <!-- Beyond-horizon : effects only, no measurements -->
+        <text class="mono-far" x="380" y="142">— NO ANNOTATION PERMITTED —</text>
+
+        <!-- Effects from beyond — dashed lines from horizon back onto foreground -->
+        <line class="effect" x1="380" y1="160" x2="320" y2="248"/>
+        <line class="effect" x1="430" y1="160" x2="380" y2="270"/>
+        <line class="effect" x1="470" y1="160" x2="410" y2="282"/>
+        <text class="horizon-text" x="324" y="252" font-size="5">EFFECT.A</text>
+        <text class="horizon-text" x="384" y="274" font-size="5">EFFECT.B</text>
+        <text class="horizon-text" x="414" y="286" font-size="5">EFFECT.C</text>
+
+        <!-- Field meta -->
+        <text class="mono-label" x="6"   y="14">OBSERVER STATION · OBS-04 · 38°44′31″N 109°35′02″W</text>
+        <text class="mono-label" x="6"   y="316">FIELD · MARGIN · MEASURED 0—500 KM</text>
+        <text class="mono-mute"  x="468" y="316">SHEET 01 · BEARING 067°</text>
+
+      </svg>
+
+      <div class="horizon-label-strip bottom">
+        <span>OVERHANG · MARGIN</span>
+        <span class="center">3 EFFECTS INFERRED · 0 CAUSES OBSERVED · HORIZON @ R=500KM ±</span>
+        <span class="right">SECTION B—B′ / SCALE LOG / R</span>
+      </div>
+
+    </div>
+
+    <!-- ── ESTIMATION GRAPH ── -->
+    <div class="graph-frame">
+      <div class="graph-header">
+        <span class="title">CAPABILITY ESTIMATION · BEARING 067°</span>
+        <span>F(R) · MEASURED / INFERRED / BEYOND</span>
+      </div>
+
+      <svg class="graph-svg" viewBox="0 0 600 140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+
+        <!-- gridlines -->
+        <g class="gridline">
+          <line x1="40" y1="30"  x2="580" y2="30"/>
+          <line x1="40" y1="60"  x2="580" y2="60"/>
+          <line x1="40" y1="90"  x2="580" y2="90"/>
+          <line x1="120" y1="20" x2="120" y2="120"/>
+          <line x1="200" y1="20" x2="200" y2="120"/>
+          <line x1="280" y1="20" x2="280" y2="120"/>
+          <line x1="360" y1="20" x2="360" y2="120"/>
+          <line x1="440" y1="20" x2="440" y2="120"/>
+          <line x1="520" y1="20" x2="520" y2="120"/>
+        </g>
+
+        <!-- axes -->
+        <line class="axis" x1="40" y1="20"  x2="40"  y2="120"/>
+        <line class="axis" x1="40" y1="120" x2="580" y2="120"/>
+
+        <!-- uncertainty band, widening -->
+        <path class="uncertainty" d="
+          M 40 70
+          L 120 65
+          L 200 56
+          L 280 42
+          L 360 26
+          L 360 78
+          L 280 80
+          L 200 80
+          L 120 78
+          L 40 76
+          Z
+        "/>
+
+        <!-- measured curve (solid, foreground) -->
+        <path class="measured" d="
+          M 40 72
+          L 80 70
+          L 120 67
+          L 160 64
+          L 200 60
+          L 240 56
+        "/>
+
+        <!-- inferred curve (dashed, middle and beyond) -->
+        <path class="inferred" d="
+          M 240 56
+          L 280 50
+          L 320 42
+          L 360 32
+        "/>
+
+        <!-- horizon mark (vertical, Margin Gold) -->
+        <line class="horizon-line" x1="360" y1="20" x2="360" y2="120"/>
+        <text class="horizon-text" x="364" y="28">HORIZON / R=500KM ±</text>
+        <text class="horizon-text" x="364" y="116">NO POINT CLAIM →</text>
+
+        <!-- axis labels -->
+        <text class="axis-label" x="40"  y="135">0</text>
+        <text class="axis-tick"  x="116" y="135">10²</text>
+        <text class="axis-tick"  x="196" y="135">10³</text>
+        <text class="axis-tick"  x="276" y="135">10⁴</text>
+        <text class="axis-tick"  x="356" y="135">10⁵</text>
+        <text class="axis-tick"  x="436" y="135">10⁶</text>
+        <text class="axis-tick"  x="516" y="135">10⁷</text>
+        <text class="axis-label" x="270" y="138" font-size="6">RANGE · LOG KM →</text>
+
+        <text class="axis-label" x="6"   y="124">0</text>
+        <text class="axis-label" x="6"   y="64" >F</text>
+        <text class="axis-label" x="6"   y="24" >F̂</text>
+
+        <text class="axis-label" x="60"  y="16">CAPABILITY F(R)</text>
+        <text class="axis-tick"  x="450" y="16">↑ INTERVAL ONLY · NO POINT</text>
+
+      </svg>
+    </div>
+
+    <!-- ── PALETTE & RULES ── -->
+    <div class="codex-meta">
+
+      <div class="meta-block">
+        <div class="meta-label"><span>PALETTE</span><span class="idx">P.01—P.11</span></div>
+
+        <div class="palette-stratum">FIELD STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#D8CFB8"></div><div class="swatch-name">Survey Vellum</div><div class="swatch-hex">#D8CFB8</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#56544C"></div><div class="swatch-name">Triangulation</div><div class="swatch-hex">#56544C</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#2D2A26"></div><div class="swatch-name">Bearing Ink</div><div class="swatch-hex">#2D2A26</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#6E7548"></div><div class="swatch-name">Range Olive</div><div class="swatch-hex">#6E7548</div></div>
+
+        <div class="palette-stratum">DISTANCE STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#B5B3A6"></div><div class="swatch-name">Pale Distance</div><div class="swatch-hex">#B5B3A6</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#7E8590"></div><div class="swatch-name">Cold Atmosphere</div><div class="swatch-hex">#7E8590</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#4A5566"></div><div class="swatch-name">Far Field</div><div class="swatch-hex">#4A5566</div></div>
+
+        <div class="palette-stratum">OVERHANG STRATUM</div>
+        <div class="swatch-row"><div class="swatch" style="background:#9094A0"></div><div class="swatch-name">Margin Pale</div><div class="swatch-hex">#9094A0</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:#1A1E26"></div><div class="swatch-name">Vanishing Black</div><div class="swatch-hex">#1A1E26</div></div>
+
+        <div class="palette-stratum">HORIZON MARK ONLY</div>
+        <div class="swatch-row mark"><div class="swatch" style="background:#6A5111"></div><div class="swatch-name">Margin Gold</div><div class="swatch-hex">#6A5111</div></div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-label"><span>IRON RULES</span><span class="idx">R.01—R.05</span></div>
+        <ol class="rules-list">
+          <li><strong>Uncertainty as space.</strong> Distance equals uncertainty. The horizon mark is the only point on the field; beyond is interval or silence.</li>
+          <li><strong>Horizon is the assertion limit.</strong> Margin Gold marks the threshold beyond which point claims are prohibited. Beyond the line: ranges, cones, effects.</li>
+          <li><strong>Bearing is mandatory.</strong> Every horizon view declares the observer's position and direction of look. Estimation without a stated bearing is propaganda.</li>
+          <li><strong>Detail decays with distance.</strong> Foreground may carry full annotation. Middle distance carries baseline marks only. Beyond the horizon, no annotation at all.</li>
+          <li><strong>No retrofit of the horizon.</strong> Once estimation extends past the horizon, that beyond cannot be re-rendered as if it had been measured. Updates move the horizon, never the past.</li>
+        </ol>
+      </div>
+
+    </div>
+
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé №03</span>
+      <span style="margin: 0 14px; color: var(--triangulation);">·</span>
+      <span class="k">PAIR</span><span class="v">ÞURS × MARGIN</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">PRIMARY SOURCE</span><span class="v">OND.RP §ÞURS · ca. 13th C.</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--triangulation);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
