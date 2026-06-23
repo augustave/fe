@@ -95,6 +95,16 @@ figure { max-width: 1080px; margin: 64px auto 0; padding: 0 32px; }
 figure img { width: 100%; display: block; border: 1px solid var(--hairline-hard); }
 figcaption { margin-top: 12px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); text-align: center; }
 
+/* folio gallery */
+.gallery { max-width: 1080px; margin: 40px auto 0; padding: 0 32px; }
+.gallery .lead-in { text-align: center; margin-bottom: 20px; }
+.folio-figs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.folio-figs a { border: none; display: block; }
+.folio-figs img { width: 100%; display: block; border: 1px solid var(--hairline-hard); box-shadow: 0 10px 28px rgba(0,0,0,0.4); transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s; }
+.folio-figs a:hover img { transform: translateY(-4px); box-shadow: 0 22px 48px rgba(0,0,0,0.55); }
+.folio-figs .cap { display: block; margin-top: 9px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+@media (max-width: 640px) { .folio-figs { grid-template-columns: 1fr; } }
+
 /* ───── sections ───── */
 section { padding: 62px 0 8px; }
 .sec-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.26em; color: var(--ink-mute); }
@@ -260,6 +270,20 @@ footer { border-top: 1px solid var(--hairline); margin-top: 64px; padding: 54px 
     </ul>
     <p>Together: a system whose action, authority, origin, and identity are all legible in the artifact. The argument is also the thesis of the wider practice — that this is an old shape (the writ, the deed, the commission, the seal) recovered for contemporary work.</p>
   </section>
+</div>
+
+<div class="gallery">
+  <div class="lead-in mono">The eight folios · doctrine recto, codex verso</div>
+  <div class="folio-figs">
+    <a href="canon_form_spread.html" target="_blank" rel="noopener"><img src="shots/00-canon.png" alt="№00 CANON × FORM spread" loading="lazy"><span class="cap">№00 · CANON × FORM — the self-documenting foundation</span></a>
+    <a href="fallow_fe_spread.html" target="_blank" rel="noopener"><img src="shots/01-fallow.png" alt="№01 FALLOW × FÉ spread" loading="lazy"><span class="cap">№01 · FALLOW × FÉ — latent threat (Slow Red)</span></a>
+    <a href="assay_ur_spread.html" target="_blank" rel="noopener"><img src="shots/02-assay.png" alt="№02 ASSAY × ÚR spread" loading="lazy"><span class="cap">№02 · ASSAY × ÚR — substance verification (Slag Mark)</span></a>
+    <a href="margin_thurs_spread.html" target="_blank" rel="noopener"><img src="shots/03-margin.png" alt="№03 MARGIN × ÞURS spread" loading="lazy"><span class="cap">№03 · MARGIN × ÞURS — capability overhang (Margin Gold)</span></a>
+    <a href="manifest_intent_spread.html" target="_blank" rel="noopener"><img src="shots/04-manifest.png" alt="№04 MANIFEST × INTENT spread" loading="lazy"><span class="cap">№04 · MANIFEST × INTENT — operator–fleet seam (Bind Blue)</span></a>
+    <a href="writ_oath_spread.html" target="_blank" rel="noopener"><img src="shots/05-writ.png" alt="№05 WRIT × OATH spread" loading="lazy"><span class="cap">№05 · WRIT × OATH — sovereignty as legibility (Crown Indigo)</span></a>
+    <a href="provenance_memory_spread.html" target="_blank" rel="noopener"><img src="shots/06-provenance.png" alt="№06 PROVENANCE × MEMORY spread" loading="lazy"><span class="cap">№06 · PROVENANCE × MEMORY — auditable lineage (Compact Green)</span></a>
+    <a href="commission_name_spread.html" target="_blank" rel="noopener"><img src="shots/07-commission.png" alt="№07 COMMISSION × NAME spread" loading="lazy"><span class="cap">№07 · COMMISSION × NAME — named-instance accountability (Sigil Mauve)</span></a>
+  </div>
 </div>
 
 <div class="wrap">
