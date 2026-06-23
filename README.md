@@ -1,6 +1,10 @@
 # Fé
 
+[![Fé — Volume 01](og.png)](https://fe-pink.vercel.app/)
+
 **A bound-folio design system for legibility under contested conditions.**
+
+**[Live demo →](https://fe-pink.vercel.app/)** · **Bound volume:** [PDF · 10 pages](double_folio_volume_01.pdf) · Eight folios · Mark index 7/7 · Complete
 
 Each folio pairs an argument with a worked artifact: doctrine on the recto, codex on the verso, bound by a single mark color used exclusively at the one operational moment where the argument and the artifact agree. The form is the enforcement surface — a reader holding any single folio can verify, in one glance, that the codex obeys the doctrine.
 
