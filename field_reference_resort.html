@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REFERENCE × Resort — Fé · Field Application</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* ─── SYSTEM CORE (LOCKED) ─── */
+  --folio-black:        #1F2024;
+  --folio-mute-strong:  #56544C;
+  --folio-mute:         #7E7C72;
+  --folio-hairline:     rgba(126, 124, 114, 0.35);
+
+  /* ─── PAPER — Survey Vellum (analytical register) ─── */
+  --paper:              #D8CFB8;
+
+  /* ─── PER-FOLIO PALETTE ─── */
+  /* Stratum 1: Field (the operational reality) */
+  --s1-1:               #454A2E;   /* Drab Olive */
+  --s1-2:               #3A2E22;   /* Boot Brown */
+  --s1-3:               #9C8A5C;   /* Cordite Tan */
+  /* Stratum 2: Archive (the institution) */
+  --s2-1:               #2C3038;   /* Slate */
+  --s2-2:               #5A5E54;   /* Bureau Grey */
+  --s2-3:               #C9BFA6;   /* Foxed Cream */
+  /* Stratum 3: Edge (the instrument) */
+  --s3-1:               #4C5158;   /* Gun Steel */
+  --s3-2:               #23262B;   /* Blued */
+
+  /* ─── MARK — Compact Green (preservation / custody) ─── */
+  --mark:               #2E5F4A;
+  --mark-wash:          rgba(46, 95, 74, 0.11);
+
+  --serif:    'EB Garamond', 'Times New Roman', serif;
+  --display:  'Fraunces', 'EB Garamond', serif;
+  --mono:     'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: #14171C; }
+body {
+  background: #14171C;
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 36px 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.spread {
+  width: 1440px; min-width: 1440px;
+  background: var(--paper);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "masthead masthead masthead"
+    "left     spine    right"
+    "slug     slug     slug";
+  box-shadow: 0 60px 140px rgba(0,0,0,0.7), 0 12px 32px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ───────── MASTHEAD ───────── */
+.masthead { grid-area: masthead; border-bottom: 1px solid var(--folio-black); padding: 30px 56px 26px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: end; gap: 32px; }
+.masthead-meta { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; color: var(--folio-black); text-transform: uppercase; line-height: 1.85; }
+.masthead-meta.right { text-align: right; }
+.masthead-meta .row { display: block; }
+.masthead-meta .row .k { color: var(--folio-mute-strong); margin-right: 8px; }
+.masthead-title { text-align: center; padding-bottom: 2px; }
+.masthead-title .designation { font-family: var(--mono); font-size: 9px; letter-spacing: 0.32em; color: var(--folio-mute-strong); text-transform: uppercase; margin-bottom: 12px; }
+.masthead-title h1 { font-weight: 500; font-size: 38px; line-height: 1; letter-spacing: 0.005em; color: var(--folio-black); }
+.masthead-title .codex-name { font-family: var(--mono); font-weight: 500; letter-spacing: 0.24em; font-size: 30px; }
+.masthead-title .x { font-family: var(--mono); font-weight: 300; font-size: 26px; vertical-align: 4px; margin: 0 18px; color: var(--folio-mute-strong); }
+.masthead-title .doctrine-name { font-family: var(--serif); font-weight: 500; font-style: italic; font-size: 42px; }
+.masthead-title .subtitle { margin-top: 12px; font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--folio-mute-strong); letter-spacing: 0.01em; }
+
+/* ───────── SPINE ───────── */
+.spine { grid-area: spine; background: var(--folio-black); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 28px 0; }
+.spine-label { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.36em; color: var(--paper); writing-mode: vertical-rl; text-orientation: mixed; text-transform: uppercase; }
+.spine-ornaments { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.spine-mark { width: 6px; height: 6px; border: 1px solid var(--paper); transform: rotate(45deg); }
+.spine-mark.filled { background: var(--paper); }
+.spine-rule { width: 14px; height: 1px; background: var(--paper); }
+
+/* ───────── LEFT PAGE — DOCTRINE ───────── */
+.page-left { grid-area: left; padding: 52px 56px 56px 64px; display: flex; flex-direction: column; }
+.page-header { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.2em; color: var(--folio-mute-strong); text-transform: uppercase; display: flex; justify-content: space-between; border-bottom: 1px solid var(--folio-mute-strong); padding-bottom: 7px; margin-bottom: 30px; }
+.page-header .folio-mark { color: var(--folio-black); }
+.doctrine-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 0.28em; color: var(--folio-mute-strong); text-transform: uppercase; margin-bottom: 14px; }
+.doctrine-title { font-family: var(--serif); font-weight: 500; font-size: 36px; line-height: 1.04; letter-spacing: -0.005em; color: var(--folio-black); margin-bottom: 8px; }
+.doctrine-title em { font-style: italic; font-weight: 400; }
+.doctrine-subtitle { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 16px; color: var(--folio-mute-strong); margin-bottom: 28px; padding-bottom: 18px; border-bottom: 1px solid var(--folio-mute-strong); }
+.doctrine-body { font-family: var(--serif); font-size: 13.5px; line-height: 1.56; color: var(--folio-black); column-count: 2; column-gap: 32px; column-rule: 1px solid var(--folio-hairline); text-align: justify; hyphens: auto; flex: 1; }
+.doctrine-body .thesis-block { margin-bottom: 15px; break-inside: avoid; }
+.doctrine-body .thesis-label { display: block; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--folio-mute-strong); margin-bottom: 4px; }
+.doctrine-body .thesis-text { font-size: 14.5px; line-height: 1.48; }
+.doctrine-body h3 { font-family: var(--serif); font-size: 13px; font-weight: 600; font-variant: small-caps; letter-spacing: 0.14em; color: var(--folio-black); margin-top: 17px; margin-bottom: 8px; break-after: avoid; display: flex; align-items: baseline; gap: 10px; }
+.doctrine-body h3 .num { font-family: var(--mono); font-weight: 400; font-size: 9px; color: var(--folio-mute-strong); letter-spacing: 0.18em; font-variant: normal; }
+.doctrine-body h3 .num::after { content: "·"; margin-left: 10px; color: var(--folio-mute-strong); }
+.doctrine-body p { margin-bottom: 9px; }
+.doctrine-body p + p { text-indent: 1.2em; }
+.doctrine-body p.lead { text-indent: 0; }
+.doctrine-body strong.case { font-weight: 600; font-variant: small-caps; letter-spacing: 0.06em; color: var(--folio-black); }
+.doctrine-body ol { list-style: none; counter-reset: doct-rule; margin: 4px 0 10px 0; }
+.doctrine-body ol li { counter-increment: doct-rule; margin-bottom: 9px; padding-left: 26px; position: relative; break-inside: avoid; }
+.doctrine-body ol li::before { content: counter(doct-rule, decimal-leading-zero); font-family: var(--mono); font-size: 9px; color: var(--folio-mute-strong); letter-spacing: 0.1em; position: absolute; left: 0; top: 4px; }
+.doctrine-body ol li strong { font-weight: 600; font-variant: small-caps; letter-spacing: 0.05em; }
+.doctrine-coda { margin-top: 12px; break-inside: avoid; }
+
+/* ───────── RIGHT PAGE — CODEX ───────── */
+.page-right { grid-area: right; padding: 52px 64px 56px 56px; display: flex; flex-direction: column; }
+.codex-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 0.28em; color: var(--folio-mute-strong); text-transform: uppercase; margin-bottom: 14px; }
+.codex-title { font-family: var(--mono); font-weight: 500; font-size: 30px; letter-spacing: 0.24em; color: var(--folio-black); margin-bottom: 4px; }
+.codex-subtitle { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 16px; color: var(--folio-mute-strong); margin-bottom: 14px; }
+.codex-thesis { font-family: var(--serif); font-size: 13.5px; color: var(--folio-black); margin-bottom: 20px; padding-left: 14px; border-left: 2px solid var(--mark); font-style: italic; line-height: 1.48; }
+.codex-thesis .therefore { font-family: var(--mono); font-style: normal; font-size: 9px; letter-spacing: 0.2em; color: var(--mark); text-transform: uppercase; display: block; margin-top: 6px; }
+
+/* ───────── CODEX VISUALIZATION ───────── */
+.codex-visualization { flex: 1; margin-bottom: 20px; }
+.viz-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--folio-mute-strong); margin: 0 0 9px; display: flex; justify-content: space-between; }
+
+/* lineage timeline */
+.lineage { display: flex; border: 1px solid var(--folio-black); margin-bottom: 24px; }
+.lineage .node { flex: 1; padding: 11px 9px 12px; border-right: 1px solid var(--folio-hairline); }
+.lineage .node:last-child { border-right: none; }
+.lineage .node .yr { font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; color: var(--folio-mute-strong); }
+.lineage .node .nm { font-family: var(--serif); font-size: 11px; line-height: 1.22; color: var(--folio-black); margin-top: 4px; }
+.lineage .node.keep { background: var(--mark-wash); }
+.lineage .node.keep .yr { color: var(--mark); font-weight: 500; }
+.lineage .node.keep .nm { font-weight: 600; }
+.lineage .node .seal { display: inline-block; width: 7px; height: 7px; background: var(--mark); transform: rotate(45deg); margin-right: 5px; vertical-align: 1px; }
+
+/* custody ledger */
+.ledger { width: 100%; border-collapse: collapse; }
+.ledger th { font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--folio-mute-strong); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--folio-black); }
+.ledger td { padding: 7px 8px; border-bottom: 1px solid var(--folio-hairline); color: var(--folio-black); vertical-align: top; }
+.ledger td.id { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.04em; white-space: nowrap; color: var(--folio-mute-strong); }
+.ledger td.ttl { font-family: var(--serif); font-style: italic; font-size: 11.5px; line-height: 1.2; white-space: nowrap; }
+.ledger td.val { font-family: var(--serif); font-size: 11px; line-height: 1.28; }
+.ledger tr.keep td { background: var(--mark-wash); }
+.ledger tr.keep td.id { color: var(--mark); font-weight: 600; }
+.ledger tr.keep td.id .seal { display: inline-block; width: 7px; height: 7px; background: var(--mark); transform: rotate(45deg); margin-right: 5px; vertical-align: 1px; }
+
+/* ───────── META BLOCKS ───────── */
+.codex-meta { display: grid; grid-template-columns: 1.1fr 1fr; gap: 22px; }
+.meta-block { font-family: var(--mono); color: var(--folio-black); }
+.meta-label { font-family: var(--mono); font-size: 8px; color: var(--folio-mute-strong); text-transform: uppercase; letter-spacing: 0.24em; padding-bottom: 6px; border-bottom: 1px solid var(--folio-black); margin-bottom: 10px; display: flex; justify-content: space-between; }
+.meta-label .idx { color: var(--folio-mute-strong); font-weight: 400; }
+.palette-stratum { font-size: 7.5px; color: var(--folio-mute-strong); letter-spacing: 0.22em; text-transform: uppercase; margin: 8px 0 6px; }
+.palette-stratum:first-of-type { margin-top: 0; }
+.swatch-row { display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 10px; margin-bottom: 3px; font-size: 8.5px; }
+.swatch { width: 14px; height: 14px; border: 1px solid var(--folio-black); }
+.swatch-name { letter-spacing: 0.1em; text-transform: uppercase; }
+.swatch-hex { font-size: 7.5px; color: var(--folio-mute-strong); letter-spacing: 0.06em; }
+.swatch-row.mark .swatch-name { color: var(--mark); }
+.rules-list { list-style: none; counter-reset: rule; }
+.rules-list li { counter-increment: rule; font-size: 8.5px; margin-bottom: 7px; line-height: 1.5; padding-left: 22px; position: relative; letter-spacing: 0.02em; }
+.rules-list li::before { content: "R." counter(rule, decimal-leading-zero); position: absolute; left: 0; top: 0; color: var(--folio-mute-strong); font-size: 7.5px; letter-spacing: 0.1em; }
+.rules-list li strong { font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; font-size: 8px; }
+
+/* ───────── SLUG ───────── */
+.slug { grid-area: slug; border-top: 1px solid var(--folio-black); padding: 14px 56px 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; font-family: var(--mono); font-size: 8px; letter-spacing: 0.18em; color: var(--folio-mute-strong); text-transform: uppercase; align-items: center; }
+.slug-center { text-align: center; }
+.slug-right { text-align: right; }
+.slug .k { color: var(--folio-mute-strong); opacity: 0.7; margin-right: 6px; }
+.slug .v { color: var(--folio-black); }
+
+@media print {
+  @page { size: 17in 11in landscape; margin: 0.4in; }
+  html, body { background: white; padding: 0; }
+  body { display: block; }
+  .spread { box-shadow: none; width: 100%; min-width: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="spread">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead">
+    <div class="masthead-meta">
+      <div class="row"><span class="k">SERIES</span> Fé</div>
+      <div class="row"><span class="k">EDITION</span> FIELD · A1</div>
+      <div class="row"><span class="k">DATE</span> 2026-06-22</div>
+    </div>
+    <div class="masthead-title">
+      <div class="designation">Fé · Field Application — Doctrinal Preservation</div>
+      <h1>
+        <span class="codex-name">REFERENCE</span>
+        <span class="x">×</span>
+        <span class="doctrine-name">Resort</span>
+      </h1>
+      <div class="subtitle">Why an institution preserves the truth it cannot lawfully command.</div>
+    </div>
+    <div class="masthead-meta right">
+      <div class="row"><span class="k">REGISTER</span> DOCTRINE / CODEX</div>
+      <div class="row"><span class="k">SOURCE</span> FMFRP 12-80 · Applegate</div>
+      <div class="row"><span class="k">FOLIO</span> R / V</div>
+    </div>
+  </header>
+
+  <!-- ═══════════ LEFT PAGE — DOCTRINE ═══════════ -->
+  <article class="page-left">
+
+    <div class="page-header">
+      <span class="folio-mark">FOLIO R · RECTO</span>
+      <span>DOCTRINE</span>
+      <span>PRESERVATION</span>
+    </div>
+
+    <div class="doctrine-eyebrow">Doctrine · Read on Retention</div>
+    <h2 class="doctrine-title">The truth you keep but <em>cannot command</em>.</h2>
+    <div class="doctrine-subtitle">FMFRP 12-80 and the preservation of unsanitizable doctrine.</div>
+
+    <div class="doctrine-body">
+
+      <div class="thesis-block">
+        <span class="thesis-label">Thesis</span>
+        <p class="lead thesis-text">An institution that has become answerable — to law, to politics, to the rules of engagement — eventually cannot mandate the most brutal truths it still knows to be true. The Marine Corps met this limit in close combat. By 1991 it could not make Colonel Rex Applegate's maiming-first methods binding doctrine; so it did the next thing, and preserved them as a <em>reference</em> — retained without being commanded. The last-resort truth, kept legible precisely by refusing to bind it.</p>
+      </div>
+
+      <h3><span class="num">I</span>The sanitization problem</h3>
+      <p class="lead">As a force formalizes, its official doctrine passes through legal review, the Rules of Engagement, and the Law of Armed Conflict. The rawest survival knowledge — point-blank lethality, permanent disablement, instinct ahead of technique — becomes impossible to codify as peacetime procedure. The hazard is not that the knowledge is wrong. It is that the filter deletes it, and the deletion stays invisible until the hour it is needed.</p>
+
+      <h3><span class="num">II</span>Three readings of the maneuver</h3>
+      <p class="lead"><strong class="case">Reference, not manual.</strong> FMFRP 12-80 is a <em>reference publication</em>, explicitly “not intended to become doctrine.” The category is the entire move: hold the institutional memory without legally binding the force to it.</p>
+      <p><strong class="case">The unfilterable core.</strong> Applegate's thesis was psychological before it was physical — strip the conditioning of fair play, bypass cognition under autonomic stress, commit to overwhelming pre-emptive violence. No continuum of force can hold this part, and it is the part most fatal to lose.</p>
+      <p><strong class="case">Legibility under collapse.</strong> Target-focused point shooting over sighted fire inside ten feet; gross motor over fine; the body reverting to an “animal” state in seconds. The method is a way to keep an accurate read of a lethal moment when physiology is destroying your ability to read it.</p>
+
+      <h3><span class="num">III</span>What preservation requires</h3>
+      <ol>
+        <li><strong>Retain, do not mandate.</strong> Keep the truth available; never command it. The category carries the legitimacy the content cannot.</li>
+        <li><strong>Preserve the unsanitized text.</strong> A filtered record is a lie of omission. The value lives in the unflinching original, not the version cleared for review.</li>
+        <li><strong>Name the custody.</strong> Attribute the chain — Shanghai, to the OSS, to 1943, to 1976, to the 1991 reprint. Provenance is what makes a retained truth trustworthy.</li>
+      </ol>
+
+      <div class="doctrine-coda">
+        <h3><span class="num">IV</span>Coda</h3>
+        <p class="lead">When technology fails, distance closes, and the rules of engagement evaporate, survival falls back on the primitive capacities the manual catalogs. The institution cannot order that fall-back into being. It can only refuse to let the knowledge of it disappear. That refusal — retain, attribute, do not command — is itself the doctrine.</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SPINE ═══════════ -->
+  <div class="spine">
+    <div class="spine-ornaments">
+      <div class="spine-mark"></div>
+      <div class="spine-rule"></div>
+    </div>
+    <div class="spine-label">Fé · REFERENCE × RESORT · FIELD A1</div>
+    <div class="spine-ornaments">
+      <div class="spine-rule"></div>
+      <div class="spine-mark filled"></div>
+      <div class="spine-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ RIGHT PAGE — CODEX ═══════════ -->
+  <article class="page-right">
+
+    <div class="page-header">
+      <span>CUSTODY</span>
+      <span>CODEX</span>
+      <span class="folio-mark">FOLIO V · VERSO</span>
+    </div>
+
+    <div class="codex-eyebrow">Codex · Custody Ledger</div>
+    <h2 class="codex-title">REFERENCE</h2>
+    <div class="codex-subtitle">A custody ledger for retained doctrine.</div>
+    <div class="codex-thesis">
+      The codex renders the preservation maneuver as a ledger: each retained text named, dated, and bound to the operational truth it keeps alive — with the single act of consignment, <em>retain-not-mandate</em>, marked once where the manual enters the reference series.
+      <span class="therefore">Therefore: preserve the read; do not command it.</span>
+    </div>
+
+    <!-- ═══ MAIN VISUALIZATION ═══ -->
+    <div class="codex-visualization">
+
+      <div class="viz-label"><span>Doctrinal lineage</span><span>Shanghai → continuum of force</span></div>
+      <div class="lineage">
+        <div class="node"><div class="yr">1910s–30s</div><div class="nm">Shanghai Municipal Police — Fairbairn &amp; Sykes, “Defendu”</div></div>
+        <div class="node"><div class="yr">1941</div><div class="nm">OSS · Camp Ritchie — point shooting refined</div></div>
+        <div class="node"><div class="yr">1943</div><div class="nm">Kill or Get Killed — 1st edition</div></div>
+        <div class="node"><div class="yr">1976</div><div class="nm">Revised &amp; enlarged — Paladin Press</div></div>
+        <div class="node keep"><div class="yr"><span class="seal"></span>1991</div><div class="nm">FMFRP 12-80 — USMC reprint · retained, not mandated</div></div>
+        <div class="node"><div class="yr">2002</div><div class="nm">MCMAP — scalable continuum of force</div></div>
+      </div>
+
+      <div class="viz-label"><span>Retained library · FMFRP 12-series</span><span>reference, not doctrine</span></div>
+      <table class="ledger">
+        <thead><tr><th>Identifier</th><th>Title</th><th>Core value retained</th></tr></thead>
+        <tbody>
+          <tr><td class="id">12-11</td><td class="ttl">German Tactical Doctrine</td><td class="val">Pre-WWII maneuver-warfare principles and tactical planning.</td></tr>
+          <tr><td class="id">12-14</td><td class="ttl">Logistics in the National Defense</td><td class="val">Logistics as the bridge to combat power — the “logistic snowball.”</td></tr>
+          <tr><td class="id">12-15</td><td class="ttl">Small Wars Manual</td><td class="val">The 1940 text on counterinsurgency and peacekeeping.</td></tr>
+          <tr><td class="id">12-43</td><td class="ttl">Mines &amp; Boobytraps</td><td class="val">1969 Vietnam field experience — placement and psychological use.</td></tr>
+          <tr class="keep"><td class="id"><span class="seal"></span>12-80</td><td class="ttl">Kill or Get Killed</td><td class="val">Unfiltered close combat, point shooting, riot control — proven WWII–Cold War.</td></tr>
+          <tr><td class="id">12-109</td><td class="ttl">The Amphibians Came to Conquer</td><td class="val">Operational history of Pacific amphibious doctrine.</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!-- ═══ META BLOCKS ═══ -->
+    <div class="codex-meta">
+
+      <div class="meta-block">
+        <div class="meta-label"><span>PALETTE</span><span class="idx">P.01—P.09</span></div>
+
+        <div class="palette-stratum">Field — the operational reality</div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--s1-1)"></div><div class="swatch-name">Drab Olive</div><div class="swatch-hex">#454A2E</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--s1-2)"></div><div class="swatch-name">Boot Brown</div><div class="swatch-hex">#3A2E22</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--s1-3)"></div><div class="swatch-name">Cordite Tan</div><div class="swatch-hex">#9C8A5C</div></div>
+
+        <div class="palette-stratum">Archive — the institution</div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--s2-1)"></div><div class="swatch-name">Slate</div><div class="swatch-hex">#2C3038</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--s2-2)"></div><div class="swatch-name">Bureau Grey</div><div class="swatch-hex">#5A5E54</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--s2-3)"></div><div class="swatch-name">Foxed Cream</div><div class="swatch-hex">#C9BFA6</div></div>
+
+        <div class="palette-stratum">Edge — the instrument</div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--s3-1)"></div><div class="swatch-name">Gun Steel</div><div class="swatch-hex">#4C5158</div></div>
+        <div class="swatch-row"><div class="swatch" style="background:var(--s3-2)"></div><div class="swatch-name">Blued</div><div class="swatch-hex">#23262B</div></div>
+
+        <div class="palette-stratum">Mark Only</div>
+        <div class="swatch-row mark"><div class="swatch" style="background:var(--mark)"></div><div class="swatch-name">Compact Green</div><div class="swatch-hex">#2E5F4A</div></div>
+      </div>
+
+      <div class="meta-block">
+        <div class="meta-label"><span>IRON RULES</span><span class="idx">R.01—R.05</span></div>
+        <ol class="rules-list">
+          <li><strong>One consignment.</strong> Compact Green appears only at the retain-not-mandate moment — the 1991 node and the 12-80 row — never decoratively.</li>
+          <li><strong>Named custody.</strong> Every retained text carries identifier, year, and the truth it preserves; no anonymous entries.</li>
+          <li><strong>Unfiltered value.</strong> The retained-value column states the unsanitized core, not the cleared summary.</li>
+          <li><strong>Lineage intact.</strong> The chain runs origin to successor without gaps; preservation is verifiable end to end.</li>
+          <li><strong>Reference, not mandate.</strong> The ledger records what is kept available — never what is commanded.</li>
+        </ol>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ═══════════ SLUG ═══════════ -->
+  <footer class="slug">
+    <div class="slug-left">
+      <span class="k">SET</span><span class="v">Fé · FIELD A1</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">PAIR</span><span class="v">RESORT × REFERENCE</span>
+    </div>
+    <div class="slug-center">
+      <span class="k">DEMONSTRATION · INDEX UNCHANGED 7 / 7</span>
+    </div>
+    <div class="slug-right">
+      <span class="k">REV</span><span class="v">01</span>
+      <span style="margin: 0 14px; color: var(--folio-mute-strong);">·</span>
+      <span class="k">SHEET</span><span class="v">01 / 01</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
