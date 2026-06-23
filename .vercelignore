@@ -1,0 +1,10 @@
+.venv
+__pycache__
+*.pyc
+.DS_Store
+*.bak
+.git
+2_files.zip
+3_files.zip
+4_files.zip
+files.zip
