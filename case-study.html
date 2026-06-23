@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fé — Case Study</title>
+<meta name="description" content="Case study: designing Fé, a bound-folio design system for legibility under contested conditions — the form, the governance, the process, and what the discipline earns.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Fé">
+<meta property="og:title" content="Fé — Case Study">
+<meta property="og:description" content="How a bound-folio system makes an argument auditable in the artifact that argues it.">
+<meta property="og:url" content="https://fe-pink.vercel.app/case-study.html">
+<meta property="og:image" content="https://fe-pink.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fé — Case Study">
+<meta name="twitter:image" content="https://fe-pink.vercel.app/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --folio-black:   #1F2024;
+  --ink:           #E8DFC9;
+  --ink-soft:      #C9C1AC;
+  --ink-mute:      #9A968A;
+  --hairline:      rgba(232, 223, 201, 0.16);
+  --hairline-hard: rgba(232, 223, 201, 0.32);
+
+  --bone-pale:     #E8DFC9;
+  --linen-slip:    #E3DCC9;
+  --survey-vellum: #D8CFB8;
+  --operator-cream:#E4DDC7;
+
+  --slow-red:      #5A1F1F;
+  --slag-mark:     #A33A1A;
+  --margin-gold:   #6A5111;
+  --compact-green: #2E5F4A;
+  --bind-blue:     #1F4F73;
+  --crown-indigo:  #1A2A66;
+  --sigil-mauve:   #5F2F4A;
+
+  --paper-black:   #1F2024;
+  --paper-mute:    #56544C;
+
+  --serif:   'EB Garamond', 'Times New Roman', serif;
+  --display: 'Fraunces', 'EB Garamond', serif;
+  --mono:    'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--folio-black); color: var(--ink);
+  font-family: var(--serif); line-height: 1.65;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+.wide { max-width: 1080px; }
+.mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.26em; font-size: 10px; color: var(--ink-mute); }
+a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--hairline-hard); }
+a:hover { color: var(--ink); }
+
+/* ───── top bar ───── */
+.topbar { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px);
+  background: rgba(31,32,36,0.72); border-bottom: 1px solid var(--hairline); }
+.topbar .inner { max-width: 1080px; margin: 0 auto; padding: 13px 32px; display: flex; justify-content: space-between; align-items: center; }
+.topbar .brand { font-family: var(--display); font-size: 20px; color: var(--ink); border: none; }
+.topbar nav a { border: none; margin-left: 22px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); }
+.topbar nav a:hover { color: var(--ink); }
+
+/* ───── hero ───── */
+.hero { padding: 104px 32px 64px; text-align: center; max-width: 860px; margin: 0 auto;
+  background: radial-gradient(120% 70% at 50% 0%, rgba(232,223,201,0.05), transparent 60%); }
+.hero .eyebrow { margin-bottom: 26px; }
+.hero h1 { font-family: var(--display); font-weight: 500; font-style: italic;
+  font-variation-settings: "opsz" 144; font-size: clamp(38px, 6.4vw, 68px); line-height: 1.04;
+  letter-spacing: -0.01em; color: var(--ink); }
+.hero h1 .rune { font-style: normal; font-weight: 600; }
+.hero .standfirst { margin-top: 26px; font-size: clamp(17px, 2.3vw, 21px); color: var(--ink-soft); line-height: 1.5; }
+
+/* ───── at a glance ───── */
+.glance { max-width: 1080px; margin: 40px auto 0; padding: 0 32px; }
+.glance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border: 1px solid var(--hairline); gap: 1px; background: var(--hairline); }
+.glance-cell { background: var(--folio-black); padding: 20px 22px; }
+.glance-cell .k { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute); display: block; margin-bottom: 8px; }
+.glance-cell .v { font-size: 15px; color: var(--ink); line-height: 1.45; }
+
+/* ───── figure ───── */
+figure { max-width: 1080px; margin: 64px auto 0; padding: 0 32px; }
+figure img { width: 100%; display: block; border: 1px solid var(--hairline-hard); }
+figcaption { margin-top: 12px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); text-align: center; }
+
+/* ───── sections ───── */
+section { padding: 62px 0 8px; }
+.sec-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.26em; color: var(--ink-mute); }
+h2 { font-family: var(--display); font-weight: 400; font-style: italic; font-variation-settings: "opsz" 110;
+  font-size: clamp(26px, 3.8vw, 38px); line-height: 1.1; color: var(--ink); margin: 12px 0 22px; letter-spacing: 0.005em; }
+h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); margin: 30px 0 12px; }
+p { margin-bottom: 17px; font-size: 17px; color: var(--ink-soft); }
+p strong { color: var(--ink); font-weight: 600; }
+p em { font-style: italic; color: var(--ink); }
+ul { margin: 0 0 18px 0; padding-left: 0; list-style: none; }
+li { font-size: 16px; color: var(--ink-soft); padding: 8px 0 8px 22px; position: relative; border-bottom: 1px solid var(--hairline); }
+li::before { content: "—"; position: absolute; left: 0; color: var(--ink-mute); }
+li:last-child { border-bottom: none; }
+li b { color: var(--ink); font-weight: 600; }
+
+/* pull quote */
+.pull { max-width: 880px; margin: 40px auto; padding: 0 32px; text-align: center; }
+.pull blockquote { font-family: var(--display); font-style: italic; font-weight: 400;
+  font-variation-settings: "opsz" 144; font-size: clamp(22px, 3.4vw, 32px); line-height: 1.32; color: var(--ink); }
+.pull cite { display: block; margin-top: 18px; font-family: var(--mono); font-style: normal; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); }
+
+/* form schematic */
+.schematic { display: grid; grid-template-columns: 1fr 2px 1fr; border: 1px solid var(--hairline-hard); background: var(--hairline); margin: 26px 0; }
+.schematic .cell { background: var(--folio-black); padding: 26px 24px; }
+.schematic .cell .role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink); }
+.schematic .cell .what { margin-top: 10px; font-style: italic; color: var(--ink-soft); font-size: 15px; }
+.schematic .spine { background: var(--hairline-hard); }
+
+/* mark index spectrum */
+.spectrum { display: grid; grid-template-columns: repeat(7, 1fr); border: 1px solid var(--hairline-hard); margin: 24px 0; }
+.spectrum .seg .bar { height: 44px; border-right: 1px solid rgba(31,32,36,0.45); }
+.spectrum .seg:last-child .bar { border-right: none; }
+.spectrum .seg .nm { display: block; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mute); padding: 8px 6px 0; text-align: center; }
+
+/* process timeline */
+.timeline { border-left: 1px solid var(--hairline-hard); margin: 24px 0 8px; padding-left: 0; }
+.timeline .step { position: relative; padding: 4px 0 22px 28px; border: none; }
+.timeline .step::before { content: ""; position: absolute; left: -5px; top: 10px; width: 9px; height: 9px; background: var(--mark, var(--ink-mute)); border: 1px solid var(--folio-black); }
+.timeline .step .t { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); }
+.timeline .step .h { color: var(--ink); font-weight: 600; font-size: 17px; margin: 4px 0 4px; }
+.timeline .step .d { font-size: 15.5px; color: var(--ink-soft); }
+
+/* stat row */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 1px solid var(--hairline); gap: 1px; background: var(--hairline); margin: 26px 0; }
+.stat { background: var(--folio-black); padding: 22px; text-align: center; }
+.stat .n { font-family: var(--display); font-weight: 500; font-variation-settings: "opsz" 144; font-size: 38px; color: var(--ink); line-height: 1; }
+.stat .l { margin-top: 8px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); }
+
+/* callout (the scar) */
+.callout { border: 1px solid var(--hairline-hard); border-left: 3px solid var(--slag-mark); padding: 22px 24px; margin: 24px 0; background: rgba(163,58,26,0.05); }
+.callout .tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--slag-mark); margin-bottom: 10px; }
+.callout p { margin-bottom: 0; font-size: 16px; }
+
+/* footer */
+footer { border-top: 1px solid var(--hairline); margin-top: 64px; padding: 54px 0 80px; }
+.foot { max-width: 1080px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 22px; align-items: baseline; }
+.foot .title { font-family: var(--display); font-style: italic; font-size: 22px; color: var(--ink); }
+.foot .links a { border: none; margin-left: 20px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
+.foot .imprint { width: 100%; font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin-top: 8px; }
+
+@media (max-width: 640px) {
+  .schematic { grid-template-columns: 1fr; } .schematic .spine { display: none; }
+  .spectrum .seg .nm { display: none; }
+  .topbar nav a:not(:last-child) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="inner">
+  <a class="brand" href="index.html">Fé</a>
+  <nav>
+    <a href="index.html">Overview</a>
+    <a href="#process">Process</a>
+    <a href="double_folio_volume_01.pdf" target="_blank" rel="noopener">Volume 01 ↗</a>
+  </nav>
+</div></div>
+
+<header class="hero">
+  <div class="eyebrow mono">Case Study · Design System · 2026</div>
+  <h1>Making an argument auditable in the artifact that argues it.</h1>
+  <p class="standfirst"><span class="mono" style="font-size:13px;letter-spacing:0.1em;color:var(--ink)">Fé</span> is a bound-folio design system for legibility under contested conditions. Eight folios, one fixed form, one mark per folio — a system whose discipline you can verify in a single glance.</p>
+</header>
+
+<div class="glance"><div class="glance-grid">
+  <div class="glance-cell"><span class="k">Role</span><span class="v">Sole author — system design, brand doctrine, front-end, tooling</span></div>
+  <div class="glance-cell"><span class="k">Year</span><span class="v">2026 · Volume 01</span></div>
+  <div class="glance-cell"><span class="k">Deliverables</span><span class="v">8 folios · 10-page bound volume · installable skill · landing + deploy</span></div>
+  <div class="glance-cell"><span class="k">Stack</span><span class="v">Zero-dependency HTML/CSS · EB&nbsp;Garamond / JetBrains&nbsp;Mono / Fraunces · Playwright → pypdf</span></div>
+  <div class="glance-cell"><span class="k">Status</span><span class="v">Complete · Mark index 7 / 7, closed by intent</span></div>
+  <div class="glance-cell"><span class="k">Links</span><span class="v"><a href="index.html">Live overview</a> · <a href="https://github.com/augustave/fe" target="_blank" rel="noopener">Repo ↗</a></span></div>
+</div></div>
+
+<figure>
+  <img src="og.png" alt="Fé — Volume 01 title card">
+  <figcaption>Fé · Volume 01 — the bound catalogue, named for its first rune</figcaption>
+</figure>
+
+<div class="wrap">
+
+  <section id="problem">
+    <div class="sec-num">§ 01 — The Problem</div>
+    <h2>Complex systems fail at the moment they most need to be read.</h2>
+    <p>Defense systems, brand systems, and any complex-systems discipline share one failure mode: they lose legibility exactly when the stakes are highest — under degraded communications, contested authority, and machine-tempo action faster than human review. The situation actively works to destroy your ability to read it.</p>
+    <p>The usual responses don't hold under that pressure. A logging system documents <em>after</em> the fact. A brand deck asserts values <em>beside</em> the work, in separate paperwork no one consults mid-operation. A specification describes intent but can't prove the artifact obeys it. Each treats legibility as something you add — a layer, a report, a review step — rather than a property of the thing itself.</p>
+    <p>The brief for Fé was to design the opposite: artifacts that <strong>show what they are doing while they do it</strong>, inspectable in flight, where the claim and the proof of the claim live in the same object.</p>
+  </section>
+
+  <section id="thesis">
+    <div class="sec-num">§ 02 — The Thesis</div>
+    <h2>Legibility is the load-bearing concept — and the form is the enforcement surface.</h2>
+    <p>The system takes a single position and builds everything from it: <em>legibility</em> — the ability to hold an accurate read of a situation while the situation tries to destroy that read — is the structural concept underneath every discipline that operates under pressure. Not transparency. Not documentation. The property of an artifact that lets you read it in the moment.</p>
+    <p>The second move is the one that makes it a system rather than an essay: the <strong>form itself enforces the argument</strong>. Each folio pairs a doctrine (the argument) with a codex (the worked artifact), bound by a single mark color used at exactly the one operational moment where argument and artifact agree. Because the form is fixed and the bind is visible, a reader holding any single folio can verify — in one glance — that the codex obeys the doctrine. Discipline becomes auditable at the artifact level.</p>
+  </section>
+</div>
+
+<div class="pull"><blockquote>“A logging system documents after the fact. A legible system shows in the moment, in the artifact itself.”</blockquote><cite>The standing thesis</cite></div>
+
+<div class="wrap">
+  <section id="form">
+    <div class="sec-num">§ 03 — The Form</div>
+    <h2>One architecture, obeyed by every folio.</h2>
+    <p>Each folio is a single wide spread, designed at a native 1440px. The discipline is not decorative — it is what makes the argument-to-artifact bind checkable without external reference.</p>
+    <div class="schematic">
+      <div class="cell"><div class="role">Recto · Doctrine</div><div class="what">The argument — a named legibility problem in some domain.</div></div>
+      <div class="spine"></div>
+      <div class="cell"><div class="role">Verso · Codex</div><div class="what">The worked artifact — the argument rendered in operational form.</div></div>
+    </div>
+    <ul>
+      <li><b>One mark per folio.</b> A single color, used exclusively at the one operational moment the doctrine and codex share. Decorative use is forbidden.</li>
+      <li><b>Three palette strata.</b> 3 strata × 3–4 colors, named for the folio's content register. Variation lives here, where it carries meaning.</li>
+      <li><b>Locked foundation.</b> System core colors, the paper spectrum, and the typography are immutable across the series.</li>
+      <li><b>Auditable accessibility.</b> Every body-text color meets WCAG 2.1 AA against its paper. The audit runs before render.</li>
+    </ul>
+  </section>
+
+  <section id="system">
+    <div class="sec-num">§ 04 — The System &amp; Its Governance</div>
+    <h2>A constraint that can refuse you.</h2>
+    <p>Underneath the folios sits a locked Stage&nbsp;A foundation — four system-core values, a four-paper spectrum, and three typefaces (EB&nbsp;Garamond, JetBrains&nbsp;Mono, Fraunces, all SIL&nbsp;OFL). These never vary. The interesting governance is the <strong>Mark Color Index</strong>: seven slots, each holding one operational concept, not just a color.</p>
+    <div class="spectrum">
+      <div class="seg"><div class="bar" style="background:var(--slow-red)"></div><span class="nm">Slow Red</span></div>
+      <div class="seg"><div class="bar" style="background:var(--slag-mark)"></div><span class="nm">Slag Mark</span></div>
+      <div class="seg"><div class="bar" style="background:var(--margin-gold)"></div><span class="nm">Margin Gold</span></div>
+      <div class="seg"><div class="bar" style="background:var(--compact-green)"></div><span class="nm">Compact Green</span></div>
+      <div class="seg"><div class="bar" style="background:var(--bind-blue)"></div><span class="nm">Bind Blue</span></div>
+      <div class="seg"><div class="bar" style="background:var(--crown-indigo)"></div><span class="nm">Crown Indigo</span></div>
+      <div class="seg"><div class="bar" style="background:var(--sigil-mauve)"></div><span class="nm">Sigil Mauve</span></div>
+    </div>
+    <p>The index has rules with teeth. A mark <strong>promotes exactly once and never migrates</strong> — claim a slot and it is closed. A new concept that fits no existing zone cannot just take a color; it requires a formal <em>AUDIT</em> to extend the index. Seven was chosen as a deliberate ceiling. The governance can tell a new request <em>no</em> — which is the point. A discipline that accommodates everything disciplines nothing.</p>
+  </section>
+
+  <section id="catalogue">
+    <div class="sec-num">§ 05 — The Catalogue</div>
+    <h2>One foundation, a Norse trio, a contemporary quartet.</h2>
+    <p>Volume 01 is eight folios with a deliberate arc. <b>№00 CANON × FORM</b> is the self-documenting foundation — the only folio with no single mark, because it catalogues all of them. The <b>Norse trio</b> (№01–03) reads stanzas of the Old Norwegian rune poem as structural predictions: wealth as the engine of kin-strife, substance verification before engagement, strategic estimation under capability overhang.</p>
+    <p>The <b>contemporary quartet</b> (№04–07) is the payload — a sovereignty-and-accountability map for autonomous systems that brackets a single bound action across four dimensions:</p>
+    <ul>
+      <li><b>MANIFEST × INTENT</b> — the <b>action</b>: the operator–fleet seam under degraded communications.</li>
+      <li><b>WRIT × OATH</b> — the <b>authority</b>: sovereignty made legible in the artifact that acts, not asserted beside it.</li>
+      <li><b>PROVENANCE × MEMORY</b> — the <b>origin</b>: lineage and custody the actor must carry to be trusted.</li>
+      <li><b>COMMISSION × NAME</b> — the <b>identity</b>: a named instance, not a numbered one — a serial is a count, a name is an actor.</li>
+    </ul>
+    <p>Together: a system whose action, authority, origin, and identity are all legible in the artifact. The argument is also the thesis of the wider practice — that this is an old shape (the writ, the deed, the commission, the seal) recovered for contemporary work.</p>
+  </section>
+</div>
+
+<div class="wrap">
+  <section id="process">
+    <div class="sec-num">§ 06 — Process &amp; Decisions</div>
+    <h2>The discipline was learned the hard way, then encoded.</h2>
+    <p>The system did not arrive intact. The most consequential decisions came from things going wrong and being unwound on the record — which is the case study's real subject, because a governance model is only as good as the moment it stops you.</p>
+
+    <div class="timeline">
+      <div class="step" style="--mark:var(--bone-pale)"><div class="t">Foundation</div><div class="h">Lock Stage A, build the foundation + Norse trio</div><div class="d">System core, paper spectrum, typography, and the WCAG framework are frozen. CANON documents the system in its own form.</div></div>
+      <div class="step" style="--mark:var(--bind-blue)"><div class="t">Expansion</div><div class="h">Build the contemporary quartet</div><div class="d">The action / authority / origin / identity map. WRIT introduces the first codex that <em>is</em> a document rather than a visualization.</div></div>
+      <div class="step" style="--mark:var(--slag-mark)"><div class="t">Audit-001</div><div class="h">A cold-start build duplicates an occupied slot</div><div class="d">Building without surveying first, a proposed folio (REGISTER × HOLD) claimed Compact Green — already held for PROVENANCE. The conflict was caught and unwound: PROVENANCE kept, REGISTER archived.</div></div>
+      <div class="step" style="--mark:var(--crown-indigo)"><div class="t">Remediation</div><div class="h">Encode a survey-first rule so it can't recur</div><div class="d">The fix wasn't a one-time correction; it became Step&nbsp;0 of the build workflow: reconcile the folios, the mark index, and CANON before naming anything.</div></div>
+      <div class="step" style="--mark:var(--sigil-mauve)"><div class="t">Closure</div><div class="h">Close the index, declare the volume complete</div><div class="d">Seven of seven marks claimed. A closing colophon converts “happens to be full” into “intentionally finished.” An eighth folio now requires a deliberate re-architecture, not a routine build.</div></div>
+    </div>
+
+    <div class="callout">
+      <div class="tag">▢ The scar that became a rule</div>
+      <p>AUDIT-001 is the case study in miniature: the system's value isn't that it produces folios, it's that it can <em>refuse</em> an invalid one and document why. The duplicate-slot incident is preserved in the record, not erased — the same way the codices preserve their own provenance. The discipline practices what it argues.</p>
+    </div>
+  </section>
+
+  <section id="skill">
+    <div class="sec-num">§ 07 — Productized as a Skill</div>
+    <h2>The system replicates itself on one prompt.</h2>
+    <p>A design system that only its author can extend isn't a system — it's a style. So Fé is packaged as an installable skill: the canonical rules, the locked foundation values, the Mark Color Index discipline, blank scaffolds, eight worked examples, and the binding pipeline. “Build a Fé on <em>[topic]</em>” becomes a one-prompt invocation that honors the same constraints — including the survey-first Step&nbsp;0 that AUDIT-001 produced.</p>
+    <p>The skill carries its own scar tissue and changelog. It ages forward with the system: when the index closed and the colophon was added, the package was versioned to match. The governance travels with the artifact.</p>
+  </section>
+
+  <section id="engineering">
+    <div class="sec-num">§ 08 — Engineering Notes</div>
+    <h2>Zero dependencies, two stubborn print-engine scars.</h2>
+    <p>Every folio is plain HTML — no build step, no framework, no asset beyond the type. The catalogue is assembled by a pipeline that renders each spread at its native dimensions and concatenates to a single PDF. Getting that to render <em>faithfully</em> took fighting the headless print engine, and both fixes are documented in the tool so they can't recur:</p>
+    <ul>
+      <li><b>Drive the page box via CSS <code>@page</code>, not the PDF width/height params.</b> Those params paginate a spread across two pages when content sits near the page boundary; an injected <code>@page</code> size sets the box the layout engine actually uses.</li>
+      <li><b>Zero <code>min-height:100vh</code> before measuring.</b> Harmless on screen, but at print time <code>1vh</code> equals the tall page height — re-inflating the body onto a phantom second page.</li>
+    </ul>
+    <p>The portfolio is portrait by design and never forced into landscape: downscaling a 1440px spread destroys body-text legibility — which would be a system that violates its own thesis.</p>
+  </section>
+
+  <section id="outcomes">
+    <div class="sec-num">§ 09 — Outcomes</div>
+    <h2>A closed shape, shipped.</h2>
+    <div class="stats">
+      <div class="stat"><div class="n">8</div><div class="l">Folios</div></div>
+      <div class="stat"><div class="n">10</div><div class="l">Bound pages</div></div>
+      <div class="stat"><div class="n">7/7</div><div class="l">Marks · closed</div></div>
+      <div class="stat"><div class="n">AA</div><div class="l">WCAG 2.1, throughout</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">Runtime deps</div></div>
+    </div>
+    <p>Volume 01 ships as a self-consistent set: eight folios, a 10-page bound volume with alternate cuts (a hue-ordered <em>spectrum</em> edition, plus Norse and contemporary subsets), an installable skill, and a deployed landing. Every artifact — folios, PDF, cover, colophon, documentation, skill, and this case study — names the system the same way and obeys the same rules.</p>
+  </section>
+
+  <section id="reflection">
+    <div class="sec-num">§ 10 — Reflection</div>
+    <h2>What the form earns.</h2>
+    <p>Sovereignty has always operated through named, attested, legible artifacts — the writ, the deed, the commission, the seal. What modernity stripped wasn't the underlying logic but the operational legibility. Fé's wager is that the older shape is the structural answer, and that a contemporary system can recover it without nostalgia.</p>
+    <p>The hardest decision was to <strong>stop</strong>. A discipline that cannot end is no discipline, so the index closes at seven by intent and the volume is declared complete with a colophon rather than left quietly full. The system named itself for its own first rune — <span class="mono" style="font-size:13px;letter-spacing:0.08em;color:var(--ink)">Fé</span>, wealth, the engine of the first folio's argument — and then drew the line. The form is older than the series. What the series demonstrates is that the form still works.</p>
+  </section>
+</div>
+
+<footer><div class="foot">
+  <div class="title">Fé · Volume 01</div>
+  <div class="links">
+    <a href="index.html">Overview</a>
+    <a href="double_folio_volume_01.pdf" target="_blank" rel="noopener">Bound PDF ↗</a>
+    <a href="https://github.com/augustave/fe" target="_blank" rel="noopener">Repo ↗</a>
+  </div>
+  <div class="imprint">DEVGRU.COMPUTER · DEFENSE.OBSERVER · Ven Augustave · New York · 2026</div>
+</div></footer>
+
+</body>
+</html>
